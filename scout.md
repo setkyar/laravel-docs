@@ -1,6 +1,6 @@
 # Laravel Scout
 
-- [Introduction](#introduction)
+- [မိတ်ဆက်](#introduction)
 - [Installation](#installation)
     - [Queueing](#queueing)
     - [Driver Prerequisites](#driver-prerequisites)
@@ -18,28 +18,28 @@
     - [Pagination](#pagination)
 
 <a name="introduction"></a>
-## Introduction
+## မိတ်ဆက်
 
-Laravel Scout provides a simple, driver based solution for adding full-text search to your [Eloquent models](/docs/{{version}}/eloquent). Using model observers, Scout will automatically keep your search indexes in sync with your Eloquent records.
+[Eloquent models](/docs/{{version}}/eloquent) အတွက် full-text search ကို Laravel  Scout ကလွယ်ကူတဲ့ driver based solution အဖြစ်ပြုလုပ်ပေးထားပါတယ်။ Model observers တွေကိုသုံးပြီးတော့ search indexes အဖြစ် Eloquent records တွေနဲ့အလိုအလျောက် sync လုပ်ပေးမှာဖြစ်ပါတယ်။
 
-Currently, Scout ships with an [Algolia](https://www.algolia.com/) driver; however, writing custom drivers is simple and you are free to extend Scout with your own search implementations.
+လက်ရှိမှာတော့ Scout ကို [Algolia](https://www.algolia.com/) driver နဲ့ ship လုပ်ပေးမှာဖြစ်ပါတယ်၊ ဒါပေမယ့် custom drivers တွေပြုလုပ်ရတာကလွယ်ကူတော့ Scout ကို extend လုပ်ပြီးတော့ကိုယ်ပိုင် search implementations တွေလည်းပြုလုပ်နိုင်ပါတယ်။
 
 <a name="installation"></a>
 ## Installation
 
-First, install the Scout via the Composer package manager:
+ပထမဆုံး Scout ကို Composer package manager ကနေ install လုပ်လိုက်ပါ -
 
     composer require laravel/scout
 
-Next, you should add the `ScoutServiceProvider` to the `providers` array of your `config/app.php` configuration file:
+ပြီးရင်တော့ `ScoutServiceProvider` ကို `config/app.php` array configuration file မှာထည့်လိုက်ပါ -
 
     Laravel\Scout\ScoutServiceProvider::class,
 
-After registering the Scout service provider, you should publish the Scout configuration using the `vendor:publish` Artisan command. This command will publish the `scout.php` configuration file to your `config` directory:
+Scout service provider ကို register လုပ်ပြီးပြီဆိုရင် Scout configuration ကို `vendor:publish` Artisan command run ပြီးတော့ publish လုပ်လိုက်ပါ။ ဒီ publish command run လိုက်တာနဲ့ `config` directory မှာ `scout.php` configuration file ကို publish လုပ်သွားမှာဖြစ်ပါတယ် -
 
     php artisan vendor:publish
 
-Finally, add the `Laravel\Scout\Searchable` trait to the model you would like to make searchable. This trait will register a model observer to keep the model in sync with your search driver:
+နောက်ဆုံးအဆင့်အနေနဲ့ကတော့ `Laravel\Scout\Searchable` trait ကိုကိုယ်ရှာစေချင်တဲ့ Model မှာထည့်ပါ။ အဲ့ဒီ့ trait က model နဲ့ search driver ကြားမှာ sync လုပ်အောင် model observer တစ်ခု register လုပ်ပါလိမ့်မယ်။
 
     <?php
 
