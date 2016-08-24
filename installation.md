@@ -11,9 +11,9 @@
 <a name="server-requirements"></a>
 ### Server Requirements
 
-The Laravel framework has a few system requirements. Of course, all of these requirements are satisfied by the [Laravel Homestead](/docs/{{version}}/homestead) virtual machine, so it's highly recommended that you use Homestead as your local Laravel development environment.
+Laravel framework က system requirements တစ်ချို့လိုအပ်ပါတယ်။ အဲ့ဒီ့လိုအပ်တဲ့ requirements တွေကို [Laravel Homestead](/docs/{{version}}/homestead) virtual machine က စိတ်ကျေနပ်မှုပေးမှာပါ၊ ဒါကြောင့်မလို့ Homestead ကိုသင့်ရဲ့ local development environment အတွက်အသုံးပြုဖို့ရာ highly recommended လုပ်ပါတယ်။
 
-However, if you are not using Homestead, you will need to make sure your server meets the following requirements:
+တကယ်လို့သင့်က Homestead ကိုအသုံးမပြုဘူးဆိုရင် သင့်ရဲ့ server ကအောက်ဖော်ပြပါ requirements တွေလိုအပ်မှာဖြစ်ပါတယ် -
 
 <div class="content-list" markdown="1">
 - PHP >= 5.6.4
