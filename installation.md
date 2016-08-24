@@ -28,21 +28,21 @@ Laravel framework က system requirements တစ်ချို့လိုအ�
 
 Laravel utilizes [Composer](http://getcomposer.org) to manage its dependencies. So, before using Laravel, make sure you have Composer installed on your machine.
 
-#### Via Laravel Installer
+#### Laravel Installer မှတစ်ဆင့်
 
-First, download the Laravel installer using Composer:
+ပထမဆုံး Composer ကိုအသုံးပြုပြီး Laravel installer ကို download လုပ်ပါ -
 
     composer global require "laravel/installer"
 
-Make sure to place the `~/.composer/vendor/bin` directory (or the equivalent directory for your OS) in your $PATH so the `laravel` executable can be located by your system.
+`~/.composer/vendor/bin directory` ကို PATCH directory ထဲမှာထည့်ထားရပါ့မယ် ဒါမှ `laravel` ဆိုပြီးခေါ်နိုင်ဖို့ရာအတွက် system ကသိမှာဖြစ်ပါတယ်။
 
-Once installed, the `laravel new` command will create a fresh Laravel installation in the directory you specify. For instance, `laravel new blog` will create a directory named `blog` containing a fresh Laravel installation with all of Laravel's dependencies already installed:
+Install လုပ်ပြီးသွားပြီဆိုရင် laravel new command ကိုသုံးပြီးတော့ သင်ကြိုက်တဲ့ directory မှာ Laravel ကို install လုပ်လို့ရပါပြီ။ ဥပမာအားဖြင့် laravel new blog က blog လို့အမည်ပေးထားတဲ့ folder ထဲမှာ Laravel ရဲ့ dependencies တွေကို install လုပ်ထားမှာဖြစ်ပါတယ်။
 
     laravel new blog
 
 #### Via Composer Create-Project
 
-Alternatively, you may also install Laravel by issuing the Composer `create-project` command in your terminal:
+နောက်တစ်နည်းအနေးနဲ့ Laravel ကို terminal ကနေ Composer `create-project` command run ပြီးတော့ install လုပ်နိုင်ပါတယ်။
 
     composer create-project --prefer-dist laravel/laravel blog
 
@@ -51,27 +51,27 @@ Alternatively, you may also install Laravel by issuing the Composer `create-proj
 
 #### Public Directory
 
-After installing Laravel, you should configure your your web server's document / web root to be the `public` directory. The `index.php` in this directory serves as the front controller for all HTTP requests entering your application.
+Laravel ကို install လုပ်ပြီးတဲ့အခါမှာတော့သင့် web server ရဲ့ document / web root က `public` directory ဖြစ်ပါတယ်။ အဲ့ဒီ့ directory က `index.php` ကသင့် application ဆီကိုဝင်လာတဲ့ HTTP requests တွေအကုန်လုံးရဲ့ front controller အဖြစ် servers လုပ်ပါတယ်။
 
 #### Configuration Files
 
-All of the configuration files for the Laravel framework are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
+Laravel framework ရဲ့ configuration အကုန်လုံးကို `config` directory တစ်ခုလုံးမှာ store လုပ်ထားပါတယ်။ option တစ်ခုတိုင်းဆီက document လုပ်ပြီးသားပါ၊ ဒါကြောင့်မလို့ files တွေကိုဖွင့်ကြည့်ပြီးတော့ သင့်အတွက် available ဖြစ်တဲ့ options တွေနဲ့ familiar ဖြစ်အောင်လုပ်ပါ။
 
 #### Directory Permissions
 
-After installing Laravel, you may need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Laravel will not run. If you are using the [Homestead](/docs/{{version}}/homestead) virtual machine, these permissions should already be set.
+Laravel ကို install လုပ်ပြီးတဲ့အခါမှာ permission တစ်ချို့ configure လုပ်ပေးဖို့လိုပါတယ်။ `storage` နဲ့ `bootstrap/cache` directories တွေကတော့ web server ကနေ writable ဖြစ်ဖို့လိုပါတယ်... အဲ့လိုမဟုတ်ဘူးဆိုရင် Laravel run မှာမဟုတ်ပါဘူး။ [Homestead](/docs/{{version}}/homestead) virtual machine ကိုသုံးမယ်ဆိုရင်တော့ဒီ permissions တွေက set လုပ်ပြီးသားဖြစ်ပါလိမ့်မယ်။
 
 #### Application Key
 
-The next thing you should do after installing Laravel is set your application key to a random string. If you installed Laravel via Composer or the Laravel installer, this key has already been set for you by the `php artisan key:generate` command.
+Laravel install လုပ်ပြီးရင်နောက်တစ်ခုလုပ်သင့်တာကတော့ application key ပါဘဲ။ သင်က Laravel ကို Composer ဒါမှမဟုတ် Laravel installer ကနေတစ်ဆင့် install လုပ်ထားတယ်ဆိုရင်တော့ ဒီ key တွေက `php artisan key:generate` ကိုသုံးပြီးတစ်ခါတည်း set လုပ်ပြီးပါပြီ။
 
-Typically, this string should be 32 characters long. The key can be set in the `.env` environment file. If you have not renamed the `.env.example` file to `.env`, you should do that now. **If the application key is not set, your user sessions and other encrypted data will not be secure!**
+ပုံမှန်အားဖြင့် အဲ့ဒီ့ string က ၃၂ နှစ်လုံးရှိတဲ့စကားလုံးတွေပါ။ key ကို ` .env` environment file မှာလည်း set လုပ်နိုင်ပါတယ်။ `.env.example` ကို `.env` လို့အမည်မပြောင်းရသေးရင် သင့်အနေနဲ့အခုဘဲပြောင်းသင့်ပါတယ်။ **တကယ်လို့ application key က set လုပ်မထားဘူးဆိုရင် sessions နဲ့ အခြား encrypted data တွေကလုံခြုံမှာရှိမှာမဟုတ်ပါဘူး**
 
 #### Additional Configuration
 
-Laravel needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains several options such as `timezone` and `locale` that you may wish to change according to your application.
+Laravel ကအခြား configuration တွေမလိုသလောက်ပါဘဲ။ သင့် developly လုပ်ချင်ရင်လုပ်နိုင်ပါပြီ။ သို့ရာတွင်လည်း သင့်အနေနဲ့ `config/app.php` file နဲ့ သူ့ documencation ကို review လုပ်ချင်ပါလိမ့်မယ်။ အဲဒီ့မှာ `timezone` နဲ့ `locale` options တွေများစွာပါဝင်ပါတယ်၊ သင့် application လိုအပ်ချက်အရအဲ့ဒါတွေကပြောင်းလဲရနိုင်ပါတယ်။
 
-You may also want to configure a few additional components of Laravel, such as:
+သင့်အနေနဲ့အခြား Laravel ရဲ့ components တွေကို configure လုပ်ချင်ပါလိမ့်မယ်။ ဉပမာအားဖြင့်
 
 <div class="content-list" markdown="1">
 - [Cache](/docs/{{version}}/cache#configuration)
@@ -79,4 +79,4 @@ You may also want to configure a few additional components of Laravel, such as:
 - [Session](/docs/{{version}}/session#configuration)
 </div>
 
-Once Laravel is installed, you should also [configure your local environment](/docs/{{version}}/configuration#environment-configuration).
+Laravel ကို install လုပ်ပြီးသွားတဲ့အခါမှာ သင့်ရဲ့ [local environment](/docs/{{version}}/configuration#environment-configuration) ကိုရော configure လုပ်သင့်ပါတယ်
