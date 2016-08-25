@@ -10,46 +10,46 @@
 <a name="introduction"></a>
 ## Introduction
 
-All of the configuration files for the Laravel framework are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
+Laravel Framework ရဲ့ configuration files တွေအကုန်လုံးကို `config` directory ထဲမှာတွေ့နိုင်ပါတယ်။ option တစ်ခုတိုင်းဆီက document လုပ်ပြီးသားပါ၊ ဒါကြောင့်မလို့ files တွေကိုဖွင့်ကြည့်ပြီးတော့ သင့်အတွက် available ဖြစ်တဲ့ options တွေနဲ့ familiar ဖြစ်အောင်လုပ်နိုင်ပါတယ်။
 
 <a name="accessing-configuration-values"></a>
 ## Accessing Configuration Values
 
-You may easily access your configuration values using the global `config` helper function from anywhere in your application. The configuration values may be accessed using "dot" syntax, which includes the name of the file and option you wish to access. A default value may also be specified and will be returned if the configuration option does not exist:
+Global `config` helper function ကိုသုံးပြီးတော့ configuration values တွေကို application ရဲ့မည်သည့်နေရာကမဆို access လုပ်နိုင်ပါတယ်။ configuration values တွေကို "dot" syntax ကိုအသုံးပြုပြီးတော့ file name နဲ့ ကိုယ်အသုံးပြုချင်တဲ့ access ကိုအသုံးပြုပြီးတော့ access လုပ်နိုင်ပါတယ်။ Default value သတ်မှတ်ပေးထားရင် configuration option မရှိရင် default value ကို return ပြန်ပါလိမ့်မယ်။
 
     $value = config('app.timezone');
 
-To set configuration values at runtime, pass an array to the `config` helper:
+Runtime မှာ configuration values တွေကို set လုပ်ချင်တယ်ဆိုရင် `config` helper မှာ array တစ်ခု pass ပေးရပါမယ်။
 
     config(['app.timezone' => 'America/Chicago']);
 
 <a name="environment-configuration"></a>
 ## Environment Configuration
 
-It is often helpful to have different configuration values based on the environment the application is running in. For example, you may wish to use a different cache driver locally than you do on your production server.
+မတူညီတဲ့ configuration values တွေက မတူညီတဲ့ environment application တွေ run နေတဲ့အခါ အဲ့ဒါတွေကတော်တော်အသုံးဝင်ပါလိမ့်မယ်။ ဉပမာ သင့်အနေနဲ့ cache driver ကို သင့်စက်မှာတစ်ခုသုံးပေမယ့် production မှာတစ်ခုသုံးချင်ရင်သုံးချင်မှာပေါ့။ အဲ့လိုလုပ်ချင်ရင် environment based configuration ကလွယ်ကူစေပါလိမ့်မယ်။
 
-To make this a cinch, Laravel utilizes the [DotEnv](https://github.com/vlucas/phpdotenv) PHP library by Vance Lucas. In a fresh Laravel installation, the root directory of your application will contain a `.env.example` file. If you install Laravel via Composer, this file will automatically be renamed to `.env`. Otherwise, you should rename the file manually.
+ဒါကိုလွယ်ကူစေရန်အတွက် Laravel က Vance Lucas ရဲ့ [DotEnv](https://github.com/vlucas/phpdotenv) PHP library ကိုအသုံးပြုထားပါတယ်။ Fresh install လုပ်ထားတဲ့ Laravel မှာဆိုရင် သင့် application ရဲ့ root directory မှာ `.env.example` ဆိုတဲ့ file တစ်ခုပါဝင်ပါလိမ့်မယ်။ Laravel ကို Composer ကနေ install လုပ်ထားတယ်ဆိုရင် အဲ့ဒီ့ file ကို `.env` ဆိုပြီးအလိုအလျောက်အမည်ပြောင်းပေးပါလိမ့်မယ်။ အဲ့လိုမှမဖြစ်ဘူးဆိုရင် သင်ကိုယ်တိုင်ပြောင်းပေးသင့်ပါတယ်။
 
 #### Retrieving Environment Configuration
 
-All of the variables listed in this file will be loaded into the `$_ENV` PHP super-global when your application receives a request. However, you may use the `env` helper to retrieve values from these variables in your configuration files. In fact, if you review the Laravel configuration files, you will notice several of the options already using this helper:
+သင့် application က request တစ်ခုလက်ခံရှိတဲ့အခါမှာ ဒီ file မှာ listed လုပ်ထားတဲ့ variables တွေအကုန်လုံးက `$_ENV` PHP super-global မှာ loaded ဖြစ်သွားမှာပါ။ ဒါပေမယ့် ဒီ variables တွေထဲက values တွေကိုပြန်လည်ရယူဖို့ `env` helper ကိုအသုံးပြုနိုင်ပါတယ်။ တကယ်တော့ Laravel configuration ကို review လုပ်လိုက်ရင်ဒီ helper ကို options တော်တော်များများမှာအသုံးပြုပြီးတာတွေ့ရပါလိမ့်မယ်။
 
     'debug' => env('APP_DEBUG', false),
 
-The second value passed to the `env` function is the "default value". This value will be used if no environment variable exists for the given key.
+`env` function ကို pass ပေးတဲ့ဒုတိယ value က "default value" ဖြစ်ပါတယ်။ ပေးထားတဲ့ key အတွက် environment variable မရှိလို့ရှိရင် အဲ့ဒီ့ value ကိုသုံးပါလိမ့်တယ်။ 
 
-Your `.env` file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration.
+သင့်ရဲ့ `.env` file ကိုသင့် application ရဲ့ source control မှာ commit မလုပ်သင့်ပါဘူး။ ဘာကြောင့်လည်းဆိုရင် developer/ server တိုင်းမှာမတူညီတဲ့ configuration တွေကိုလိုအပ်နိုင်လို့ပါ။
 
-If you are developing with a team, you may wish to continue including a `.env.example` file with your application. By putting place-holder values in the example configuration file, other developers on your team can clearly see which environment variables are needed to run your application.
+သင်က team နဲ့ developing လုပ်နေတဲ့သူဆိုရင် `.env.example` ကိုတော့သင့် application နဲ့တစ်ပါးတည်းပါစေချင်မှာပါ။ configuration file values တွေမှာ place-holder values တွေကိုထည့်ပြီးတော့ပေါ့၊ သင့် team ကအခြား developer တွေက application ကို run ဖို့ရာအတွက်ဘယ် environment variables ကိုလိုအပ်တယ်ဆိုတာရှင်းရှင်းလင်းလင်းသိဖို့ရာအတွက်ဖြစ်ပါတယ်။
 
 <a name="determining-the-current-environment"></a>
 ### Determining The Current Environment
 
-The current application environment is determined via the `APP_ENV` variable from your `.env` file. You may access this value via the `environment` method on the `App` [facade](/docs/{{version}}/facades):
+လက်ရှိ application environment ကို `.env` file ရဲ့ `APP_ENV` variable ကနေသတ်မှတ်ပေးပါတယ်။ `App` [facade](/docs/{{version}}/facades) `environment` method ကနေပြီးတော့အဲ့ဒီ့ value တွေကို access လုပ်နိုင်ပါတယ်။
 
     $environment = App::environment();
 
-You may also pass arguments to the `environment` method to check if the environment matches a given value. The method will return `true` if the environment matches any of the given values:
+`environment` method ကို arguments pass လုပ်ပြီးတော့ environment ကပေးထားတဲ့ value နဲ့ညီလားဆိုတာကိုစစ်နိုင်ပါတယ်။ environment ကပေးထားတဲ့ value နဲ့ညီတယ်ဆိုရင် method က `true` ပြန်ပါလိမ့်မယ်။
 
     if (App::environment('local')) {
         // The environment is local
@@ -94,3 +94,4 @@ While your application is in maintenance mode, no [queued jobs](/docs/{{version}
 #### Alternatives To Maintenance Mode
 
 Since maintenance mode requires your application to have several seconds of downtime, consider alternatives like [Envoyer](https://envoyer.io) to accomplish zero-downtime deployment with Laravel.
+
