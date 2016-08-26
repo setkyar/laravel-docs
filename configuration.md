@@ -62,36 +62,36 @@ Runtime မှာ configuration values တွေကို set လုပ်ချ
 <a name="configuration-caching"></a>
 ## Configuration Caching
 
-To give your application a speed boost, you should cache all of your configuration files into a single file using the `config:cache` Artisan command. This will combine all of the configuration options for your application into a single file which will be loaded quickly by the framework.
+သင့် application ကိုလျင်မြန်စွာ boost လုပ်ရန်အတွက် သင့် configuration files တွေအကုန်လုံးကို file တစ်ခုထဲမှာ Artisan command `config:cache` လုပ်ပြီး cache လုပ်ထားသင့်ပါတယ်။ အဲ့လိုလုပ်လိုက်မယ်ဆိုရင် သင့် application ရဲ့ configuration options တွေကို file တစ်ခုထဲပေါင်းလိုက်တဲ့အတွက် framework ကလျင်မြန်စွာ load လုပ်ပါလိမ့်မယ်။
 
-You should typically run the `php artisan config:cache` command as part of your production deployment routine. The command should not be run during local development as configuration options will frequently need to be changed during the course of your application's development.
+ပုံမှန်အားဖြင့် `php artisan config:cache` command ကိုသင့် application deployment routine မှာ run သင့်ပါတယ်။ ဒီ command ကို local development မှာဆိုမ run သင့်ပါဘူး local development configuration options တွေမကြာခဏပြောင်းနိုင်တဲ့အတွက်ကြောင့်မလို့ပါ။
 
 <a name="maintenance-mode"></a>
 ## Maintenance Mode
 
-When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a `MaintenanceModeException` will be thrown with a status code of 503.
+Application maintenance mode မှာဆိုရင် သင့် application က application ဆီဝင်လာသမျှ requests တွေကို custom view တစ်ခုကိုပြမှာပါ။ ဒါက သင့် application ကို maintenance လုပ်နေတဲ့အချိန်မှာသင့် application ကို "disable" လုပ်ဖို့လွယ်ကူစေပါတယ်။ Maintenance mode check က သင့် application default middleware stack မှာပါဝင်ပြီးသားပါ။ Application maintenance mode မှာဆိုရင် 503 status code တစ်ခုနဲ့ `MaintenanceModeException` ကို thrown လုပ်ပါလိမ့်မယ်။
 
-To enable maintenance mode, simply execute the `down` Artisan command:
+Maintenance mode ကိုဖွင့်ဖို့ရာအတွက် Artisan `down` command ကိုလွကူစွာ execute လုပ်လိုက်ပါ။
 
     php artisan down
 
-You may also provide `message` and `retry` options to the `down` command. The `message` value may be used to display or log a custom message, while the `retry` value will be set as the `Retry-After` HTTP header's value:
+
+`down` command အတွက် `message` နဲ့ `retry` options တွေကို provide လုပ်နိုင်ပါတယ်။ `message` value က display သို့မဟုတ် custom message log အတွက်အသုံးပြုပြီးတော့ `retry` value က `Retry-After` HTTP header ရဲ့ value မှာ set လုပ်မှာပါ။
 
     php artisan down --message='Upgrading Database' --retry=60
 
-To disable maintenance mode, use the `up` command:
+Maintenance mode ကိုရပ်တန့်ဖို့ရာအတွက် `up` command ကိုအသုံးပြုနိုင်ပါတယ်။
 
     php artisan up
 
 #### Maintenance Mode Response Template
 
-The default template for maintenance mode responses is located in `resources/views/errors/503.blade.php`. You are free to modify this view as needed for your application.
+Maintenance mode responses page ရဲ့ default template က `resources/views/errors/503.blade.php` ဖြစ်ပါတယ်။ ဒီ view ကိုသင့် application အတွက်လိုအပ်သလိုပြင်ဆင်နိုင်ပါတယ်။
 
 #### Maintenance Mode & Queues
 
-While your application is in maintenance mode, no [queued jobs](/docs/{{version}}/queues) will be handled. The jobs will continue to be handled as normal once the application is out of maintenance mode.
+သင့် Application က Maintenance mode မှာဆိုရင် မည်သည့် [queued jobs](/docs/{{version}}/queues) ကိုမှ handle လုပ်မှာမဟုတ်ပါ။ သင့် application က maintenance mode မဟုတ်မှ jobs တွေကိုပုံမှန်အတိုင်း handle လုပ်မှာပါ။
 
-#### Alternatives To Maintenance Mode
+#### Alternatives To Maintenance Mode  
 
-Since maintenance mode requires your application to have several seconds of downtime, consider alternatives like [Envoyer](https://envoyer.io) to accomplish zero-downtime deployment with Laravel.
-
+Maintenance mode ကသင့် application ကို seconds ပေါင်းများစွာ downtime ဖြစ်နိုင်တဲ့အတွက် တစ်ခြား alternatives ဖြစ်တဲ့  [Envoyer](https://envoyer.io)  ကို zero-downtime deployment အတွက်အသုံးပြုနိုင်ပါတယ်။
