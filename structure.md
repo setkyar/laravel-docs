@@ -67,15 +67,18 @@ Laravel နဲ့အခုမှစရေးမဲ့ Developer အများ�
 <a name="the-resources-directory"></a>
 #### The Resources Directory
 
-
-The `resources` directory contains your views as well as your raw, un-compiled assets such as LESS, SASS, or JavaScript. This directory also houses all of your language files.
+`resources` directory ထဲမှာတော့ view ဖိုင်တွေရယ်၊ compiled မလုပ်ရသေးတဲ့ LESS, SASS, Javascript ဖိုင်တွေပါဝင်ပါတယ်။ ဒါ့အပြင် language ဖိုင်တွေအားလုံးကိုလဲ ဒီထဲမှာပဲသိမ်းဆည်းပါတယ်။ 
 
 <a name="the-routes-directory"></a>
 #### The Routes Directory
 
-The `routes` directory contains all of the route definitions for your application. By default, two route files are included with Laravel: `web.php` and `api.php`. The `web.php` file contains routes that the `RouteServiceProvider` places in the `web` middleware group, which provides session state, CSRF protection, and cookie encryption. If your application does not offer a stateless, RESTful API, all of your routes will most likely be defined in the `web.php` file.
+`routes` directory ထဲမှာ application ရဲ့ route definitions အားလုံးရှိပါမယ်။ ပုံမှန်အနေနဲ့တော့ `web.php`၊ `api.php` ရယ် `console.php` ရယ် သုံးဖိုင်ရှိပါတယ်။
 
-The `api.php` file contains routes that the `RouteServiceProvider` places in the `api` middleware group, which provides rate limiting. These routes are intended to be stateless, so requests entering the application through these routes are intended to be authenticated via tokens and will not have access to session state.
+`web.php` ဖိုင်ထဲမှာပါတဲ့ routes တွေကို RouteServiceProvider ကနေပီးတော့ session state, CSRF protection နဲ့ cookie encryption တွေလုပ်ဆောင်ပေးမဲ့  `web` middleware group ထဲမှာနေရချပေးပါတယ်။ အကယ်၍ သင့် application ဟာ stateless၊ RESTful API ဖြစ်ဖို့မရည်ရွယ်ဘူးဆိုရင် သင့် routes တွေအားလုံးကို `web.php` ဖိုင်ထဲမှာရေးရပါလိမ့်မယ်။ 
+
+`api.php` ဖိုင်ထဲမှာပါတဲ့ routes တွေကိုတော့ RouteServiceProvider ကနေ ကန်သတ်ချက်တွေရှိတဲ့ `api` middleware group ထဲမှာနေရာချပါတယ်။ ဘာကန့်သတ်ချက်တွေရှိလဲဆိုတော့ အဲ့ဒီ middleware အောက်မှာရှိတဲ့ routes တွေဟာ stateless ဖြစ်ပြီး session သုံးလို့မရပါဘူး။  ဒါကြောင့်မို့ ဒီ routes တွေကနေ  လုပ်တဲ့ requests တွေဟာ tokens ကနေတဆင့် authentication လုပ်ဖို့လိုအပ်ပါတယ်။ 
+
+The console.php file is where you may define all of your Closure based console commands. Each Closure is bound to a command instance allowing a simple approach to interacting with each command's IO methods. Even though this file does not define HTTP routes, it defines console based entry points (routes) into your application.
 
 <a name="the-storage-directory"></a>
 #### The Storage Directory
