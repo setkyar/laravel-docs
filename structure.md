@@ -1,6 +1,6 @@
 # Directory Structure
 
-- [Introduction](#introduction)
+-[Introduction](#introduction)
 - [The Root Directory](#the-root-directory)
     - [The `app` Directory](#the-root-app-directory)
     - [The `bootstrap` Directory](#the-bootstrap-directory)
@@ -27,13 +27,14 @@
 <a name="introduction"></a>
 ## Introduction
 
-The default Laravel application structure is intended to provide a great starting point for both large and small applications. Of course, you are free to organize your application however you like. Laravel imposes almost no restrictions on where any given class is located - as long as Composer can autoload the class.
+Laravel ရဲ့ ဖိုဒါခွဲထားတဲ့ပုံစံဟာ application အကြီးအသေးအားလုံးကို လွယ်လွယ်ကူကူ အစပျိုးလို့ရအောင် ရည်ရွယ်ပါတယ်။ မူလ ပုံစံကိုမကြိုက်ဘူးဆိုရင်လဲ စိတ်ကြိုက်ပြုပြင်ပြောင်းလဲနိုင် ပါတယ်။ Composer က autoload လုပ်ပေးနိုင်တဲ့အတွက် Laravel ရဲ့ class အားလုံးနီးပါးကို ဘယ်နေရာမှာ ရှိမှရမယ်ဆိုတာမျိုး ကန့်သတ်မထားပါဘူး။ 
 
 #### Where Is The Models Directory?
 
-When getting started with Laravel, many developers are confused by the lack of a `models` directory. However, the lack of such a directory is intentional. We find the word "models" ambiguous since it means many different things to many different people. Some developers refer to an application's "model" as the totality of all of its business logic, while others refer to "models" as classes that interact with a relational database.
-
-For this reason, we choose to place Eloquent models in the `app` directory by default, and allow the developer to place them somewhere else if they choose.
+Laravel နဲ့အခုမှစရေးမဲ့ Developer အများစုဟာ `models` directory မရှိတာကိုဇဝေဇဝါဖြစ်နိုင်ပါတယ်။ ဘာကြောင့်မထည့်ထားတာလဲဆိုတော့ အဲ့ဒီ "models" ဆိုတဲ့အသုံးအနှုန်းဟာ developer များစုအတွက် မတူညီတဲ့ အဓိပ္ပါယ်တွေ ရှိနေလို့ဖြစ်ပါတယ်။ အချို့ developser တွေအတွက် application ရဲ့ "models" ဆိုတာ အဲ့ဒီ application ရဲ့ business logic ကြီးတစ်ခုလုံးကို ရည်ရွယ်ကြသလို အချို့တွေအတွက်တော့ "models" ဆိုတဲ့အသုံးအနှု
+န်းဟာ  relational database table တွေကိုချိတ်ဆက်ဆောင်ရွက်ပေးမဲ့ class တွေအဖြစ် သတ်မှတ်ကြလို့ပဲဖြစ်ပါတယ်။      
+ 
+ဒါကြောင့်မို့လို့ Eloquent model တွေကို default အနေနဲ့ `app` အောက်မှာထားပြီး developer ကို စိတ်ကြိုက်နေရာပြောင်းရွေ့ခွင့်ပေးထားပါတယ်။ 
 
 <a name="the-root-directory"></a>
 ## The Root Directory
@@ -41,39 +42,43 @@ For this reason, we choose to place Eloquent models in the `app` directory by de
 <a name="the-root-app-directory"></a>
 #### The App Directory
 
-The `app` directory, as you might expect, contains the core code of your application. We'll explore this directory in more detail soon; however, almost all of the classes in your application will be in this directory.
+`app` directory ထဲမှာတော့ သင်ပြုလုပ်မဲ့ application အတွက်လိုအပ်မဲ့ အဓိက code တွေပါဝင်ပါတယ်။ သင့် application အတွက်အသုံးပြုမဲ့ class တွေအားလုံးနီးပါးဟာ ဒီ directory အောက်မှာရေးရပါလိမ့်မယ်။ ဒီ directory နဲ့ပတ်သက်ပြီး နောက်ပိုင်းမှာပိုပြီး အသေးစိတ်ရှင်းပြထားပါတယ်။ 
 
 <a name="the-bootstrap-directory"></a>
 #### The Bootstrap Directory
 
-The `bootstrap` directory contains files that bootstrap the framework and configure autoloading. This directory also houses a `cache` directory which contains framework generated files for performance optimization such as the route and services cache files.
-
+`bootstrap` directory ထဲမှာတော့ framework စတင်ချိန်မှာပြုလုပ်မဲ့ autoloading တွေ bootstraping ပြုလုပ်တဲ့ကိစ္စတွေပါဝင်ပါတယ်။ application performance အတွက် framework က အလိုအလျောက်ပြုလုပ်တဲ့ route တို့ services တို့ရဲ့ cache file တွေကိုလဲ ဒီ directory အောက်မှာပဲ `cache` directory တစ်ခုပြုလုပ်ပီး သိမ်းဆည်းထားပါတယ်။    
+ 
 <a name="the-config-directory"></a>
 #### The Config Directory
 
-The `config` directory, as the name implies, contains all of your application's configuration files. It's a great idea to read through all of these files and familiarize yourself with all of the options available to you.
+`config` directory ဆိုတဲ့အတိုင်း application ရဲ့ configuration တွေပါဝင်တဲ့ directory ပါ။ ဒီ directory ထဲမှာပါတဲ့ ဖိုင်တွေကို ဖတ်ပြီး application အတွက် အသုံးပြုနိုင်တဲ့ options တွေနဲ့ လွယ်လွယ်ကူကူပဲ ရင်းနှီးသွားစေနိုင်ပါတယ်။ 
 
 <a name="the-database-directory"></a>
 #### The Database Directory
 
-The `database` directory contains your database migration and seeds. If you wish, you may also use this directory to hold an SQLite database.
+`database` directory ဟာ database migration ဖိုင်တွေ၊ seeder ဖိုင်တွေအတွက်နေရာပါ။ အကယ်၍ SQLite ကိုအသုံးပြုမယ်ဆိုရင်လဲ ဒီ directory အောက်မှာပဲ SQLite database ဖိုင်တွေကို သိမ်းဆည်းနိုင်ပါတယ်။ 
 
 <a name="the-public-directory"></a>
 #### The Public Directory
 
-The `public` directory contains the `index.php` file, which is the entry point for all requests entering your application. This directory also houses your assets such as images, JavaScript, and CSS.
+`public` directory အောက်မှာ `index.php` ဖိုင်ရှိပါတယ်။ အဲ့ဒီဖိုင်းဟာ သင့် application ကို ဝင်ရောက်လာမဲ့ request အားလုံးရဲ့ ဝင်ပေါက်ပါပဲ။ ဒါ့အပြင် ပုံတွေ၊ JavaScript ဖိုင်တွေနဲ့ CSS ဖိုင်တွေကိုလည်း ဒီ directory အောက်မှာပဲ သိမ်းဆည်းပါတယ်။ 
 
 <a name="the-resources-directory"></a>
 #### The Resources Directory
 
-The `resources` directory contains your views as well as your raw, un-compiled assets such as LESS, SASS, or JavaScript. This directory also houses all of your language files.
+`resources` directory ထဲမှာတော့ view ဖိုင်တွေရယ်၊ compiled မလုပ်ရသေးတဲ့ LESS, SASS, Javascript ဖိုင်တွေပါဝင်ပါတယ်။ ဒါ့အပြင် language ဖိုင်တွေအားလုံးကိုလဲ ဒီထဲမှာပဲသိမ်းဆည်းပါတယ်။ 
 
 <a name="the-routes-directory"></a>
 #### The Routes Directory
 
-The `routes` directory contains all of the route definitions for your application. By default, two route files are included with Laravel: `web.php` and `api.php`. The `web.php` file contains routes that the `RouteServiceProvider` places in the `web` middleware group, which provides session state, CSRF protection, and cookie encryption. If your application does not offer a stateless, RESTful API, all of your routes will most likely be defined in the `web.php` file.
+`routes` directory ထဲမှာ application ရဲ့ route definitions အားလုံးရှိပါမယ်။ ပုံမှန်အနေနဲ့တော့ `web.php`၊ `api.php` ရယ် `console.php` ရယ် သုံးဖိုင်ရှိပါတယ်။
 
-The `api.php` file contains routes that the `RouteServiceProvider` places in the `api` middleware group, which provides rate limiting. These routes are intended to be stateless, so requests entering the application through these routes are intended to be authenticated via tokens and will not have access to session state.
+`web.php` ဖိုင်ထဲမှာပါတဲ့ routes တွေကို RouteServiceProvider ကနေပီးတော့ session state, CSRF protection နဲ့ cookie encryption တွေလုပ်ဆောင်ပေးမဲ့  `web` middleware group ထဲမှာနေရချပေးပါတယ်။ အကယ်၍ သင့် application ဟာ stateless၊ RESTful API ဖြစ်ဖို့မရည်ရွယ်ဘူးဆိုရင် သင့် routes တွေအားလုံးကို `web.php` ဖိုင်ထဲမှာရေးရပါလိမ့်မယ်။ 
+
+`api.php` ဖိုင်ထဲမှာပါတဲ့ routes တွေကိုတော့ RouteServiceProvider ကနေ ကန်သတ်ချက်တွေရှိတဲ့ `api` middleware group ထဲမှာနေရာချပါတယ်။ ဘာကန့်သတ်ချက်တွေရှိလဲဆိုတော့ အဲ့ဒီ middleware အောက်မှာရှိတဲ့ routes တွေဟာ stateless ဖြစ်ပြီး session သုံးလို့မရပါဘူး။  ဒါကြောင့်မို့ ဒီ routes တွေကနေ  လုပ်တဲ့ requests တွေဟာ tokens ကနေတဆင့် authentication လုပ်ဖို့လိုအပ်ပါတယ်။ 
+
+The console.php file is where you may define all of your Closure based console commands. Each Closure is bound to a command instance allowing a simple approach to interacting with each command's IO methods. Even though this file does not define HTTP routes, it defines console based entry points (routes) into your application.
 
 <a name="the-storage-directory"></a>
 #### The Storage Directory
