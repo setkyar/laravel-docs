@@ -121,7 +121,7 @@ The `tests` directory contains your automated tests. An example [PHPUnit](https:
 <a name="the-exceptions-directory"></a>
 #### The Exceptions Directory
 
-The `Exceptions` directory contains your application's exception handler and is also a good place to place any exceptions thrown by your application. If you would like to customize how your exceptions are logged or rendered, you should modify the `Handler` class in this directory.
+`Exceptions` directory ထဲမှာ သင့် application ရဲ့ exception handler ရှိပြီးတော့ application ရဲ့ exceptions  တွေထားဖို့ နေရာဖြစ်ပါတယ်။ အကယ်၍ သင့်အနေနဲ့ သင့် exceptions တွေ ဘယ်လိုပုံစံနဲ့ logged သို့မဟုတ် rendered လုပ်စေလိုရင် ဒီ directory ထဲမှာရှိတဲ့ `Handler` ကို modify ပြန်ပြုလုပ်သင့်ပါတယ်။ 
 
 <a name="the-http-directory"></a>
 #### The Http Directory
@@ -131,17 +131,17 @@ The `Exceptions` directory contains your application's exception handler and is 
 <a name="the-jobs-directory"></a>
 #### The Jobs Directory
 
-This directory does not exist by default, but will be created for you if you execute the `make:job` Artisan command. The `Jobs` directory houses the [queueable jobs](/docs/{{version}}/queues) for your application. Jobs may be queued by your application or run synchronously within the current request lifecycle. Jobs that run synchronously during the current request are sometimes referred to as "commands" since they are an implementation of the [command pattern](https://en.wikipedia.org/wiki/Command_pattern).
+ဒီ directory ဟာ default အနေနဲ့တော့မပါဝင်ပါဘူး။ ဒါပေမဲ့ `make:job` Artisan command နဲ့ job တစ်ခုပြုလုပ်လိုက်ရင် အလိုအလျောက် ပြုလုပ်ပေးပါလိမ့်မယ်။ `Jobs` directory ဟာ သင့် application အတွက် [queueable jobs](/docs/{{version}}/queues) တွေကိုသိမ်းဆည်းမဲ့ directory ပါ။ Jobs may be queued by your application or run synchronously within the current request lifecycle. Jobs that run synchronously during the current request are sometimes referred to as "commands" since they are an implementation of the [command pattern](https://en.wikipedia.org/wiki/Command_pattern).
 
 <a name="the-listeners-directory"></a>
 #### The Listeners Directory
 
-This directory does not exist by default, but will be created for you if you execute the `event:generate` or `make:listener` Artisan commands. The `Listeners` directory contains the classes that handle your [events](/docs/{{version}}/events). Event listeners receive an event instance and perform logic in response to the event being fired. For example, a `UserRegistered` event might be handled by a `SendWelcomeEmail` listener.
+ဒီ directory ဟာလဲ default အနေနဲ့တော့မပါဝင်ပါဘူး။ ထုံးစံအတိုင်းပဲ `event:generate` or `make:listener` Artisan commands တွေအသုံးပြုတော့မှ အလိုအလျောက်ပြုလုပ်ပေးပါလိမ့်မယ်။ `Listeners` directory မှာ သင့် [events](/docs/{{version}}/events) တွေကို ထိန်းချုပ်ပေးမဲ့ classes တွေပါဝင်ပါတယ်။ Event listeners ဟာ event ဖြစ်စဥ်တွေကိုလက်ခံပြီး event fire လုပ်လိုက်တဲ့အခါမှာ သတ်မှတ်ထားတဲ့ logic ကို repsponse နဲ့အတူပြုလုပ်ပေးပါတယ်။ ဥပမာ -  `UserRegistered` event ကို `SendWelcomeEmail` listener ကနေထိန်းချုပ်တဲ့ပုံစံပါ။  
 
 <a name="the-mail-directory"></a>
 #### The Mail Directory
 
-This directory does not exist by default, but will be created for you if you execute the `make:mail` Artisan command. The `Mail` directory contains all of your classes that represent emails sent by your application. Mail objects allow you to encapsulate all of the logic of building an email in a single, simple class that may be sent using the `Mail::send` method.
+`make:mail` Artisan command ကိုအသုံးပြုတော့မှ ဒီ directory ဟာပေါ်လာမှ ဖြစ်ပါတယ်။ `Mail ` directory ထဲမှတော့ သင့် application ကနေ ပို့မဲ့ emails class တွေရှိပါမယ်။ Mail objects ဟာ email တစ်ခုကို ပြုလုပ်ဖို့အတွက် လိုအပ်မဲ့ logic တွေကို  အရှင်းလင်းဆုံးအသုံးပြုနိုင်အောင် ဆောင်ရွက်ပေးပါတယ်။ mail ပို့ဖို့အတွက် အသုံးပြုတဲ့  `Mail::send`  ဆိုတဲ့ method ဟာ ရှင်းလင်းလွယ်ကူတာကို တွေရမှာပါ။ 
 
 <a name="the-notifications-directory"></a>
 #### The Notifications Directory
@@ -156,6 +156,5 @@ This directory does not exist by default, but will be created for you if you exe
 <a name="the-providers-directory"></a>
 #### The Providers Directory
 
-The `Providers` directory contains all of the [service providers](/docs/{{version}}/providers) for your application. Service providers bootstrap your application by binding services in the service container, registering events, or performing any other tasks to prepare your application for incoming requests.
-
-In a fresh Laravel application, this directory will already contain several providers. You are free to add your own providers to this directory as needed.
+`Providers` ထဲမှာ သင့် application ရဲ့ [service providers](/docs/{{version}}/providers) တွေအားလုံးပါဝင်ပါတယ်။ Service providers bootstrap your application by binding services in the service container, registering events, or performing any other tasks to prepare your application for incoming requests.
+Fresh Laravel application မှာဒီ directory ဟာပါပီးသားဖြစ်ပါတယ်။ သင့် ကိုယ်ပိုင် providers တွေထည့်ဖို့လိုအပ်တယ်ဆိုရင်လဲ လွတ်လပ်စွာထပ်ထည့်နိုင်ပါတယ်။ 
