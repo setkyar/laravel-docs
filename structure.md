@@ -131,7 +131,7 @@ The `tests` directory contains your automated tests. An example [PHPUnit](https:
 <a name="the-jobs-directory"></a>
 #### The Jobs Directory
 
-ဒီ directory ဟာ default အနေနဲ့တော့မပါဝင်ပါဘူး။ ဒါပေမဲ့ `make:job` Artisan command နဲ့ job တစ်ခုပြုလုပ်လိုက်ရင် အလိုအလျောက် ပြုလုပ်ပေးပါလိမ့်မယ်။ `Jobs` directory ဟာ သင့် application အတွက် [queueable jobs](/docs/{{version}}/queues) တွေကိုသိမ်းဆည်းမဲ့ directory ပါ။ Jobs may be queued by your application or run synchronously within the current request lifecycle. Jobs that run synchronously during the current request are sometimes referred to as "commands" since they are an implementation of the [command pattern](https://en.wikipedia.org/wiki/Command_pattern).
+ဒီ directory ဟာ default အနေနဲ့တော့မပါဝင်ပါဘူး။ ဒါပေမဲ့ `make:job` Artisan command နဲ့ job တစ်ခုပြုလုပ်လိုက်ရင် အလိုအလျောက် ပြုလုပ်ပေးပါလိမ့်မယ်။ `Jobs` directory ဟာ သင့် application အတွက် [queueable jobs](/docs/{{version}}/queues) တွေကိုသိမ်းဆည်းမဲ့ directory ပါ။ Jobs တွေဟာ လက်ရှိ request lifecycle အတွင်းမှာ synchronously အလုပ်လုပ်နေတာဖြစ်နိုင်သလို သင့် application ကနေ queued လုပ်ထားတာလဲ ဖြစ်နိုင်ပါတယ်။Synchronously အလုပ်လိုက်လုပ်နေတဲ့ jobs တွေဟာ တစ်ခါတစ်ရံမှာ [command pattern](https://en.wikipedia.org/wiki/Command_pattern)  ကို implements လုပ်ထားတဲ့  "commands" တွေကို ရည်ညွှန်းတာလဲ ဖြစ်နိုင်ပါတယ်။ 
 
 <a name="the-listeners-directory"></a>
 #### The Listeners Directory
@@ -146,15 +146,14 @@ The `tests` directory contains your automated tests. An example [PHPUnit](https:
 <a name="the-notifications-directory"></a>
 #### The Notifications Directory
 
-This directory does not exist by default, but will be created for you if you execute the `make:notification` Artisan command. The `Notifications` directory contains all of the "transactional" notifications that are sent by your application, such as simple notifications about events that happen within your application. Laravel's notification features abstracts sending notifications over a variety of drivers such as email, Slack, SMS, or stored in a database.
+`make:notification` Artisan command ကိုသုံးပြီးတော့ notification တွေပြုလုပ်ခါမှ ဒီ directory ပေါ်လာမှာပါ။ သင့် application ကနေပို့လိုက်တဲ့ "transactional" notifications တွေအားလုံး ဒီ `Notifications` directory ထဲမှာရှိပါမယ်။ ဘယ်လို notification တွေလဲဆိုတော့ သင့် application ထဲမှာဖြစ်ပေါ်သွားတ့ဲ events တွေန့ဲသက်ဆိုင်တ့ဲ notifications ပုံစံမျိုးတွေပါ။ Laravel's notification features ဟာ email, Slack, SMS ဒါမှမဟုတ် database ထဲကိုသိမ်းလိုက်တာပဲဖြစ်ဖြစ် အမျိုးမျိုးသော drivers တွေကိုအသုံးပြုပြီး notifications တွေပို့လို့ရအောင်ပြုလုပ်ပေးထားခြင်းပဲ ဖြစ်ပါတယ်။ 
 
 <a name="the-policies-directory"></a>
 #### The Policies Directory
 
-This directory does not exist by default, but will be created for you if you execute the `make:policy` Artisan command. The `Policies` directory contains the authorization policy classes for your application. Policies are used to determine if a user can perform a given action against a resource. For more information, check out the [authorization documentation](/docs/{{version}}/authorization).
+ဒီ directory ဟာလည်း default အနေန့ဲမပါဝင်ပါဘူး။ `make:policy` Artisan command န့ဲ policy ပြုလုပ်တော့မှ ပြုလုပ်ပေးမှာဖြစ်ပါတယ်။ သင့် application အတွက် လိုအပ်တဲ့ authorization policy classes တွေကို ဒီ directory ထဲမှာသိမ်းဆည်းပါတယ်။ User တစ်ယောက်ဟာ သူပြုလုပ်နိုင်တဲ့ အတိုင်းအတာအတိုင်း ပေးထားတဲ့ action ကိုပြုလုပ်နိုင်သလား ဆုံးဖြတ်ဖို့အတွက် policies တွေကိုအသုံးပြုပါတယ်။ 
 
 <a name="the-providers-directory"></a>
 #### The Providers Directory
 
-`Providers` ထဲမှာ သင့် application ရဲ့ [service providers](/docs/{{version}}/providers) တွေအားလုံးပါဝင်ပါတယ်။ Service providers bootstrap your application by binding services in the service container, registering events, or performing any other tasks to prepare your application for incoming requests.
-Fresh Laravel application မှာဒီ directory ဟာပါပီးသားဖြစ်ပါတယ်။ သင့် ကိုယ်ပိုင် providers တွေထည့်ဖို့လိုအပ်တယ်ဆိုရင်လဲ လွတ်လပ်စွာထပ်ထည့်နိုင်ပါတယ်။ 
+`Providers` ထဲမှာ သင့် application ရဲ့ [service providers](/docs/{{version}}/providers) တွေအားလုံးပါဝင်ပါတယ်။ Service providers bootstrap your application by binding services in the service container, registering events, or performing any other tasks to prepare your application for incoming requests. Fresh Laravel framework မှာဒီ directory ဟာပါပီးသားဖြစ်ပါတယ်။ သင့် ကိုယ်ပိုင် providers တွေထည့်ဖို့လိုအပ်တယ်ဆိုရင်လဲ ထပ်ထည့်နိုင်ပါတယ်။ 
