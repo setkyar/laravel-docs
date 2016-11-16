@@ -56,9 +56,9 @@ Scout service provider ကို register လုပ်ပြီးပြီဆ�
 <a name="queueing"></a>
 ### Queueing
 
-While not strictly required to use Scout, you should strongly consider configuring a [queue driver](/docs/{{version}}/queues) before using the library. Running a queue worker will allow Scout to queue all operations that sync your model information to your search indexes, providing much better response times for your application's web interface.
+Scout ကိုအတင်းအကျပ်မသုံးမပြုခိုင်းပေမယ့် အသုံးပြုမယ်ဆိုရင် [queue driver](/docs/{{version}}/queues) ကိုအရင်ဆုံး configure လုပ်ဖို့တိုက်တွန်းချင်ပါတယ်။ Queue worker ကို run ထားရင် Socut ကို model information တွေနဲ့ search indexes တွေကို sync လုပ်ရာသင့် application web interface ကပိုမိုမြန်ဆန်စေပါလိမ့်မယ်...
 
-Once you have configured a queue driver, set the value of the `queue` option in your `config/scout.php` configuration file to `true`:
+Queue driver ကို configure လုပ်ပြီးသွားပြီဆိုရင် `config/scout.php` configuration ထဲက `queue` configuration ကို `true` ပြောင်းပေးပါ...
 
     'queue' => true,
 
@@ -67,7 +67,7 @@ Once you have configured a queue driver, set the value of the `queue` option in 
 
 #### Algolia
 
-When using the Algolia driver, you should configure your Algolia `id` and `secret` credentials in your `config/scout.php` configuration file. Once your credentials have been configured, you will also need to install the Algolia PHP SDK via the Composer package manager:
+Algolia driver ကိုအသုံးပြုတဲ့အခါမှာ Algolia `id` နဲ့ `secret` credentials တွေကို `config/scout.php`မှာ configure လုပ်သင့်ပါတယ်။ သင့် credentials တွေကို configure လုပ်ပြီးသွားပြီဆိုရင် Algolia PHP SDK ကို Composer package manager ကနေ install လုပ်ဖို့လိုပါတယ်...
 
     composer require algolia/algoliasearch-client-php
 
