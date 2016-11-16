@@ -14,11 +14,11 @@
 - [Logging](#logging)
 
 <a name="introduction"></a>
-## Introduction
+##မိတ်ဆက်
 
-When you start a new Laravel project, error and exception handling is already configured for you. The `App\Exceptions\Handler` class is where all exceptions triggered by your application are logged and then rendered back to the user. We'll dive deeper into this class throughout this documentation.
+Laravel project တစ်ခုသင်စလိုက်ပြီဆိုတာနဲ့ error နဲ့ exception handling တွေက သင့်အတွက်တစ်ခါတည်း configure လုပ်ပြီးသွားပါပြီ။  `App\Exceptions\Handler` class ကသင့် application ကဖြစ်တဲ့ exceptions တွေကို log လုပ်ပြီး user ဆီကို render လုပ်ပြီးပြန်ပြပါတယ်။ ကျွန်တော်တို့ဒီ documentation ကနေပြီးတော့အဲ့ဒီ class ကိုနက်နက်နဲနဲလေ့လာကြပါ့မယ်။
 
-For logging, Laravel utilizes the [Monolog](https://github.com/Seldaek/monolog) library, which provides support for a variety of powerful log handlers. Laravel configures several of these handlers for you, allowing you to choose between a single log file, rotating log files, or writing error information to the system log.
+Laravel က Log အတွက် [Monolog](https://github.com/Seldaek/monolog) library ကိုအသုံးပြုပါတယ်။ Log handlers တော်တော်များများကိုသင့်အတွက် configure လုပ်ပေးထားပါတယ်၊ log file တစ်ခုတည်းလား၊ အလှည့်ကျ log files တွေလား ဒါမှမဟုတ် error information တွေကို system log အဖြစ်ထည့်တာတို့ပေါ့။
 
 <a name="configuration"></a>
 ## Configuration
@@ -26,20 +26,20 @@ For logging, Laravel utilizes the [Monolog](https://github.com/Seldaek/monolog) 
 <a name="error-detail"></a>
 ### Error Detail
 
-The `debug` option in your `config/app.php` configuration file determines how much information about an error is actually displayed to the user. By default, this option is set to respect the value of the `APP_DEBUG` environment variable, which is stored in your `.env` file.
+သင့်ရဲ့ `config/app.php` configuration file ရဲ့ `debug` option ကသင့် user တွေကို error information ဘယ်လောက်ထိထုတ်ပြမလဲဆိုတာကိုဆုံးဖြတ်ပါတယ်။ Default အနေနဲ့ `.env` file ထဲမှာရှိတဲ့ `APP_DEBUG` environment variable ကနေဒါတွေကိုသတ်မှတ်ပါတယ်။
 
-For local development, you should set the `APP_DEBUG` environment variable to `true`. In your production environment, this value should always be `false`. If the value is set to `true` in production, you risk exposing sensitive configuration values to your application's end users.
+local development အတွက်ဆိုရင်တော့ `APP_DEBUG` environment variable ကို `true` ထားသင့်ပါတယ်။ သင့် production environment မှာတော့ အမြဲတမ်း `false` ထားသင့်ပါတယ်။ production မှာ `true` လုပ်ထားလို့ရှိရင် သင့် application ရဲ့အရေးကြီးတဲ့ configuration အချက်အလက်တွေကို end users တွေဆီပေါက်နိုင်ပါတယ်။
 
 <a name="log-storage"></a>
 ### Log Storage
 
-Out of the box, Laravel supports writing log information to `single` files, `daily` files, the `syslog`, and the `errorlog`. To configure which storage mechanism Laravel uses, you should modify the `log` option in your `config/app.php` configuration file. For example, if you wish to use daily log files instead of a single file, you should set the `log` value in your `app` configuration file to `daily`:
+Laravel က log information တွေ write လုပ်တဲ့အခါမှာ `single` files (files တစ်ခုတည်းလား)၊ `daily` files (နေ့စဉ်ရက်အပိုင်အခြားနဲ့လား)၊ `syslog` နဲ့ `errorlog` ဆိုပြီးရွေးချယ်စရာတွေပေးထားပါတယ်။ Laravel အသုံးပြုတဲ့ log ကို configure လုပ်ဖို့ဆိုရင် `cofig/app.php` configuration file မှာ `log` ဆိုတဲ့ option ကို configure လုပ်နိုင်ပါတယ်။ ဥပမာ - single file log အစား daily files လိုချင်တယ်ဆိုရင် app configuration file ထဲက `log` config ကို `daily` ဆိုပြီးအောက်ဖော်ပြပါအတိုင်းပြောင်းလဲနိုင်ပါတယ်...
 
     'log' => 'daily'
 
 #### Maximum Daily Log Files
 
-When using the `daily` log mode, Laravel will only retain five days of log files by default. If you want to adjust the number of retained files, you may add a `log_max_files` configuration value to your `app` configuration file:
+`daily` log mode ကိုသုံးပြီဆိုရင် Laravel က default အနေနဲ့ငါးရင်စာ log files တွေကိုဘဲချန်ထားမှာဖြစ်ပါတယ်။ တကယ်လို့သင်ကချန်ထားခဲ့ချင်တဲ့ files အရေအတွက်ကို configure လုပ်ချင်ရင် `log_max_files` configuration value ကို `app` configuration file မှာအောက်ပါအတိုင်းပြင်ဆင်နိုင်ပါတယ်...
 
     'log_max_files' => 30
 
