@@ -1,269 +1,121 @@
-# HTTP Session
+# ဆက်ရှင်
 
-- [Introduction](#introduction)
-    - [Configuration](#configuration)
-    - [Driver Prerequisites](#driver-prerequisites)
-- [Using The Session](#using-the-session)
-    - [Retrieving Data](#retrieving-data)
-    - [Storing Data](#storing-data)
-    - [Flash Data](#flash-data)
-    - [Deleting Data](#deleting-data)
-    - [Regenerating The Session ID](#regenerating-the-session-id)
-- [Adding Custom Session Drivers](#adding-custom-session-drivers)
-    - [Implementing The Driver](#implementing-the-driver)
-    - [Registering The Driver](#registering-the-driver)
-
-<a name="introduction"></a>
-## Introduction
-
-Since HTTP driven applications are stateless, sessions provide a way to store information about the user across multiple requests. Laravel ships with a variety of session backends that are accessed through an expressive, unified API. Support for popular backends such as [Memcached](http://memcached.org), [Redis](http://redis.io), and databases is included out of the box.
+- [ပြင်ဆင်ခြင်း](#configuration)
+- [Session Usage](#session-usage)
+- [Flash Data](#flash-data)
+- [Database Sessions](#database-sessions)
+- [Session Drivers](#session-drivers)
 
 <a name="configuration"></a>
-### Configuration
+## ပြင်ဆင်ခြင်း
 
-The session configuration file is stored at `config/session.php`. Be sure to review the options available to you in this file. By default, Laravel is configured to use the `file` session driver, which will work well for many applications. In production applications, you may consider using the `memcached` or `redis` drivers for even faster session performance.
+HTTP မှာ Stateless protocol ဖြစ်သောကြောင့် request တစ်ခုနှင့်တစ်ခု ကြားထဲတွင် Session ထဲတွင် အချက်အလက်များကို သိမ်းဆည်းကာ ပို ့ဆောင်ရပေသည်။ Laravel တွင် session ကို နည်းလမ်းမျိုးစုံဖြင့် အသုံးပြုနိုင်ရန် API တစ်ခုကို ဖန်တီးကာ စုစည်းထားသည်။ အခြားသော ကျော်ကြားသည့်  
+[Memcached](http://memcached.org) နှင့် [Redis](http://redis.io), Session အဖြစ်အသုံးပြုနိုင်သည့် နည်းလမ်းများကို ပံ့ပိုးထားသည်။
 
-The session `driver` configuration option defines where session data will be stored for each request. Laravel ships with several great drivers out of the box:
+Session နှင့်ပတ်သတ်သည့် အချက်အလက်များကို `app/config/session.php` တွင် လိုအပ်သလို ပြောင်းလဲ ရမည် ဖြစ်သည်။ ပုံမှန်အားဖြင့် application အတော်များများတွင် အဆင်ပြေမည့် `file` session driver ကို အသုံးပြုထားသည်။
 
-<div class="content-list" markdown="1">
-- `file` - sessions are stored in `storage/framework/sessions`.
-- `cookie` - sessions are stored in secure, encrypted cookies.
-- `database` - sessions are stored in a relational database.
-- `memcached` / `redis` - sessions are stored in one of these fast, cache based stores.
-- `array` - sessions are stored in a PHP array and will not be persisted.
-</div>
+#### Reserved Keys (သီးသန့် key)
 
-> {tip} The array driver is used during [testing](/docs/{{version}}/testing) and prevents the data stored in the session from being persisted.
 
-<a name="driver-prerequisites"></a>
-### Driver Prerequisites
+`flash` ဆက်ရှင်ကီးကို Laravel Farmework အတွင်းပိုင်းတွင်သုံးထားပါသည်၊ ထို့ကြောင့်  သင့်အနေနဲ့အဲ့ဒီ့ `flash` ဆိုတဲ့အမည်နဲ့  session ထဲကို item တစ်ခုမှ မထည့်သင့်ပါ။
 
-#### Database
+<a name="session-usage"></a>
+## Session Usage
 
-When using the `database` session driver, you will need to create a table to contain the session items. Below is an example `Schema` declaration for the table:
+#### Storing An Item In The Session
 
-    Schema::create('sessions', function ($table) {
-        $table->string('id')->unique();
-        $table->integer('user_id')->nullable();
-        $table->string('ip_address', 45)->nullable();
-        $table->text('user_agent')->nullable();
-        $table->text('payload');
-        $table->integer('last_activity');
-    });
+	Session::put('key', 'value');
 
-You may use the `session:table` Artisan command to generate this migration:
+#### Push A Value Onto An Array Session Value
 
-    php artisan session:table
+	Session::push('user.teams', 'developers');
 
-    php artisan migrate
+#### Retrieving An Item From The Session
 
-#### Redis
+	$value = Session::get('key');
 
-Before using Redis sessions with Laravel, you will need to install the `predis/predis` package (~1.0) via Composer. You may configure your Redis connections in the `database` configuration file. In the `session` configuration file, the `database` option may be used to specify which Redis connection is used by the session.
+#### Retrieving An Item Or Returning A Default Value
 
-<a name="using-the-session"></a>
-## Using The Session
+	$value = Session::get('key', 'default');
 
-<a name="retrieving-data"></a>
-### Retrieving Data
+	$value = Session::get('key', function() { return 'default'; });
 
-There are two primary ways of working with session data in Laravel: the global `session` helper and via a `Request` instance. First, let's look at accessing the session via a `Request` instance, which can be type-hinted on a controller method. Remember, controller method dependencies are automatically injected via the Laravel [service container](/docs/{{version}}/container):
+#### Session မှ value တစ်ခု ထုတ်ယူကာ ဖယ်ထုတ်ခြင်း
 
-    <?php
+	$value = Session::pull('key', 'default');
 
-    namespace App\Http\Controllers;
+#### Session မှ value များအားလုံး ခေါ်ယူခြင်း
 
-    use Illuminate\Http\Request;
-    use App\Http\Controllers\Controller;
+	$data = Session::all();
 
-    class UserController extends Controller
-    {
-        /**
-         * Show the profile for the given user.
-         *
-         * @param  Request  $request
-         * @param  int  $id
-         * @return Response
-         */
-        public function show(Request $request, $id)
-        {
-            $value = $request->session()->get('key');
+#### Session မှ item ရှိမရှိ စစ်ဆေးခြင်း
 
-            //
-        }
-    }
+	if (Session::has('users'))
+	{
+		//
+	}
 
-When you retrieve a value from the session, you may also pass a default value as the second argument to the `get` method. This default value will be returned if the specified key does not exist in the session. If you pass a `Closure` as the default value to the `get` method and the requested key does not exist, the `Closure` will be executed and its result returned:
+#### Session မှ item တစ်ခုကို ထုတ်ပယ်ခြင်း
 
-    $value = $request->session()->get('key', 'default');
+	Session::forget('key');
 
-    $value = $request->session()->get('key', function() {
-        return 'default';
-    });
+#### Session တစ်ခုလုံး ရှင်းပစ်ခြင်း
 
-#### The Global Session Helper
+	Session::flush();
 
-You may also use the global `session` PHP function to retrieve and store data in the session. When the `session` helper is called with a single, string argument, it will return the value of that session key. When the helper is called with an array of key / value pairs, those values will be stored in the session:
+#### Session ID အသစ်ထုတ်ယူခြင်း
 
-    Route::get('home', function () {
-        // Retrieve a piece of data from the session...
-        $value = session('key');
-
-        // Specifying a default value...
-        $value = session('key', 'default');
-
-        // Store a piece of data in the session...
-        session(['key' => 'value']);
-    });
-
-> {tip} There is little practical difference between using the session via an HTTP request instance versus using the global `session` helper. Both methods are [testable](/docs/{{version}}/testing) via the `assertSessionHas` method which is available in all of your test cases.
-
-#### Retrieving All Session Data
-
-If you would like to retrieve all the data in the session, you may use the `all` method:
-
-    $data = $request->session()->all();
-
-#### Determining If An Item Exists In The Session
-
-To determine if a value is present in the session, you may use the `has` method. The `has` method returns `true` if the value is present and is not `null`:
-
-    if ($request->session()->has('users')) {
-        //
-    }
-
-To determine if a value is present in the session, even if its value is `null`, you may use the `exists` method. The `exists` method returns `true` if the value is present:
-
-    if ($request->session()->exists('users')) {
-        //
-    }
-
-<a name="storing-data"></a>
-### Storing Data
-
-To store data in the session, you will typically use the `put` method or the `session` helper:
-
-    // Via a request instance...
-    $request->session()->put('key', 'value');
-
-    // Via the global helper...
-    session(['key' => 'value']);
-
-#### Pushing To Array Session Values
-
-The `push` method may be used to push a new value onto a session value that is an array. For example, if the `user.teams` key contains an array of team names, you may push a new value onto the array like so:
-
-    $request->session()->push('user.teams', 'developers');
-
-#### Retrieving & Deleting An Item
-
-The `pull` method will retrieve and delete an item from the session in a single statement:
-
-    $value = $request->session()->pull('key', 'default');
+	Session::regenerate();
 
 <a name="flash-data"></a>
-### Flash Data
+## Flash Data
 
-Sometimes you may wish to store items in the session only for the next request. You may do so using the `flash` method. Data stored in the session using this method will only be available during the subsequent HTTP request, and then will be deleted. Flash data is primarily useful for short-lived status messages:
+တခါတရံ  တစ်ချို  ့သော data များကို နောက်ထပ် request တစ်ခါစာသာ သိမ်းဆည်းလိုပေမည်။ ထိုသို ့ပြုလုပ်နိုင်ရန် `Session::flash` method ကို အသုံးပြုနိုင်သည်။
 
-    $request->session()->flash('status', 'Task was successful!');
+	Session::flash('key', 'value');
 
-If you need to keep your flash data around for several requests, you may use the `reflash` method, which will keep all of the flash data for an additional request. If you only need to keep specific flash data, you may use the `keep` method:
+#### နောက်ထပ် request တစ်ခုစာ သက်တမ်းတိုးခြင်း
 
-    $request->session()->reflash();
+	Session::reflash();
 
-    $request->session()->keep(['username', 'email']);
+#### နောက်ထပ် request တစ်ခုစာ သက်တမ်းတိုးခြင်း  (ရွေးချယ်ထားသော data များသာ) 
 
-<a name="deleting-data"></a>
-### Deleting Data
+	Session::keep(array('username', 'email'));
 
-The `forget` method will remove a piece of data from the session. If you would like to remove all data from the session, you may use the `flush` method:
+<a name="database-sessions"></a>
+## Database Sessions
 
-    $request->session()->forget('key');
 
-    $request->session()->flush();
+`database` session driver ကို အသုံးပြုပါက Session item များကို သိမ်းဆည်းရန် table တစ်ခု တည်ဆောက်ရန်လိုပေမည်။ အောက်တွင်  table အတွက် `Schema` တည်ဆောက်ပုံကို ဖော်ပြထားပါသည်။
 
-<a name="regenerating-the-session-id"></a>
-### Regenerating The Session ID
+	Schema::create('sessions', function($table)
+	{
+		$table->string('id')->unique();
+		$table->text('payload');
+		$table->integer('last_activity');
+	});
 
-Regenerating the session ID is often done in order to prevent malicious users from exploiting a [session fixation](https://en.wikipedia.org/wiki/Session_fixation) attack on your application.
+	
+Table ကို အသုံးပြုထားသောကြောင့် `session:table` ဟူသည့် Artisan command ကို အသုံးပြုပြီး migration ပြုလုပ်နိုင်သည်။
 
-Laravel automatically regenerates the session ID during authentication if you are using the built-in `LoginController`; however, if you need to manually regenerate the session ID, you may use the `regenerate` method.
 
-    $request->session()->regenerate();
+	php artisan session:table
 
-<a name="adding-custom-session-drivers"></a>
-## Adding Custom Session Drivers
+	composer dump-autoload
 
-<a name="implementing-the-driver"></a>
-#### Implementing The Driver
+	php artisan migrate
 
-Your custom session driver should implement the `SessionHandlerInterface`. This interface contains just a few simple methods we need to implement. A stubbed MongoDB implementation looks something like this:
+<a name="session-drivers"></a>
+## Session Drivers
 
-    <?php
+session "driver" မှ session data များ မည်သည့်နေရာတွင်း သိမ်းဆည်းမည်ကို သတ်မှတ်ထားသည်။  Laravel အနေဖြင့် အတော်လေးကောင်းမွန်သော driver အမျိုးအစားများကို ပံပိုးထားသည်။
 
-    namespace App\Extensions;
+- `file` - sessions သည် `app/storage/sessions` တွင် သိမ်းဆည်းထားမည်။
+- `cookie` - sessions သည် encrypted cookies အနေဖြင့် သိမ်းဆည်းထားမည် ဖြစ်သည်။
+- `database` session သည့် application ၏ database ထဲတွင် သိမ်းဆည်းထားမည် ဖြစ်သည်။
+- `memcached` / `redis` တို ့သည် မြန်ဆန်သွက်လက်သည့် cache based session engine များဖြစ်ကြသည်။
+- `array` - sessions သည် PHP array အဖြစ် သိမ်းဆည်းမည်ဖြစ်ပြီး နောက်ထပ် request များအတွက် သိမ်းဆည်းထားနိုင်မည် မဟုတ်ပေ။
 
-    class MongoHandler implements SessionHandlerInterface
-    {
-        public function open($savePath, $sessionName) {}
-        public function close() {}
-        public function read($sessionId) {}
-        public function write($sessionId, $data) {}
-        public function destroy($sessionId) {}
-        public function gc($lifetime) {}
-    }
 
-> {tip} Laravel does not ship with a directory to contain your extensions. You are free to place them anywhere you like. In this example, we have created an `Extensions` directory to house the `MongoHandler`.
+> **မှတ်ချက်:**  array driver သည် [unit tests](testing.md) အတွက် အသုံးပြုခြင်း ဖြစ်ပြီး တကယ့် session data အတွက် အသုံးပြုခြင်း မဟုတ်ပေ။
 
-Since the purpose of these methods is not readily understandable, let's quickly cover what each of the methods do:
-
-<div class="content-list" markdown="1">
-- The `open` method would typically be used in file based session store systems. Since Laravel ships with a `file` session driver, you will almost never need to put anything in this method. You can leave it as an empty stub. It is simply a fact of poor interface design (which we'll discuss later) that PHP requires us to implement this method.
-- The `close` method, like the `open` method, can also usually be disregarded. For most drivers, it is not needed.
-- The `read` method should return the string version of the session data associated with the given `$sessionId`. There is no need to do any serialization or other encoding when retrieving or storing session data in your driver, as Laravel will perform the serialization for you.
-- The `write` method should write the given `$data` string associated with the `$sessionId` to some persistent storage system, such as MongoDB, Dynamo, etc.  Again, you should not perform any serialization - Laravel will have already handled that for you.
-- The `destroy` method should remove the data associated with the `$sessionId` from persistent storage.
-- The `gc` method should destroy all session data that is older than the given `$lifetime`, which is a UNIX timestamp. For self-expiring systems like Memcached and Redis, this method may be left empty.
-</div>
-
-<a name="registering-the-driver"></a>
-#### Registering The Driver
-
-Once your driver has been implemented, you are ready to register it with the framework. To add additional drivers to Laravel's session backend, you may use the `extend` method on the `Session` [facade](/docs/{{version}}/facades). You should call the `extend` method from the `boot` method of a [service provider](/docs/{{version}}/providers). You may do this from the existing `AppServiceProvider` or create an entirely new provider:
-
-    <?php
-
-    namespace App\Providers;
-
-    use App\Extensions\MongoSessionStore;
-    use Illuminate\Support\Facades\Session;
-    use Illuminate\Support\ServiceProvider;
-
-    class SessionServiceProvider extends ServiceProvider
-    {
-        /**
-         * Perform post-registration booting of services.
-         *
-         * @return void
-         */
-        public function boot()
-        {
-            Session::extend('mongo', function($app) {
-                // Return implementation of SessionHandlerInterface...
-                return new MongoSessionStore;
-            });
-        }
-
-        /**
-         * Register bindings in the container.
-         *
-         * @return void
-         */
-        public function register()
-        {
-            //
-        }
-    }
-
-Once the session driver has been registered, you may use the `mongo` driver in your `config/session.php` configuration file.

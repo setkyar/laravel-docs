@@ -1,3 +1,17 @@
-# Contribution Guidelines
+# ပူးပေါင်းပါဝင်မှု လမ်းညွန်
 
-If you are submitting documentation for the **current stable release**, submit it to the corresponding branch. For example, documentation for Laravel 5.1 would be submitted to the `5.1` branch. Documentation intended for the next release of Laravel should be submitted to the `master` branch.
+###ဘာသာပြန်ခြင်း
+
+ - ကျွန်တော်တို့ကို ပူးပေါင်းပါဝင် ကူညီပြီးဘာသာပြန်ချင်တယ်ဆိုရင်
+   [docs](https://github.com/Laravel-Myanmar/docs) ကိုဦးစွာ Fork လုပ်ပါ၊
+
+ - ဘယ်အပိုင်းကို ဘာသာပြန်မည်ဆိုတာကို [Facebook](https://www.facebook.com/groups/250409601822202/) မှာပြောပေးပါ။ (Fork
+   လုပ်ပြီးဘာသာပြန်နေတုန်းအခြားတစ်ယောက်ယောက်ကပါဘာသာပြန်နေတာမျိုးဖြစ်မှာစိုးလို့ပါ)
+
+ - သင်ဘာသာပြန်မည့် File ကိုဘာသာပြန်ပါ။  ဘာသာပြန်ပြီးရင် မူရင်း repo ဆီက
+   [pull request](https://github.com/Laravel-Myanmar/docs/pulls) တောင်းပါ။  (pull request တောင်းတာကို မြန်မြန် accept
+   လုပ်စေချင်တယ်ဆိုရင်[Facebook]( https://www.facebook.com/groups/250409601822202/) မှာပါတင်ပေးပါ)
+
+###ဘာသာပြန်အဆင်ပြေမှူနှင့် စာလုံးပေါင်းအမှား
+
+ဘာသာပြန်ထားတာတွေ ကိုဦးစွာဖတ်ပါ။ ဘာသာပြန်အဆင်ပြေမှူ နဲ့ စာလုံးပေါင်း အမှားတွေကို စစ်ပါ။ ဘာသာပြန်အဆင်ပြေမှူမရှိတာတို့ စာလုံးပေါင်းအမှားတွေတွေ့ရင် GitHub မှာ [issue](https://github.com/Laravel-Myanmar/docs/issues) တင်ပေးပါ။(အမှားတွေကို အမြန်ဆုံး စစ်ပေးဖို့ [Facebook](https://www.facebook.com/groups/250409601822202/) မှာပါတင်ပေးပါ)

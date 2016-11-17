@@ -1,199 +1,117 @@
 # Errors & Logging
 
-- [Introduction](#introduction)
 - [Configuration](#configuration)
-    - [Error Detail](#error-detail)
-    - [Log Storage](#log-storage)
-    - [Log Severity Levels](#log-severity-levels)
-    - [Custom Monolog Configuration](#custom-monolog-configuration)
-- [The Exception Handler](#the-exception-handler)
-    - [Report Method](#report-method)
-    - [Render Method](#render-method)
+- [Error တွေကို ထိန်းချုပ်ခြင်း](#handling-errors)
 - [HTTP Exceptions](#http-exceptions)
-    - [Custom HTTP Error Pages](#custom-http-error-pages)
+- [404 Errors များကို ထိန်းချုပ်ခြင်း](#handling-404-errors)
 - [Logging](#logging)
-
-<a name="introduction"></a>
-## Introduction
-
-When you start a new Laravel project, error and exception handling is already configured for you. The `App\Exceptions\Handler` class is where all exceptions triggered by your application are logged and then rendered back to the user. We'll dive deeper into this class throughout this documentation.
-
-For logging, Laravel utilizes the [Monolog](https://github.com/Seldaek/monolog) library, which provides support for a variety of powerful log handlers. Laravel configures several of these handlers for you, allowing you to choose between a single log file, rotating log files, or writing error information to the system log.
 
 <a name="configuration"></a>
 ## Configuration
 
-<a name="error-detail"></a>
-### Error Detail
+Application ရဲ့ Logging Handler ကို `app/start/global.php` [start file](lifecycle#start-files) ထဲမှာ Registered လုပ်ထားပါတယ်။ နဂိုအတိုင်းကတော့ File တစ်ဖိုင်ထဲကိုပဲ အသုံးပြုခိုင်းထားပါတယ်။ သို့သော်လည်း သင့်စိတ်ကြိုက် ပြင်ဆင်နိုင်ပါတယ်။ Laravel က နာမည်ကြီး  Loggin Library တစ်ခုဖြစ်တဲ့ [Monolog](https://github.com/Seldaek/monolog.md) ကိုသုံးထားတဲ့အတွက်  Monolog မှာပါဝင်တဲ့ အမျိုးအမျိုးသော handler များကိုအသုံးပြုနိုင်ပါတယ်။
 
-The `debug` option in your `config/app.php` configuration file determines how much information about an error is actually displayed to the user. By default, this option is set to respect the value of the `APP_DEBUG` environment variable, which is stored in your `.env` file.
+ဥပမာ - Log File တစ်ခုတည်းမထားဘဲ နေ့စဉ်အလိုက် Log file တွေခွဲထားချင်တယ်ဆိုရင် ၊ start file မှာအောက်ကအတိုင်း ပြောင်းရေးလိုက်လို့ရပါတယ်
 
-For local development, you should set the `APP_DEBUG` environment variable to `true`. In your production environment, this value should always be `false`. If the value is set to `true` in production, you risk exposing sensitive configuration values to your application's end users.
+	$logFile = 'laravel.log';
 
-<a name="log-storage"></a>
-### Log Storage
+	Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
-Out of the box, Laravel supports writing log information to `single` files, `daily` files, the `syslog`, and the `errorlog`. To configure which storage mechanism Laravel uses, you should modify the `log` option in your `config/app.php` configuration file. For example, if you wish to use daily log files instead of a single file, you should set the `log` value in your `app` configuration file to `daily`:
+### Error အသေးစိတ်
 
-    'log' => 'daily'
+အရင်အတိုင်းဆို ၊ Error ရဲ့အသေးစိတ်ကို ဖော်ပြပါလိမ့်မယ်။ ဆိုလိုတာက Application မှာ Error တစ်ခုတက်နေမယ်ဆိုရင် ၊ အဲဒီ Error ရဲ့အသေးစိတ်နဲ့ ၊ အဲဒီ Error နဲ့ပတ်သက်နေတဲ့ ဖိုင်တွေနဲ့ အသေးစိတ်အချက်အလက်တွေကို ဖော်ပြပေးပါလိမ့်မယ်။ ဒီ Error အသေးစိတ်ပြတဲ့ Feature ကို ပိတ်ချင်တယ်ဆိုရင်တော့ `app/config/app.php` ထဲမှာ `debug` option ကို `false` လို့ လုပ်ပေးလိုက်ရုံပါပဲ။
 
-#### Maximum Daily Log Files
+> **မှတ်ချက်:** Application တကယ် Run ပြီဆိုရင်တော့ ဒီ Feature ကို ပိတ်ထားဖို့အတွက် အကြံပြုချင်ပါတယ်။
 
-When using the `daily` log mode, Laravel will only retain five days of log files by default. If you want to adjust the number of retained files, you may add a `log_max_files` configuration value to your `app` configuration file:
+<a name="handling-errors"></a>
+## Error တွေကို ထိန်းချုပ်ခြင်း
 
-    'log_max_files' => 30
+Default အနေနဲ့က `app/start/global.php` ထဲမှာ Exception တွေတိုင်းအတွက် Error Handler တစ်ခုပါရှိပါတယ်။
 
-<a name="log-severity-levels"></a>
-### Log Severity Levels
+	App::error(function(Exception $exception)
+	{
+		Log::error($exception);
+	});
 
-When using Monolog, log messages may have different levels of severity. By default, Laravel writes all log levels to storage. However, in your production environment, you may wish to configure the minimum severity that should be logged by adding the `log_level` option to your `app.php` configuration file.
+ဒါကတော့ အရမ်းရိုးရှင်းတဲ့ Error Handler တစ်ခုပဲဖြစ်ပါတယ်။ တကယ်လို့ လိုအပ်မယ်ဆိုရင်တော့ ရှုပ်ထွေးတဲ့ Handler တွေကို သတ်မှတ်ပေးနိုင်ပါတယ်။ Exception တွေရဲ့နာမည်ပေါ်မူတည်ပြီး Handler တွေကိုခေါ်ပါတယ်။ ဥပမာပေးရမယ်ဆိုရင် ၊ `RunetimeException` အတွက်ပဲ handle လုပ်တဲ့ handler ကို အောက်ကအတိုင်း ရေးရပါမယ်။
 
-Once this option has been configured, Laravel will log all levels greater than or equal to the specified severity. For example, a default `log_level` of `error` will log **error**, **critical**, **alert**, and **emergency** messages:
+	App::error(function(RuntimeException $exception)
+	{
+		// Handle the exception...
+	});
 
-    'log_level' => env('APP_LOG_LEVEL', 'error'),
+Exception Handler တစ်ခုက Response တစ်ခု Return ပြန်မယ်ဆိုရင် အဲဒီ Response ကိုပဲ Browser မှာဖော်ပြမှာဖြစ်ပြီး ၊ တစ်ခြားသော Error Handler တွေကိုခေါ်မှာမဟုတ်ပါဘူး
 
-> {tip} Monolog recognizes the following severity levels - from least severe to most severe: `debug`, `info`, `notice`, `warning`, `error`, `critical`, `alert`, `emergency`.
+	App::error(function(InvalidUserException $exception)
+	{
+		Log::error($exception);
 
-<a name="custom-monolog-configuration"></a>
-### Custom Monolog Configuration
+		return 'Sorry! Something is wrong with this account!';
+	});
 
-If you would like to have complete control over how Monolog is configured for your application, you may use the application's `configureMonologUsing` method. You should place a call to this method in your `bootstrap/app.php` file right before the `$app` variable is returned by the file:
+PHP fatal error ဖြစ်တဲ့အချိန်ကို စောင့်ဖမ်းချင်ရင်တော့ `App::fatal` method ကိုသုံးရပါမယ်
 
-    $app->configureMonologUsing(function($monolog) {
-        $monolog->pushHandler(...);
-    });
+	App::fatal(function($exception)
+	{
+		//
+	});
 
-    return $app;
+Handler တွေအများကြီးရှိတယ်ဆိုရင်တော့ General ကြတဲ့ Handler တွေမှ အသေးစိတ်ကျတဲ့ handler တွေအထိအစဉ်လိုက် သတ်မှတ်ပေးသင့်ပါတယ်။ ဥပမာ - `Exception` တွေအားလုံးကို handler လုပ်တဲ့ handler တွေကိုအရင်ဆုံး သတ်မှတ်ပါ၊ ပြီးမှ `Illuminate\Encryption\DecryptException` လိုမျိုး အသေးစိတ် exception ကိုတော့ နောက်မှသတ်မှတ်ပေးပါ။
 
-<a name="the-exception-handler"></a>
-## The Exception Handler
+### Error Handlers တွေကို ဘယ်မှာရေးရမလဲ
 
-<a name="report-method"></a>
-### The Report Method
-
-All exceptions are handled by the `App\Exceptions\Handler` class. This class contains two methods: `report` and `render`. We'll examine each of these methods in detail. The `report` method is used to log exceptions or send them to an external service like [BugSnag](https://bugsnag.com) or [Sentry](https://github.com/getsentry/sentry-laravel). By default, the `report` method simply passes the exception to the base class where the exception is logged. However, you are free to log exceptions however you wish.
-
-For example, if you need to report different types of exceptions in different ways, you may use the PHP `instanceof` comparison operator:
-
-    /**
-     * Report or log an exception.
-     *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param  \Exception  $e
-     * @return void
-     */
-    public function report(Exception $e)
-    {
-        if ($e instanceof CustomException) {
-            //
-        }
-
-        return parent::report($e);
-    }
-
-#### Ignoring Exceptions By Type
-
-The `$dontReport` property of the exception handler contains an array of exception types that will not be logged. For example, exceptions resulting from 404 errors, as well as several other types of errors, are not written to your log files. You may add other exception types to this array as needed:
-
-    /**
-     * A list of the exception types that should not be reported.
-     *
-     * @var array
-     */
-    protected $dontReport = [
-        \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Auth\Access\AuthorizationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Illuminate\Validation\ValidationException::class,
-    ];
-
-<a name="render-method"></a>
-### The Render Method
-
-The `render` method is responsible for converting a given exception into an HTTP response that should be sent back to the browser. By default, the exception is passed to the base class which generates a response for you. However, you are free to check the exception type or return your own custom response:
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Exception $e)
-    {
-        if ($e instanceof CustomException) {
-            return response()->view('errors.custom', [], 500);
-        }
-
-        return parent::render($request, $e);
-    }
+Error Handler တွေကို သတ်မှတ်ပေးရမယ့် နေရာဆိုပြီးမသတ်မှတ်ထားပါဘူး။ ဒါနဲ့ပတ်သက်ပြီးလို့ကတော့ Laravel က လွတ်လပ်ခွင့်ပေးထားပါတယ်။ နည်းလမ်းတစ်ခုကတော့ `start/global.php` ထဲမှာ ထည့်ရေးနိုင်ပါတယ်။ အဲဒီနေရာက Application စစ Run ချင်း Code တွေထည့်ရေးသင့်တဲ့ အကောင်းဆုံးနေရာပါဘဲ။ အဲဒီဖိုင်ထဲမှာ တစ်ခြားရေးထားတာတွေ များနေတယ်ဆိုရင်တော့ `app/errors.php` ဆိုပြီး ဖိုင်ဆောက်လိုက်ပြီးတော့ `start/global.php` ထဲမှာ `require` လုပ်ပြီးရေးလို့ရပါတယ်။ တတိယနည်းလမ်းကတော့ Handler တွေအားလုံးကို ထိန်းချုပ်ပေးမယ့် [service provider](ioc#service-providers.md) တစ်ခု ဖန်းတီးလိုက်ပါ။ နောက်ထပ်တစ်ခေါက်ထပ်ပြောချင်ပါတယ် ၊ အဖြေမှန်ဆိုပြီးရယ်လို့ မရှိပါဘူး။ သင်နဲ့အကိုက်ညီဆုံးပုံစံအသုံးပြုပါ။
 
 <a name="http-exceptions"></a>
 ## HTTP Exceptions
 
-Some exceptions describe HTTP error codes from the server. For example, this may be a "page not found" error (404), an "unauthorized error" (401) or even a developer generated 500 error. In order to generate such a response from anywhere in your application, you may use the `abort` helper:
+အချို့ Exception တွေက Server ကနေပြီးတော့ HTTP error code တွေဖော်ပြပေးပါတယ်။ ဥပမာ - "page not found" error (404), "unauthorized error" (401) သို့မဟုတ် 500 error လိုမျိုးဖြစ်ပါတယ်။ ဒီလို Response အတွက်တွေဆို အောက်ကအတိုင်းသုံးပါ။
 
-    abort(404);
+	App::abort(404);
 
-The `abort` helper will immediately raise an exception which will be rendered by the exception handler. Optionally, you may provide the response text:
+ကိုယ်ပိုင် message နဲ့ response လုပ်ပေးချင်လဲရပါတယ်။
 
-    abort(403, 'Unauthorized action.');
+	App::abort(403, 'Unauthorized action.');
 
-<a name="custom-http-error-pages"></a>
-### Custom HTTP Error Pages
+အဲဒီ method ကို Application တစ်ခုလုံးရဲ့ request တွေအားလုံးမှာ အသုံးပြုမှာပါ။
 
-Laravel makes it easy to display custom error pages for various HTTP status codes. For example, if you wish to customize the error page for 404 HTTP status codes, create a `resources/views/errors/404.blade.php`. This file will be served on all 404 errors generated by your application. The views within this directory should be named to match the HTTP status code they correspond to. The `HttpException` instance raised by the `abort` function will be passed to the view as an `$exception` variable.
+<a name="handling-404-errors"></a>
+## 404 Errors များကို ထိန်းချုပ်ခြင်း
+
+"404 Not Found" error တွေအားလုံးကို ထိန်းချုပ်ပေးမယ့် handler ကိုလဲ ကိုယ့်စိတ်ကြိုက်ပုံစံနဲ့ အလွယ်တကူသတ်မှတ်ပေးနိုင်ပါတယ်။
+
+	App::missing(function($exception)
+	{
+		return Response::view('errors.missing', array(), 404);
+	});
 
 <a name="logging"></a>
 ## Logging
 
-Laravel provides a simple abstraction layer on top of the powerful [Monolog](http://github.com/seldaek/monolog) library. By default, Laravel is configured to create a log file for your application in the `storage/logs` directory. You may write information to the logs using the `Log` [facade](/docs/{{version}}/facades):
+အရမ်းလန်းတဲ့ [Monolog](http://github.com/seldaek/monolog) library ကို သုံးရပိုလွယ်အောင်လို့ Laravel logging အထောက်အပံ့တွေက ကူညီပေးပါတယ်။ Default အနေနဲ့ Log File တစ်ခုတည်းကိုပဲ သုံးအောင်လို့ သတ်မှတ်ပေးထားပါတယ်။ အဲဒီဖိုင်က `app/storage/logs/laravel.log` ဖြစ်ပါတယ်။ Log file ထဲကို အောက်ကအတိုင်း Log တွေရိုက်ထည့်နိုင်ပါတယ်
 
-    <?php
+	Log::info('This is some useful information.');
 
-    namespace App\Http\Controllers;
+	Log::warning('Something could be going wrong.');
 
-    use App\User;
-    use Illuminate\Support\Facades\Log;
-    use App\Http\Controllers\Controller;
+	Log::error('Something is really going wrong.');
 
-    class UserController extends Controller
-    {
-        /**
-         * Show the profile for the given user.
-         *
-         * @param  int  $id
-         * @return Response
-         */
-        public function showProfile($id)
-        {
-            Log::info('Showing user profile for user: '.$id);
+Logger အနေနဲ့  [RFC 5424](http://tools.ietf.org/html/rfc5424) ကသတ်မှတ်ပေးထားတဲ့အတိုင်း **debug**, **info**, **notice**, **warning**, **error**, **critical**, and **alert** ဆိုပြီး level ၇ ခုရှိပါတယ်။
 
-            return view('user.profile', ['user' => User::findOrFail($id)]);
-        }
-    }
 
-The logger provides the eight logging levels defined in [RFC 5424](http://tools.ietf.org/html/rfc5424): **emergency**, **alert**, **critical**, **error**, **warning**, **notice**, **info** and **debug**.
+Array ပုံစံနဲ့လည်း ထည့်ပေးလိုက်လို့ရပါတယ်
 
-    Log::emergency($message);
-    Log::alert($message);
-    Log::critical($message);
-    Log::error($message);
-    Log::warning($message);
-    Log::notice($message);
-    Log::info($message);
-    Log::debug($message);
+	Log::info('Log message', array('context' => 'Other helpful information'));
 
-#### Contextual Information
+Monolog မှာ တစ်ခြား handler တွေ အများကြီးပါဝင်ပါတယ်။ လိုအပ်ရင် Laravel သုံးထားတဲံ Monolog instance ကိုသုံးနိုင်ပါတယ်။
 
-An array of contextual data may also be passed to the log methods. This contextual data will be formatted and displayed with the log message:
+	$monolog = Log::getMonolog();
 
-    Log::info('User failed to login.', ['id' => $user->id]);
+Log ဖိုင်ထဲကို ထည့်သမျှ message တွေအားလုံးကို စောင့်ဖမ်းဖို့အတွက်လဲ event ရေးထားလို့ရပါတယ်။
 
-#### Accessing The Underlying Monolog Instance
+#### Registering A Log Listener
 
-Monolog has a variety of additional handlers you may use for logging. If needed, you may access the underlying Monolog instance being used by Laravel:
-
-    $monolog = Log::getMonolog();
+	Log::listen(function($level, $message, $context)
+	{
+		//
+	});
