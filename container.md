@@ -1,6 +1,6 @@
 # Service Container
 
-- [Introduction](#introduction)
+- [မိတ်ဆတ်](#introduction)
 - [Binding](#binding)
     - [Binding Basics](#binding-basics)
     - [Binding Interfaces To Implementations](#binding-interfaces-to-implementations)
@@ -12,11 +12,11 @@
 - [Container Events](#container-events)
 
 <a name="introduction"></a>
-## Introduction
+## မိတ်ဆတ်
 
-The Laravel service container is a powerful tool for managing class dependencies and performing dependency injection. Dependency injection is a fancy phrase that essentially means this: class dependencies are "injected" into the class via the constructor or, in some cases, "setter" methods.
+Class dependencies တွေနဲ့ dependency injection တိုကိုလုပ်ဆောင်ရာမှာ Laravel service container က powerful tool တစ်ခုဖြစ်ပါတယ်။ Dependency injection ဆိုတာက fancy စကားစုတစ်ခုပါ... တကယ်တမ်းအခြေခံကဘာကိုဆိုလိုတာလဲဆိုရင် this:class dependencies တွေက class ထဲကို constructor ကနေဒါမှမဟုတ် အချို့ကိစ္စများတွင် "setter" method တွေကိုသုံးပြီးတော့ injected လုပ်တာကိုပြောတာဖြစ်ပါတယ်။
 
-Let's look at a simple example:
+ရိုးရှင်းတဲ့နမူနာတစ်ခုကိုကြည့်လိုက်ကြရအောင်...
 
     <?php
 
@@ -60,9 +60,10 @@ Let's look at a simple example:
         }
     }
 
-In this example, the `UserController` needs to retrieve users from a data source. So, we will **inject** a service that is able to retrieve users. In this context, our `UserRepository` most likely uses [Eloquent](/docs/{{version}}/eloquent) to retrieve user information from the database. However, since the repository is injected, we are able to easily swap it out with another implementation. We are also able to easily "mock", or create a dummy implementation of the `UserRepository` when testing our application.
 
-A deep understanding of the Laravel service container is essential to building a powerful, large application, as well as for contributing to the Laravel core itself.
+အထက်မှာဖော်ပြထားတဲ့နမူနာမှာဆိုရင် `UserController` က data source တစ်ခုကနေပြီးတော့ users တွေကိုပြန်ယူဖို့လိုပါတယ်။ ဒါကြောင့်ကျွန်တော်တို့က serive တစ်ခု **inject** လုပ်ပြီးတော့ users တွေကိုပြန်ယူပါတယ်။ အထက်ဖော်ပြပါနမူနာမှာဆိုရင် `UserRepository` က [Eloquent](/docs/{{version}}/eloquent) သုံးပြီးတော့ user information တွေကို database ကနေပြန်လည်ရယူပါတယ်။ သို့သော်လည်း repository က injected ဖြစ်သွားတော့ကျွန်တော်တို့ကလွယ်ကူစွာတစ်ခြားတစ်ခုကိုပြောင်းလဲနိုင်ပါတယ်။ ကျွန်တော်တို့ application ကို test လုပ်တဲ့အချိန်မှာလည်းလွယ်ကူစွာ mock ဒါမှမဟုတ် dummy implementation တစ်ခုကိုလွယ်ကူစွာတည်ဆောက်နိုင်ပါတယ်။
+
+Powerful/large application တွေတည်ဆောက်တဲ့အချိန်နဲ့ Laravel Core ကိုပြန်ပြီး contribute လုပ်ဖို့ရာအတွက် Laravel service container ကိုနက်နက်နဲနဲနားလည်မှဖြစ်ပါမယ်။
 
 <a name="binding"></a>
 ## Binding
