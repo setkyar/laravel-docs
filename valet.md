@@ -16,7 +16,6 @@
 <a name="introduction"></a>
 ## Introduction
 
-
 Valet က Mac အတွက်ရိုးရှင်းတဲ့ Laravel development environment တစ်ခုပါဘဲ။ Vagrant မလို၊ Apache မလို၊ Nginx မလို၊ `/etc/hosts` file မလိုပါဘူး။ သင့် site ကို local tunnels သုံးပြီးတော့ publicly share လုပ်လို့ရပါသေးတယ်။
 
 Laravel Valet ကဘယ်လိုအလုပ်လုပ်သလဲဆိုရင်သင့်စက်ဖွင့်လိုက်တာနဲ့ [Caddy](https://caddyserver.com)  ကို background မှာအမြဲ run ထားပြီးတော့ [DnsMasq](https://en.wikipedia.org/wiki/Dnsmasq) ကိုသုံးပြီးတော့ Valet proxies တွေအကုန်လုံးက `*.dev` domain နဲ့ သင် install လုပ်ထားတဲ့ sites တွေနဲ့ point ပေးပါတယ်။
@@ -25,7 +24,6 @@ Valet က Vagrant တို့ Homestead တို့ replacement မဟုတ�
 
 Out of the box, Valet support includes, but is not limited to:
 
-<div class="content-list" markdown="1">
 - [Laravel](https://laravel.com)
 - [Lumen](https://lumen.laravel.com)
 - [Symfony](https://symfony.com)
@@ -37,7 +35,6 @@ Out of the box, Valet support includes, but is not limited to:
 - [Statamic](https://statamic.com)
 - [Jigsaw](http://jigsaw.tighten.co)
 - Static HTML
-</div>
 
 Valet ကိုသင့်  [custom drivers](#custom-valet-drivers) တွေနဲ့ extend လုပ်နိုင်ပါတယ်
 
@@ -57,61 +54,51 @@ Valet က Mac ကိုဘဲ support လုပ်ပြီးတော့ PHP �
 <a name="installation"></a>
 ## Installation
 
-**Valet requires macOS and [Homebrew](http://brew.sh/). Before installation, you should make sure that no other programs such as Apache or Nginx are binding to your local machine's port 80.**
+**Valet ကို install လုပ်ဖို့ macOS နဲ့ [Homebrew](http://brew.sh/) လိုပါတယ်။ Apache ဒါမှမဟုတ် Nginx တို့ကသင့်စက်ရဲ့ port 80 ကို binding မလုပ်ဖို့တော့လိုပါ့မယ်။**
 
-<div class="content-list" markdown="1">
-- Install or update [Homebrew](http://brew.sh/) to the latest version using `brew update`.
-- Install PHP 7.0 using Homebrew via `brew install homebrew/php/php70`.
-- Install Valet with Composer via `composer global require laravel/valet`. Make sure the `~/.composer/vendor/bin` directory is in your system's "PATH".
-- Run the `valet install` command. This will configure and install Valet and DnsMasq, and register Valet's daemon to launch when your system starts.
-</div>
+- [Homebrew](http://brew.sh/) latest version ကို install သို့မဟုတ် update လုပ်ဖို့ `brew update` ကိုသုံးပါ
+- PHP7.0 ကို Homebrew သုံးပြီး install လုပ်ဖို့ရာအတွက် `brew install homebrew/php/php70`
+-  valet ကို composer သုံးပြီး `composer global require laravel/valet` command ကိုသုံးပြီးတော့ install လုပ်ပါ။ `~/.composer/vendor/bin` directory ကသင့် system PATH မှာရှိဖို့သေချာအောင်လုပ်ပါ။
+- `valet install` command ကို run လိုက်ရင် သင့် system စလိုက်ပြီဆိုတာနဲ့ Valet daemon ကို lunch လုပ်ပြီးValet နဲ့ DnsMasq ကို install/configure လုပ်သွားမှာဖြစ်ပါတယ်။
 
-Once Valet is installed, try pinging any `*.dev` domain on your terminal using a command such as `ping foobar.dev`. If Valet is installed correctly you should see this domain responding on `127.0.0.1`.
+Valet ကို install လုပ်ပြီးသွားတဲ့အခါမှာ *.dev domain ကို terminal ကနေ ping လုပ်ကြည့်လိုက်လို့ရှိရင် Valet မှန်ကန်စွာ install လုပ်ခဲ့တယ်ဆိုရင် 127.0.0.1 ကို respond ပြန်တာကိုတွေ့ရမှာပါ။ example အနေနဲ့ terminal ကနေ `ping foobar.dev` လို့ run ကြည့်လို့ရပါတယ်။
 
-Valet will automatically start its daemon each time your machine boots. There is no need to run `valet start` or `valet install` ever again once the initial Valet installation is complete.
+Valet ကသင့်စက် boots လုပ်လိုက်တာနဲ့ သူ့ daemon ကို automatically start လုပ်မှာပါ။ Valet ကို initial installation ပြီးသွားတာနဲ့ `valet start` ဒါမှမဟုတ် `valet install` ကိုနောက်တစ်ကြိမ်ပြန် run စရာမလိုတော့ပါဘူး။
 
 #### Using Another Domain
 
-By default, Valet serves your projects using the `.dev` TLD. If you'd like to use another domain, you can do so using the `valet domain tld-name` command.
+Valet က default အနေနဲ့ `.dev` domain ကိုအသုံးပြုပါတယ်… သင့်အနေနဲ့တစ်ခြား domain ကိုအသုံးပြုချင်တယ်ဆိုရင် `valet domain tld-name` ဆိုပြီးပြောင်းနိုင်ပါတယ်။ 
 
-For example, if you'd like to use `.app` instead of `.dev`, run `valet domain app` and Valet will start serving your projects at `*.app` automatically.
+ဥပမာအနေနဲ့ `.dev` domain ကို `.app` ဆိုပြီးပြောင်းချင်တယ်ဆိုရင်တော့ `valet domain app` ဆိုပြီး run လိုက်ရင် `.dev` domain တွေအကုန်လုံး `.app` ကိုအလိုအလျှောက်ပြောင်းသွားမှာပါ။
 
 #### Database
 
 If you need a database, try MariaDB by running `brew install mariadb` on your command line. You can connect to the database at `127.0.0.1` using the `root` username and an empty string for the password.
 
 <a name="release-notes"></a>
-## Release Notes
+##Release Notes
 
 ### Version 1.1.5
-
 The 1.1.5 release of Valet brings a variety of internal improvements.
 
 #### Upgrade Instructions
-
 After updating your Valet installation using `composer global update`, you should run the `valet install` command in your terminal.
 
 ### Version 1.1.0
-
 The 1.1.0 release of Valet brings a variety of great improvements. The built-in PHP server has been replaced with [Caddy](https://caddyserver.com/) for serving incoming HTTP requests. Introducing Caddy allows for a variety of future improvements and allows Valet sites to make HTTP requests to other Valet sites without blocking the built-in PHP server.
 
 #### Upgrade Instructions
-
 After updating your Valet installation using `composer global update`, you should run the `valet install` command in your terminal to create the new Caddy daemon file on your system.
 
 <a name="serving-sites"></a>
-## Serving Sites
+##Serving Sites
+Valet install လုပ်ပြီးတာနဲ့ sites တွေကို serve လုပ်လို့ရပါပြီ။ Valet က သင့် Laravel sites တွေကို serve လုပ်ဖို့ရာအတွက် `park` နဲ့ `link` ဆိုပြီး command နှစ်ခုရှိပါတယ်။
 
-Once Valet is installed, you're ready to start serving sites. Valet provides two commands to help you serve your Laravel sites: `park` and `link`.
-
-<a name="the-park-command"></a>
 **The `park` Command**
 
-<div class="content-list" markdown="1">
 - Create a new directory on your Mac by running something like `mkdir ~/Sites`. Next, `cd ~/Sites` and run `valet park`. This command will register your current working directory as a path that Valet should search for sites.
 - Next, create a new Laravel site within this directory: `laravel new blog`.
 - Open `http://blog.dev` in your browser.
-</div>
 
 **That's all there is to it.** Now, any Laravel project you create within your "parked" directory will automatically be served using the `http://folder-name.dev` convention.
 
