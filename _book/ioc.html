@@ -1,0 +1,1003 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>IoC Container · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="localization.html" />
+    
+    
+    <link rel="prev" href="helpers.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel နိဒါန်း
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel မိတ်ဆက်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="quick.html">
+            
+                <a href="quick.html">
+            
+                    
+                    Laravel အကျဉ်းချုပ်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="releases.html">
+            
+                <a href="releases.html">
+            
+                    
+                    Release Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="upgrade.html">
+            
+                <a href="upgrade.html">
+            
+                    
+                    Upgrade Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel ကိုစတင်လေ့လာခြင်း (အခြေခံ)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel install လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    Configuration လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="homestead.html">
+            
+                <a href="homestead.html">
+            
+                    
+                    Laravel ရဲ့ Official Development Homestead အကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="lifecycle.html">
+            
+                <a href="lifecycle.html">
+            
+                    
+                    Request Lifecycle 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Route လုပ်ခြင်းအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="requests.html">
+            
+                <a href="requests.html">
+            
+                    
+                    Requests နှင့် Input များအကြောင်း 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="responses.html">
+            
+                <a href="responses.html">
+            
+                    
+                    Views နှင့် Responses များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="controllers.html">
+            
+                <a href="controllers.html">
+            
+                    
+                    Controllers များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="errors.html">
+            
+                <a href="errors.html">
+            
+                    
+                    Errors နှင့် Logging များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Laravel ကိုလေ့လာခြင်း (အဆင့်မြင့်)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="billing.html">
+            
+                <a href="billing.html">
+            
+                    
+                    Billing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="cache.html">
+            
+                <a href="cache.html">
+            
+                    
+                    Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="extending.html">
+            
+                <a href="extending.html">
+            
+                    
+                    Core Extension
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="events.html">
+            
+                <a href="events.html">
+            
+                    
+                    Events
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="facades.html">
+            
+                <a href="facades.html">
+            
+                    
+                    Facades
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="html.html">
+            
+                <a href="html.html">
+            
+                    
+                    Forms & HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="helpers.html">
+            
+                <a href="helpers.html">
+            
+                    
+                    Helpers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.9" data-path="ioc.html">
+            
+                <a href="ioc.html">
+            
+                    
+                    IoC Container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="localization.html">
+            
+                <a href="localization.html">
+            
+                    
+                    Localization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="mail.html">
+            
+                <a href="mail.html">
+            
+                    
+                    Mail
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="packages.html">
+            
+                <a href="packages.html">
+            
+                    
+                    Package Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="pagination.html">
+            
+                <a href="pagination.html">
+            
+                    
+                    Pagination
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="queues.html">
+            
+                <a href="queues.html">
+            
+                    
+                    Queues
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="session.html">
+            
+                <a href="session.html">
+            
+                    
+                    Session
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="ssh.html">
+            
+                <a href="ssh.html">
+            
+                    
+                    SSH
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="templates.html">
+            
+                <a href="templates.html">
+            
+                    
+                    Templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="testing.html">
+            
+                <a href="testing.html">
+            
+                    
+                    Unit Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="validation.html">
+            
+                <a href="validation.html">
+            
+                    
+                    Validation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    Database
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    အခြေခံ အသုံးပြုပုံ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="queries.html">
+            
+                <a href="queries.html">
+            
+                    
+                    Query Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="eloquent.html">
+            
+                <a href="eloquent.html">
+            
+                    
+                    Eloquent ORM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="schema.html">
+            
+                <a href="schema.html">
+            
+                    
+                    Schema Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="migrations.html">
+            
+                <a href="migrations.html">
+            
+                    
+                    Migrations & Seeding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="redis.html">
+            
+                <a href="redis.html">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Artisan CLI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="commands.html">
+            
+                <a href="commands.html">
+            
+                    
+                    Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="contributing.html">
+            
+                <a href="contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >IoC Container</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="ioc-container">IoC Container</h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#basic-usage">Basic Usage</a></li>
+<li><a href="#where-to-register">Where To Register Bindings</a></li>
+<li><a href="#automatic-resolution">Automatic Resolution</a></li>
+<li><a href="#practical-usage">Practical Usage</a></li>
+<li><a href="#service-providers">Service Providers</a></li>
+<li><a href="#container-events">Container Events</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="introduction">Introduction</h2>
+<p>The Laravel inversion of control container is a powerful tool for managing class dependencies. Dependency injection is a method of removing hard-coded class dependencies. Instead, the dependencies are injected at run-time, allowing for greater flexibility as dependency implementations may be swapped easily.</p>
+<p>Understanding the Laravel IoC container is essential to building a powerful, large application, as well as for contributing to the Laravel core itself.</p>
+<p><a name="basic-usage"></a></p>
+<h2 id="basic-usage">Basic Usage</h2>
+<h4 id="binding-a-type-into-the-container">Binding A Type Into The Container</h4>
+<p>There are two ways the IoC container can resolve dependencies: via Closure callbacks or automatic resolution. First, we&apos;ll explore Closure callbacks. First, a &quot;type&quot; may be bound into the container:</p>
+<pre><code>App::bind(&apos;foo&apos;, function($app)
+{
+    return new FooBar;
+});
+</code></pre><h4 id="resolving-a-type-from-the-container">Resolving A Type From The Container</h4>
+<pre><code>$value = App::make(&apos;foo&apos;);
+</code></pre><p>When the <code>App::make</code> method is called, the Closure callback is executed and the result is returned.</p>
+<h4 id="binding-a-shared-type-into-the-container">Binding A &quot;Shared&quot; Type Into The Container</h4>
+<p>Sometimes, you may wish to bind something into the container that should only be resolved once, and the same instance should be returned on subsequent calls into the container:</p>
+<pre><code>App::singleton(&apos;foo&apos;, function()
+{
+    return new FooBar;
+});
+</code></pre><h4 id="binding-an-existing-instance-into-the-container">Binding An Existing Instance Into The Container</h4>
+<p>You may also bind an existing object instance into the container using the <code>instance</code> method:</p>
+<pre><code>$foo = new Foo;
+
+App::instance(&apos;foo&apos;, $foo);
+</code></pre><p><a name="where-to-register"></a></p>
+<h2 id="where-to-register-bindings">Where To Register Bindings</h2>
+<p>IoC bindings, like event handlers or route filters, generally fall under the title of &quot;bootstrap code&quot;. In other words, they prepare your application to actually handle requests, and usually need to be executed before a route or controller is actually called. Like most other bootstrap code, the <code>start</code> files are always an option for registering IoC bindings. Alternatively, you could create an <code>app/ioc.php</code> (filename does not matter) file and require that file from your <code>start</code> file.</p>
+<p>If your application has a very large number of IoC bindings, or you simply wish to organize your IoC bindings in separate files by category, you may register your bindings in a <a href="#service-providers">service provider</a>.</p>
+<p><a name="automatic-resolution"></a></p>
+<h2 id="automatic-resolution">Automatic Resolution</h2>
+<h4 id="resolving-a-class">Resolving A Class</h4>
+<p>The IoC container is powerful enough to resolve classes without any configuration at all in many scenarios. For example:</p>
+<pre><code>class FooBar {
+
+    public function __construct(Baz $baz)
+    {
+        $this-&gt;baz = $baz;
+    }
+
+}
+
+$fooBar = App::make(&apos;FooBar&apos;);
+</code></pre><p>Note that even though we did not register the FooBar class in the container, the container will still be able to resolve the class, even injecting the <code>Baz</code> dependency automatically!</p>
+<p>When a type is not bound in the container, it will use PHP&apos;s Reflection facilities to inspect the class and read the constructor&apos;s type-hints. Using this information, the container can automatically build an instance of the class.</p>
+<h4 id="binding-an-interface-to-an-implementation">Binding An Interface To An Implementation</h4>
+<p>However, in some cases, a class may depend on an interface implementation, not a &quot;concrete type&quot;. When this is the case, the <code>App::bind</code> method must be used to inform the container which interface implementation to inject:</p>
+<pre><code>App::bind(&apos;UserRepositoryInterface&apos;, &apos;DbUserRepository&apos;);
+</code></pre><p>Now consider the following controller:</p>
+<pre><code>class UserController extends BaseController {
+
+    public function __construct(UserRepositoryInterface $users)
+    {
+        $this-&gt;users = $users;
+    }
+
+}
+</code></pre><p>Since we have bound the <code>UserRepositoryInterface</code> to a concrete type, the <code>DbUserRepository</code> will automatically be injected into this controller when it is created.</p>
+<p><a name="practical-usage"></a></p>
+<h2 id="practical-usage">Practical Usage</h2>
+<p>Laravel provides several opportunities to use the IoC container to increase the flexibility and testability of your application. One primary example is when resolving controllers. All controllers are resolved through the IoC container, meaning you can type-hint dependencies in a controller constructor, and they will automatically be injected.</p>
+<h4 id="type-hinting-controller-dependencies">Type-Hinting Controller Dependencies</h4>
+<pre><code>class OrderController extends BaseController {
+
+    public function __construct(OrderRepository $orders)
+    {
+        $this-&gt;orders = $orders;
+    }
+
+    public function getIndex()
+    {
+        $all = $this-&gt;orders-&gt;all();
+
+        return View::make(&apos;orders&apos;, compact(&apos;all&apos;));
+    }
+
+}
+</code></pre><p>In this example, the <code>OrderRepository</code> class will automatically be injected into the controller. This means that when <a href="testing.html">unit testing</a> a &quot;mock&quot; <code>OrderRepository</code> may be bound into the container and injected into the controller, allowing for painless stubbing of database layer interaction.</p>
+<h4 id="other-examples-of-ioc-usage">Other Examples Of IoC Usage</h4>
+<p><a href="routing#route-filters">Filters</a>, <a href="docs/responses#view-composers">composers</a>, and <a href="docs/events#using-classes-as-listeners.md">event handlers</a> may also be resolved out of the IoC container. When registering them, simply give the name of the class that should be used:</p>
+<pre><code>Route::filter(&apos;foo&apos;, &apos;FooFilter&apos;);
+
+View::composer(&apos;foo&apos;, &apos;FooComposer&apos;);
+
+Event::listen(&apos;foo&apos;, &apos;FooHandler&apos;);
+</code></pre><p><a name="service-providers"></a></p>
+<h2 id="service-providers">Service Providers</h2>
+<p>Service providers are a great way to group related IoC registrations in a single location. Think of them as a way to bootstrap components in your application. Within a service provider, you might register a custom authentication driver, register your application&apos;s repository classes with the IoC container, or even setup a custom Artisan command.</p>
+<p>In fact, most of the core Laravel components include service providers. All of the registered service providers for your application are listed in the <code>providers</code> array of the <code>app/config/app.php</code> configuration file.</p>
+<h4 id="defining-a-service-provider">Defining A Service Provider</h4>
+<p>To create a service provider, simply extend the <code>Illuminate\Support\ServiceProvider</code> class and define a <code>register</code> method:</p>
+<pre><code>use Illuminate\Support\ServiceProvider;
+
+class FooServiceProvider extends ServiceProvider {
+
+    public function register()
+    {
+        $this-&gt;app-&gt;bind(&apos;foo&apos;, function()
+        {
+            return new Foo;
+        });
+    }
+
+}
+</code></pre><p>Note that in the <code>register</code> method, the application IoC container is available to you via the <code>$this-&gt;app</code> property. Once you have created a provider and are ready to register it with your application, simply add it to the <code>providers</code> array in your <code>app</code> configuration file.</p>
+<h4 id="registering-a-service-provider-at-run-time">Registering A Service Provider At Run-Time</h4>
+<p>You may also register a service provider at run-time using the <code>App::register</code> method:</p>
+<pre><code>App::register(&apos;FooServiceProvider&apos;);
+</code></pre><p><a name="container-events"></a></p>
+<h2 id="container-events">Container Events</h2>
+<h4 id="registering-a-resolving-listener">Registering A Resolving Listener</h4>
+<p>The container fires an event each time it resolves an object. You may listen to this event using the <code>resolving</code> method:</p>
+<pre><code>App::resolvingAny(function($object)
+{
+    //
+});
+
+App::resolving(&apos;foo&apos;, function($foo)
+{
+    //
+});
+</code></pre><p>Note that the object that was resolved will be passed to the callback.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="helpers.html" class="navigation navigation-prev " aria-label="Previous page: Helpers">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="localization.html" class="navigation navigation-next " aria-label="Next page: Localization">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"IoC Container","level":"1.4.9","depth":2,"next":{"title":"Localization","level":"1.4.10","depth":2,"path":"localization.md","ref":"localization.md","articles":[]},"previous":{"title":"Helpers","level":"1.4.8","depth":2,"path":"helpers.md","ref":"helpers.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ioc.md","mtime":"2016-11-17T07:47:26.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-17T08:41:54.617Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

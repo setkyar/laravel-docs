@@ -1,0 +1,948 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Migrations & Seeding · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="redis.html" />
+    
+    
+    <link rel="prev" href="schema.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel နိဒါန်း
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel မိတ်ဆက်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="quick.html">
+            
+                <a href="quick.html">
+            
+                    
+                    Laravel အကျဉ်းချုပ်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="releases.html">
+            
+                <a href="releases.html">
+            
+                    
+                    Release Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="upgrade.html">
+            
+                <a href="upgrade.html">
+            
+                    
+                    Upgrade Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel ကိုစတင်လေ့လာခြင်း (အခြေခံ)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel install လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    Configuration လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="homestead.html">
+            
+                <a href="homestead.html">
+            
+                    
+                    Laravel ရဲ့ Official Development Homestead အကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="lifecycle.html">
+            
+                <a href="lifecycle.html">
+            
+                    
+                    Request Lifecycle 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Route လုပ်ခြင်းအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="requests.html">
+            
+                <a href="requests.html">
+            
+                    
+                    Requests နှင့် Input များအကြောင်း 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="responses.html">
+            
+                <a href="responses.html">
+            
+                    
+                    Views နှင့် Responses များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="controllers.html">
+            
+                <a href="controllers.html">
+            
+                    
+                    Controllers များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="errors.html">
+            
+                <a href="errors.html">
+            
+                    
+                    Errors နှင့် Logging များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Laravel ကိုလေ့လာခြင်း (အဆင့်မြင့်)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="billing.html">
+            
+                <a href="billing.html">
+            
+                    
+                    Billing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="cache.html">
+            
+                <a href="cache.html">
+            
+                    
+                    Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="extending.html">
+            
+                <a href="extending.html">
+            
+                    
+                    Core Extension
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="events.html">
+            
+                <a href="events.html">
+            
+                    
+                    Events
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="facades.html">
+            
+                <a href="facades.html">
+            
+                    
+                    Facades
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="html.html">
+            
+                <a href="html.html">
+            
+                    
+                    Forms & HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="helpers.html">
+            
+                <a href="helpers.html">
+            
+                    
+                    Helpers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="ioc.html">
+            
+                <a href="ioc.html">
+            
+                    
+                    IoC Container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="localization.html">
+            
+                <a href="localization.html">
+            
+                    
+                    Localization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="mail.html">
+            
+                <a href="mail.html">
+            
+                    
+                    Mail
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="packages.html">
+            
+                <a href="packages.html">
+            
+                    
+                    Package Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="pagination.html">
+            
+                <a href="pagination.html">
+            
+                    
+                    Pagination
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="queues.html">
+            
+                <a href="queues.html">
+            
+                    
+                    Queues
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="session.html">
+            
+                <a href="session.html">
+            
+                    
+                    Session
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="ssh.html">
+            
+                <a href="ssh.html">
+            
+                    
+                    SSH
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="templates.html">
+            
+                <a href="templates.html">
+            
+                    
+                    Templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="testing.html">
+            
+                <a href="testing.html">
+            
+                    
+                    Unit Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="validation.html">
+            
+                <a href="validation.html">
+            
+                    
+                    Validation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    Database
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    အခြေခံ အသုံးပြုပုံ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="queries.html">
+            
+                <a href="queries.html">
+            
+                    
+                    Query Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="eloquent.html">
+            
+                <a href="eloquent.html">
+            
+                    
+                    Eloquent ORM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="schema.html">
+            
+                <a href="schema.html">
+            
+                    
+                    Schema Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.5" data-path="migrations.html">
+            
+                <a href="migrations.html">
+            
+                    
+                    Migrations & Seeding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="redis.html">
+            
+                <a href="redis.html">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Artisan CLI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="commands.html">
+            
+                <a href="commands.html">
+            
+                    
+                    Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="contributing.html">
+            
+                <a href="contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Migrations & Seeding</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="migrations--seeding">Migrations &amp; Seeding</h1>
+<ul>
+<li><a href="#introduction">&#x1021;&#x1005;&#x1015;&#x103B;&#x102D;&#x102F;&#x1038;</a></li>
+<li><a href="#creating-migrations">Migrations &#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#running-migrations">Migrations &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#rolling-back-migrations">Migrations &#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x103C;&#x1014;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#database-seeding">Database Seeding</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="&#x1021;&#x1005;&#x1015;&#x103B;&#x102D;&#x102F;&#x1038;">&#x1021;&#x1005;&#x1015;&#x103B;&#x102D;&#x102F;&#x1038;</h2>
+<p>Migration &#x1019;&#x103E;&#x102C; Database &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; Version Control &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101B;&#x1014;&#x103A; &#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1011;&#x102C;&#x1038;&#x101E;&#x100A;&#x103A;&#x104B; &#x1044;&#x1004;&#x103A;&#x1038;&#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;&#x1016;&#x103C;&#x1004;&#x1037;&#x103A; database schema &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; &#x1021;&#x101C;&#x103D;&#x101A;&#x103A;&#x1010;&#x1000;&#x1030; &#x1015;&#x103C;&#x1004;&#x103A;&#x1006;&#x1004;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; team &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x101C;&#x102F;&#x1036;&#x1038; &#x1010;&#x1030;&#x100A;&#x102E;&#x101E;&#x100A;&#x1037;&#x103A; database schema &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101B;&#x1014;&#x103A; &#x1015;&#x1036;&#x1015;&#x102D;&#x102F;&#x1038;&#x1011;&#x102C;&#x1038;&#x101E;&#x100A;&#x103A;&#x104B; Migrations &#x1019;&#x103E;&#x102C; &#x1015;&#x103E;&#x1036;&#x1019;&#x103E;&#x1014;&#x103A;&#x1021;&#x102C;&#x1038;&#x1016;&#x103C;&#x1004;&#x1037;&#x103A; <a href="schema.html">Schema Builder</a> &#x1016;&#x103C;&#x1004;&#x1037;&#x103A; &#x1010;&#x103D;&#x1032;&#x1016;&#x1000;&#x103A; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1000;&#x103C;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<p><a name="creating-migrations"></a></p>
+<h2 id="migrations-&#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Migrations &#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h2>
+<p>migration &#x1010;&#x1005;&#x103A;&#x1001;&#x102F; &#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101B;&#x1014;&#x103A; Artisan CLI &#x1010;&#x103D;&#x1004;&#x103A; <code>migrate:make</code> &#x101F;&#x1030;&#x101E;&#x100A;&#x103A; command &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<pre><code>php artisan migrate:make create_users_table
+</code></pre><p>Migration file &#x1019;&#x103B;&#x102C;&#x1038;&#x101E;&#x100A;&#x103A; <code>app/database/migrations</code> &#x1006;&#x102D;&#x102F;&#x101E;&#x100A;&#x1037;&#x103A; folder &#x1010;&#x103D;&#x1004;&#x103A;&#x1010;&#x100A;&#x103A;&#x101B;&#x103E;&#x102D;&#x1019;&#x100A;&#x103A; &#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; Migrations &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; &#x1021;&#x1005;&#x1009;&#x103A;&#x1021;&#x1010;&#x102D;&#x102F;&#x1004;&#x103A;&#x1038; &#x1005;&#x102E;&#x101B;&#x102E;&#x1011;&#x102C;&#x1038;&#x1019;&#x100A;&#x1037;&#x103A; timestamp &#x1016;&#x103C;&#x1004;&#x1037;&#x103A; &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1011;&#x102C;&#x1038;&#x1019;&#x100A;&#x103A; &#x1016;&#x103C;&#x1005;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<p>Migration &#x1010;&#x1005;&#x103A;&#x1001;&#x102F; &#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1014;&#x1031;&#x1005;&#x1009;&#x103A; <code>--path</code> &#x101F;&#x102F; attribute &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B; &#x1021;&#x1006;&#x102D;&#x102F;&#x1015;&#x102B; path &#x1019;&#x103E;&#x102C; &#x101E;&#x1004;&#x103A; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x101E;&#x1031;&#x102C; root directory &#x1019;&#x103E; &#x1021;&#x101C;&#x102D;&#x102F;&#x1021;&#x101C;&#x103B;&#x1031;&#x102C;&#x1000;&#x103A; &#x101E;&#x102D;&#x101B;&#x103E;&#x102D;&#x1019;&#x100A;&#x103A; &#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<pre><code>php artisan migrate:make foo --path=app/migrations
+</code></pre><p><code>--table</code> &#x1014;&#x103E;&#x1004;&#x1037;&#x103A; <code>--create</code> options &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x104D;  table &#x1021;&#x1019;&#x100A;&#x103A;&#x1000;&#x102D;&#x102F; &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038; &#x104A;  table &#x1021;&#x101E;&#x1005;&#x103A;&#x1000;&#x102D;&#x102F; &#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038; &#x1019;&#x103B;&#x102C;&#x1038; &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1019;&#x100A;&#x103A;&#x104B;</p>
+<pre><code>php artisan migrate:make add_votes_to_user_table --table=users
+
+php artisan migrate:make create_users_table --create=users
+</code></pre><p><a name="running-migrations"></a></p>
+<h2 id="migrations-&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Migrations &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h2>
+<h4 id="migration-&#x1000;&#x102D;&#x102F;-&#x1021;&#x1015;&#x103C;&#x100A;&#x1037;&#x103A;&#x1021;&#x101D;-&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Migration &#x1000;&#x102D;&#x102F; &#x1021;&#x1015;&#x103C;&#x100A;&#x1037;&#x103A;&#x1021;&#x101D; &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h4>
+<pre><code>php artisan migrate
+</code></pre><h4 id="path--&#x101C;&#x1019;&#x103A;&#x1038;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1010;&#x103D;&#x1004;&#x103A;&#x101E;&#x102C;-migration-&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Path  &#x101C;&#x1019;&#x103A;&#x1038;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1010;&#x103D;&#x1004;&#x103A;&#x101E;&#x102C; Migration &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h4>
+<pre><code>php artisan migrate --path=app/foo/migrations
+</code></pre><h4 id="package-&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A;-migration-&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Package &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; Migration &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h4>
+<pre><code>php artisan migrate --package=vendor/package
+</code></pre><blockquote>
+<p><strong>&#x101E;&#x1010;&#x102D;&#x1015;&#x103C;&#x102F;&#x101B;&#x1014;&#x103A;:</strong>  migrations run &#x1014;&#x1031;&#x1005;&#x1009;&#x103A; &quot;class not found&quot; &#x101F;&#x102F; error &#x1010;&#x103D;&#x1031; &#x1037;&#x101B;&#x103E;&#x102D;&#x1015;&#x102B;&#x1000; <code>composer dump-autoload</code> &#x1006;&#x102D;&#x102F;&#x101E;&#x100A;&#x1037;&#x103A; command &#x1000;&#x102D;&#x102F; run &#x1000;&#x103C;&#x100A;&#x1037;&#x103A;&#x1015;&#x102B;&#x104B;</p>
+</blockquote>
+<h3 id="production-&#x1010;&#x103D;&#x1004;&#x103A;-migration-&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Production &#x1010;&#x103D;&#x1004;&#x103A; Migration &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h3>
+<p>&#x1021;&#x1001;&#x103B;&#x102D;&#x102F;  &#x1037;&#x101E;&#x1031;&#x102C; migration operations &#x1019;&#x103B;&#x102C;&#x1038;&#x1019;&#x103E;&#x102C; &#x1021;&#x1014;&#x1039;&#x1010;&#x102C;&#x101B;&#x101A;&#x103A;&#x1019;&#x103B;&#x102C;&#x1038;&#x101C;&#x103E;&#x1015;&#x1031;&#x101E;&#x100A;&#x103A;&#x104B; &#x1010;&#x1014;&#x100A;&#x103A;&#x1038;&#x1021;&#x102C;&#x1038;&#x1016;&#x103C;&#x1004;&#x1037;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x104F; &#x1021;&#x1001;&#x103B;&#x1000;&#x103A;&#x1021;&#x101C;&#x1000;&#x103A;&#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; &#x1005;&#x1000;&#x1039;&#x1000;&#x1014;&#x103A; &#x1037;&#x1015;&#x102D;&#x102F;&#x1004;&#x103A;&#x1038;&#x1021;&#x1010;&#x103D;&#x1004;&#x103A; &#x1006;&#x102F;&#x1036;&#x1038;&#x101B;&#x103E;&#x102F;&#x1036;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x1005;&#x1031;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B; &#x1021;&#x1006;&#x102D;&#x102F;&#x1015;&#x102B; &#x1021;&#x1014;&#x1039;&#x1010;&#x102C;&#x101B;&#x101A;&#x103A;&#x1019;&#x103E; &#x1000;&#x102C;&#x1000;&#x103D;&#x101A;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101B;&#x1014;&#x103A;  production &#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x1010;&#x103D;&#x1004;&#x103A; migration &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x101B;&#x1014;&#x103A; confirmation &#x1010;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1001;&#x1036;&#x1015;&#x102B;&#x101E;&#x100A;&#x103A;&#x104B; &#x1011;&#x102D;&#x102F;&#x1010;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1001;&#x1036;&#x1019;&#x103E;&#x102F;&#x1000;&#x102D;&#x102F; &#x1000;&#x103B;&#x1031;&#x102C;&#x103A;&#x101C;&#x103D;&#x103E;&#x102C;&#x1038;&#x101C;&#x102D;&#x102F;&#x1015;&#x102B;&#x1000; <code>--force</code> flag &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<pre><code>php artisan migrate --force
+</code></pre><p><a name="rolling-back-migrations"></a></p>
+<h2 id="rolling-back-migrations">Rolling Back Migrations</h2>
+<h4 id="migrations-&#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x103C;&#x1014;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Migrations &#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x103C;&#x1014;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h4>
+<pre><code>php artisan migrate:rollback
+</code></pre><h4 id="migrations-&#x1015;&#x1011;&#x1019;&#x1006;&#x102F;&#x1036;&#x1038;-&#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x101E;&#x102D;&#x102F;-&#x1037;-&#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x103C;&#x1014;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Migrations &#x1015;&#x1011;&#x1019;&#x1006;&#x102F;&#x1036;&#x1038; &#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x101E;&#x102D;&#x102F; &#x1037; &#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x103C;&#x1014;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h4>
+<pre><code>php artisan migrate:reset
+</code></pre><h4 id="&#x1021;&#x1005;&#x1019;&#x103E;-&#x1021;&#x1006;&#x102F;&#x1036;&#x1038;-&#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x103C;&#x1014;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1014;&#x1031;&#x102C;&#x1000;&#x103A;-&#x1010;&#x1016;&#x1014;&#x103A;-migration-&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">&#x1021;&#x1005;&#x1019;&#x103E; &#x1021;&#x1006;&#x102F;&#x1036;&#x1038; &#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x103C;&#x1014;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1014;&#x1031;&#x102C;&#x1000;&#x103A; &#x1010;&#x1016;&#x1014;&#x103A; Migration &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h4>
+<pre><code>php artisan migrate:refresh
+
+php artisan migrate:refresh --seed
+</code></pre><p><a name="database-seeding"></a></p>
+<h2 id="database-seeding">Database Seeding</h2>
+<p>Laravel &#x1021;&#x1014;&#x1031;&#x1016;&#x103C;&#x1004;&#x1037;&#x103A; database &#x1000;&#x102D;&#x102F; &#x1021;&#x101C;&#x103D;&#x101A;&#x103A;&#x1010;&#x1000;&#x1030; seed &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101B;&#x1004;&#x103A; seed classes &#x1019;&#x103B;&#x102C;&#x1038;&#x1015;&#x102B;&#x101B;&#x103E;&#x102D;&#x1015;&#x102B;&#x101E;&#x100A;&#x103A;&#x104B; Seed class &#x1019;&#x103B;&#x102C;&#x1038;&#x1019;&#x103E;&#x102C; <code>app/database/seeds</code> &#x1010;&#x103D;&#x1004;&#x103A;&#x1010;&#x100A;&#x103A;&#x101B;&#x103E;&#x102D;&#x1019;&#x100A;&#x103A; &#x1016;&#x103C;&#x1005;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B; Seed class &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; &#x1021;&#x101C;&#x102D;&#x102F;&#x101B;&#x103E;&#x102D;&#x101E;&#x101C;&#x102D;&#x102F; &#x1021;&#x1019;&#x100A;&#x103A;&#x1015;&#x1031;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101E;&#x1031;&#x102C;&#x103A;&#x101C;&#x100A;&#x103A;&#x1038; &#x1021;&#x1013;&#x102D;&#x1015;&#x1039;&#x1015;&#x102B;&#x101A;&#x103A;&#x101B;&#x103E;&#x102D;&#x101E;&#x1031;&#x102C; &#x1014;&#x102C;&#x1019;&#x100A;&#x103A;&#x1019;&#x103B;&#x102D;&#x102F;&#x1038; &#x1025;&#x1015;&#x1019;&#x102C; <code>UserTableSeeder</code> &#x1005;&#x101E;&#x1016;&#x103C;&#x1004;&#x1037;&#x103A;&#x101E;&#x102C; &#x1015;&#x1031;&#x1038;&#x101E;&#x1004;&#x1037;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B; &#x1015;&#x102F;&#x1036;&#x1019;&#x103E;&#x1014;&#x103A;&#x1021;&#x102C;&#x1038;&#x1016;&#x103C;&#x1004;&#x1037;&#x103A; <code>DatabaseSeeder</code> class &#x1019;&#x103E;&#x102C; &#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1015;&#x1031;&#x1038;&#x1011;&#x102C;&#x1038;&#x101E;&#x100A;&#x103A;&#x104B; &#x1011;&#x102D;&#x102F; class &#x1019;&#x103E; &#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1016;&#x103C;&#x1004;&#x1037;&#x103A; <code>call</code> method &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1000;&#x102C;
+&#x1021;&#x1005;&#x102E;&#x1021;&#x1005;&#x1009;&#x103A;&#x1021;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A; &#x1021;&#x1001;&#x103C;&#x102C;&#x1038;&#x101E;&#x1031;&#x102C; seed classes &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; run &#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<h4 id="example-database-seed-class">Example Database Seed Class</h4>
+<pre><code>class DatabaseSeeder extends Seeder {
+
+    public function run()
+    {
+        $this-&gt;call(&apos;UserTableSeeder&apos;);
+
+        $this-&gt;command-&gt;info(&apos;User table seeded!&apos;);
+    }
+
+}
+
+class UserTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table(&apos;users&apos;)-&gt;delete();
+
+        User::create(array(&apos;email&apos; =&gt; &apos;foo@bar.com&apos;));
+    }
+
+}
+</code></pre><p>Database &#x1000;&#x102D;&#x102F; seed &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x101B;&#x1014;&#x103A; Artisan CLI &#x1019;&#x103E; <code>db:seed</code> command &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<pre><code>php artisan db:seed
+</code></pre><p>&#x1015;&#x102F;&#x1036;&#x1019;&#x103E;&#x1014;&#x103A;&#x1021;&#x102C;&#x1038;&#x1016;&#x103C;&#x1004;&#x1037;&#x103A; <code>db:seed</code> command &#x1019;&#x103E;&#x102C; <code>DatabaseSeeder</code> class &#x1000;&#x102D;&#x102F; run &#x1019;&#x100A;&#x103A;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; &#x1011;&#x102D;&#x102F;&#x1019;&#x103E;&#x1010;&#x1006;&#x1004;&#x1037;&#x103A; &#x1021;&#x1001;&#x103C;&#x102C;&#x1038; seed class &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; &#x1001;&#x1031;&#x102B;&#x103A;&#x101A;&#x1030;&#x1019;&#x100A;&#x103A; &#x1016;&#x103C;&#x1005;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B; &#x101E;&#x102D;&#x102F; &#x1037;&#x1015;&#x1004;&#x103A;&#x101E;&#x1031;&#x102C;&#x103A;&#x100A;&#x102C;&#x1038; <code>--class</code> option &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1000;&#x102C; &#x101E;&#x102E;&#x1038;&#x101E;&#x1014;&#x103A; &#x1037; seeder class &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1038;&#x1005;&#x102E;&#x101C;&#x100A;&#x103A;&#x1038; run &#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x101E;&#x1031;&#x1038;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<pre><code>php artisan db:seed --class=UserTableSeeder
+</code></pre><p>&#x1011;&#x102D;&#x102F;&#x1021;&#x1015;&#x103C;&#x1004;&#x103A; <code>migrate:refresh</code> &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1000;&#x102C;, rollback &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;  migrations &#x1000;&#x102D;&#x102F; &#x1021;&#x1005;&#x1019;&#x103E; &#x1010;&#x1016;&#x1014;&#x103A;&#x1015;&#x103C;&#x1014;&#x103A;&#x104D; run &#x1001;&#x103C;&#x1004;&#x103A;&#x1038;&#x1000;&#x102D;&#x102F;&#x101C;&#x100A;&#x103A;&#x1038; &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1019;&#x100A;&#x103A; &#x1016;&#x103C;&#x1005;&#x103A;&#x101E;&#x100A;&#x103A;&#x104B;</p>
+<pre><code>php artisan migrate:refresh --seed
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="schema.html" class="navigation navigation-prev " aria-label="Previous page: Schema Builder">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="redis.html" class="navigation navigation-next " aria-label="Next page: Redis">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Migrations & Seeding","level":"1.5.5","depth":2,"next":{"title":"Redis","level":"1.5.6","depth":2,"path":"redis.md","ref":"redis.md","articles":[]},"previous":{"title":"Schema Builder","level":"1.5.4","depth":2,"path":"schema.md","ref":"schema.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"migrations.md","mtime":"2016-11-17T07:50:48.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-17T08:41:54.617Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

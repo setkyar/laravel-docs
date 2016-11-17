@@ -1,0 +1,955 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Laravel ရဲ့ Official Development Homestead အကြောင်း · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="lifecycle.html" />
+    
+    
+    <link rel="prev" href="configuration.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel နိဒါန်း
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel မိတ်ဆက်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="quick.html">
+            
+                <a href="quick.html">
+            
+                    
+                    Laravel အကျဉ်းချုပ်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="releases.html">
+            
+                <a href="releases.html">
+            
+                    
+                    Release Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="upgrade.html">
+            
+                <a href="upgrade.html">
+            
+                    
+                    Upgrade Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel ကိုစတင်လေ့လာခြင်း (အခြေခံ)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel install လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    Configuration လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.3" data-path="homestead.html">
+            
+                <a href="homestead.html">
+            
+                    
+                    Laravel ရဲ့ Official Development Homestead အကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="lifecycle.html">
+            
+                <a href="lifecycle.html">
+            
+                    
+                    Request Lifecycle 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Route လုပ်ခြင်းအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="requests.html">
+            
+                <a href="requests.html">
+            
+                    
+                    Requests နှင့် Input များအကြောင်း 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="responses.html">
+            
+                <a href="responses.html">
+            
+                    
+                    Views နှင့် Responses များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="controllers.html">
+            
+                <a href="controllers.html">
+            
+                    
+                    Controllers များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="errors.html">
+            
+                <a href="errors.html">
+            
+                    
+                    Errors နှင့် Logging များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Laravel ကိုလေ့လာခြင်း (အဆင့်မြင့်)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="billing.html">
+            
+                <a href="billing.html">
+            
+                    
+                    Billing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="cache.html">
+            
+                <a href="cache.html">
+            
+                    
+                    Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="extending.html">
+            
+                <a href="extending.html">
+            
+                    
+                    Core Extension
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="events.html">
+            
+                <a href="events.html">
+            
+                    
+                    Events
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="facades.html">
+            
+                <a href="facades.html">
+            
+                    
+                    Facades
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="html.html">
+            
+                <a href="html.html">
+            
+                    
+                    Forms & HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="helpers.html">
+            
+                <a href="helpers.html">
+            
+                    
+                    Helpers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="ioc.html">
+            
+                <a href="ioc.html">
+            
+                    
+                    IoC Container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="localization.html">
+            
+                <a href="localization.html">
+            
+                    
+                    Localization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="mail.html">
+            
+                <a href="mail.html">
+            
+                    
+                    Mail
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="packages.html">
+            
+                <a href="packages.html">
+            
+                    
+                    Package Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="pagination.html">
+            
+                <a href="pagination.html">
+            
+                    
+                    Pagination
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="queues.html">
+            
+                <a href="queues.html">
+            
+                    
+                    Queues
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="session.html">
+            
+                <a href="session.html">
+            
+                    
+                    Session
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="ssh.html">
+            
+                <a href="ssh.html">
+            
+                    
+                    SSH
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="templates.html">
+            
+                <a href="templates.html">
+            
+                    
+                    Templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="testing.html">
+            
+                <a href="testing.html">
+            
+                    
+                    Unit Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="validation.html">
+            
+                <a href="validation.html">
+            
+                    
+                    Validation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    Database
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    အခြေခံ အသုံးပြုပုံ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="queries.html">
+            
+                <a href="queries.html">
+            
+                    
+                    Query Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="eloquent.html">
+            
+                <a href="eloquent.html">
+            
+                    
+                    Eloquent ORM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="schema.html">
+            
+                <a href="schema.html">
+            
+                    
+                    Schema Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="migrations.html">
+            
+                <a href="migrations.html">
+            
+                    
+                    Migrations & Seeding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="redis.html">
+            
+                <a href="redis.html">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Artisan CLI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="commands.html">
+            
+                <a href="commands.html">
+            
+                    
+                    Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="contributing.html">
+            
+                <a href="contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Laravel ရဲ့ Official Development Homestead အကြောင်း</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="laravel-&#x101B;&#x1032;&#x1037;-official-development-homestead-&#x1021;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;">Laravel &#x101B;&#x1032;&#x1037; Official Development Homestead &#x1021;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;</h1>
+<ul>
+<li><a href="#introduction">Homestead &#x1019;&#x102D;&#x1010;&#x103A;&#x1006;&#x1000;&#x103A;</a></li>
+<li><a href="#included-software">Homestead &#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x101D;&#x1004;&#x103A;&#x101E;&#x1031;&#x102C; Software &#x1019;&#x103B;&#x102C;&#x1038;</a></li>
+<li><a href="#installation-and-setup">Installation &amp; Setup</a></li>
+<li><a href="#general-usage">&#x1014;&#x1031;&#x1037;&#x1005;&#x1009;&#x103A;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1019;&#x103E;&#x1030;</a></li>
+<li><a href="#ports">Ports</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="homestead-&#x1019;&#x102D;&#x1010;&#x103A;&#x1006;&#x1000;&#x103A;">Homestead &#x1019;&#x102D;&#x1010;&#x103A;&#x1006;&#x1000;&#x103A;</h2>
+<p>&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; PHP Development environment  &#x1000;&#x102D;&#x102F; local development environment &#x1019;&#x103E;&#x102C;&#x1015;&#x102B; &#x1000;&#x103C;&#x100A;&#x103A;&#x1014;&#x1030;&#x1038;&#x101E;&#x102C;&#x101A;&#x102C;&#x1016;&#x103D;&#x101A;&#x103A;&#x1000;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1021;&#x1031;&#x102C;&#x1004;&#x103A;Laravel &#x1000; &#x1021;&#x1000;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1006;&#x102F;&#x1036;&#x1038;&#x1000;&#x103C;&#x102D;&#x102F;&#x1038;&#x1005;&#x102C;&#x1038;&#x1021;&#x102C;&#x1038;&#x1011;&#x102F;&#x1010;&#x103A;&#x1019;&#x103E;&#x1030;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x1032;&#x1037;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; <a href="http://vagrantup.com" target="_blank">Vagrant</a> &#x1000;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Virtual Machine &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x101C;&#x103D;&#x101A;&#x103A;&#x101C;&#x103D;&#x101A;&#x103A;&#x1000;&#x1030;&#x1000;&#x1030; &#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038; &#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1021;&#x1031;&#x102C;&#x1004;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x1000;&#x102D;&#x102F;&#x1011;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x1036;&#x1037; &#x1015;&#x1031;&#x1038;&#x1011;&#x102C;&#x1038;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>Laravel Homestead &#x1000; official &#x1015;&#x102B;&#x104A; Vagrant  &quot;box&quot; &#x1019;&#x103E;&#x102C; &#x1000;&#x103C;&#x102D;&#x102F;&#x102F; &#x1015;&#x103C;&#x102E;&#x1038; package &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1010;&#x102C;&#x1015;&#x102B;... &#x1014;&#x1031;&#x102C;&#x1000;&#x103A; &#x1021;&#x1032;&#x1012;&#x102B;&#x1000;&#x101E;&#x1004;&#x1037;&#x103A;&#x1000;&#x102D;&#x102F; development environment &#x1010;&#x1005;&#x103A;&#x1001;&#x102F; &#x1010;&#x100A;&#x103A;&#x1006;&#x1031;&#x102C;&#x1000;&#x103A;&#x1010;&#x1032;&#x1037;&#x1014;&#x1031;&#x101B;&#x102C;&#x1019;&#x103E;&#x102C; PHP, a web server, &#x1014;&#x1032;&#x1037; &#x1021;&#x1001;&#x103C;&#x102C;&#x1038;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x101D;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037;  tools &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; local machine &#x1019;&#x103E;&#x102C; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1005;&#x101B;&#x102C;&#x1019;&#x101C;&#x102D;&#x102F;&#x1015;&#x102B;&#x1018;&#x1030;&#x1038;&#x104B; &#x1018;&#x101A;&#x103A; Opearting System &#x1000;&#x102D;&#x102F;&#x101E;&#x102F;&#x1036;&#x1038;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x1010;&#x102C;&#x1000;&#x102D;&#x102F;&#x101C;&#x100A;&#x103A;&#x1038; worry &#x1019;&#x103B;&#x102C;&#x1038;&#x1005;&#x101B;&#x102C;&#x1019;&#x101C;&#x102D;&#x102F;&#x1010;&#x1031;&#x102C;&#x1037;&#x1015;&#x102B;&#x1018;&#x1030;&#x1038;&#x104B; Vagrant boxes &#x1010;&#x103D;&#x1031;&#x1014;&#x1032;&#x1037;&#x1018;&#x1032; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1010;&#x1000;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1001;&#x102F;&#x1019;&#x103E;&#x102C;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; vagrant boxes &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x1019;&#x102D;&#x1014;&#x1005;&#x103A;&#x1021;&#x1014;&#x100A;&#x103A;&#x1038;&#x1004;&#x101A;&#x103A;&#x1021;&#x1010;&#x103D;&#x1004;&#x103A;&#x1038; destory &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1010;&#x1031;&#x102C;&#x1037; &#x1015;&#x103C;&#x1014;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; create &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>Homestead &#x1000; &#x1019;&#x100A;&#x103A;&#x101E;&#x100A;&#x1037;&#x103A; Window, Mac, Linux &#x1019;&#x103E;&#x102C;&#x1019;&#x1006;&#x102D;&#x102F; run &#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; Homesead &#x1019;&#x103E;&#x102C; Nginx web server, PHP 5.5, MySQL, Postgres, Redis, Memcached &#x1014;&#x1032;&#x1037; &#x1021;&#x1001;&#x103C;&#x102C;&#x1038; Laravel application &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x101D;&#x1004;&#x103A;&#x1010;&#x102C;&#x1010;&#x103D;&#x1031;&#x1015;&#x102B;&#x101D;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p><a name="included-software"></a></p>
+<h2 id="homestead-&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x101D;&#x1004;&#x103A;&#x101E;&#x1031;&#x102C;-software-&#x1019;&#x103B;&#x102C;&#x1038;">Homestead &#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x101D;&#x1004;&#x103A;&#x101E;&#x1031;&#x102C; Software &#x1019;&#x103B;&#x102C;&#x1038;</h2>
+<ul>
+<li>Ubuntu 14.04</li>
+<li>PHP 5.5</li>
+<li>Nginx</li>
+<li>MySQL</li>
+<li>Postgres</li>
+<li>Node (With Bower, Grunt, and Gulp)</li>
+<li>Redis</li>
+<li>Memcached</li>
+<li>Beanstalkd</li>
+<li><a href="ssh#envoy-task-runner.md">Laravel Envoy</a></li>
+<li>Fabric + HipChat Extension</li>
+</ul>
+<p><a name="installation-and-setup"></a></p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="virtualbox-&#x1014;&#x1032;&#x1037;-vagrant-installing">VirtualBox &#x1014;&#x1032;&#x1037; Vagrant Installing</h3>
+<p>&#x101E;&#x1004;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; Homestead environment &#x1000;&#x102D;&#x102F;&#x1019;&#x1016;&#x103D;&#x1004;&#x1037;&#x103A;&#x1001;&#x1004;&#x103A; <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBox</a> &#x1014;&#x1032;&#x1037; <a href="http://www.vagrantup.com/downloads.html" target="_blank">Vagrant</a> &#x1000;&#x102D;&#x102F; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x101B;&#x1015;&#x102B;&#x1037;&#x1019;&#x101A;&#x103A;&#x104B; &#x1012;&#x102E; software &#x1014;&#x103E;&#x1005;&#x103A;&#x1001;&#x102F;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1015;&#x103C;&#x102E;&#x1038; popular operating systems &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F;&#x101C;&#x103D;&#x101A;&#x103A;&#x1000;&#x1030;&#x1005;&#x103D;&#x102C; virtual install &#x101C;&#x102F;&#x1015;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x1015;&#x102B;&#x1019;&#x100A;&#x103A;&#x104B; </p>
+<h3 id="vagrant-box-&#x1019;&#x103B;&#x102C;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Vagrant Box &#x1019;&#x103B;&#x102C;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h3>
+<p>VirtualBox &#x1014;&#x1032;&#x1037; Vagrant &#x1000;&#x102D;&#x102F; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x1015;&#x1011;&#x1019;&#x1006;&#x102F;&#x1036;&#x1038; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Vagrant installation &#x1019;&#x103E;&#x102C;  <code>laravel/homestead</code> &#x101C;&#x102D;&#x102F;&#x1037; terminal &#x1000;&#x1014;&#x1031; run &#x1015;&#x103C;&#x102E;&#x1038; Laravel &#x101B;&#x1032;&#x1037; Homestead &#x1000;&#x102D;&#x102F; Virtual Box &#x1019;&#x103E;&#x102C; add &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; Laravel &#x101B;&#x1032;&#x1037; Homestead box &#x1000;&#x102D;&#x102F; download &#x101C;&#x102F;&#x1015;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1004;&#x103A;&#x1010;&#x102C;&#x1014;&#x1000;&#x103A; conn  &#x1015;&#x1031;&#x102B;&#x103A;&#x1019;&#x1030;&#x1010;&#x100A;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; &#x1021;&#x1001;&#x103B;&#x102D;&#x1000;&#x103C;&#x102C;&#x1015;&#x102B;&#x1037;&#x1019;&#x101A;&#x103A;</p>
+<pre><code>vagrant box add laravel/homestead
+</code></pre><h3 id="clone-the-homestead-repository">Clone The Homestead Repository</h3>
+<p>&#x101E;&#x1004;&#x103A;&#x101B;&#x1032;&#x1037; Vagrant Installation &#x1019;&#x103E;&#x102C; box &#x1011;&#x100A;&#x1037;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037;&#x1012;&#x102E; repository &#x1000;&#x102D;&#x102F; download &#x1012;&#x102B;&#x1019;&#x103E;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A; clone &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x1031;&#x1038;&#x1015;&#x102B;&#x104B; &#x1014;&#x102C;&#x1038;&#x101C;&#x100A;&#x103A;&#x1011;&#x102C;&#x1038;&#x101B;&#x1019;&#x103E;&#x102C;&#x1000; &#x1012;&#x102E; repositiry &#x1000; <code>Homestead</code> &#x1015;&#x102B;&#x104A; &#x1012;&#x102E; Folder &#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Laravel Projects &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x1011;&#x102C;&#x1038;&#x101B;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x104A; Homestead box &#x1010;&#x103D;&#x1031;&#x1000;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Laravel (&#x1014;&#x1032;&#x1037; PHP Projects) &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; host &#x1021;&#x1016;&#x103C;&#x1005;&#x103A; run &#x1019;&#x103E;&#x102C;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>git clone https://github.com/laravel/homestead.git Homestead
+</code></pre><h3 id="set-your-ssh-key">Set Your SSH Key</h3>
+<p>&#x1015;&#x103C;&#x102E;&#x1038;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037;&#x101E;&#x1004;&#x103A; download &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; repository &#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x1010;&#x1032;&#x1037; <code>Homestead.yaml</code> file &#x1000;&#x102D;&#x102F; edit &#x101C;&#x102F;&#x1015;&#x103A;&#x101E;&#x1004;&#x1037;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1012;&#x102E; file &#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x103A;&#x101B;&#x1032;&#x1037; public SSH key &#x1010;&#x102D;&#x102F;&#x1037; &#x1014;&#x1031;&#x102C;&#x1000;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; main machine &#x1014;&#x1032;&#x1037; Homestead virtual machine &#x1010;&#x102D;&#x102F;&#x1037;&#x1000;&#x102D;&#x102F; share &#x1010;&#x1032;&#x1037; Folder &#x1010;&#x102D;&#x102F;&#x1037;&#x1000;&#x102D;&#x102F; configure &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x101E;&#x1004;&#x1037;&#x103A;&#x1019;&#x103E;&#x102C; SSH key &#x1019;&#x101B;&#x103E;&#x102D;&#x1018;&#x1030;&#x1038;&#x101C;&#x102C;&#x1038;&#x104A; &#x101E;&#x1004;&#x103A;&#x1000; Linux &#x1012;&#x102B;&#x1019;&#x103E;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A; Mac &#x1019;&#x103E;&#x102C;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;  &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C;&#x1016;&#x1031;&#x102C;&#x103A;&#x1015;&#x103C;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; command &#x1000;&#x102D;&#x102F; run &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x102C;&#x1014;&#x1032;&#x1037;  ssh key &#x1010;&#x1005;&#x103A;&#x1005;&#x102F;&#x1036;&#x1000;&#x102D;&#x102F;&#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A;&#x1016;&#x1014;&#x103A;&#x1010;&#x102E;&#x1038;&#x1015;&#x1031;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;</p>
+<pre><code>ssh-keygen -t rsa -C &quot;your@email.com&quot;
+</code></pre><p>Windows &#x1019;&#x103E;&#x102C;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; <a href="http://git-scm.com/" target="_blank">Git</a> &#x1000;&#x102D;&#x102F; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1010;&#x1031;&#x102C;&#x1037; <code>Git Bash</code>&#x1019;&#x103E;&#x102C; &#x1021;&#x1011;&#x1000;&#x103A;&#x1000; command &#x1000;&#x102D;&#x102F; run &#x1015;&#x103C;&#x102E;&#x1038;&#x1010;&#x1031;&#x102C;&#x1037; &#x1021;&#x1006;&#x1004;&#x103A;&#x1015;&#x103C;&#x1031;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1021;&#x1032;&#x101C;&#x102D;&#x102F;&#x1019;&#x103E;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A;&#x1018;&#x1030;&#x1038;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x101C;&#x100A;&#x103A;&#x1038;<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">PuTTY</a> and <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">PuTTYgen</a>. &#x1010;&#x102D;&#x102F;&#x1037;&#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; </p>
+<p>&#x101E;&#x1004;&#x103A; SSH Key &#x1000;&#x102D;&#x102F; create &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;  <code>Homestead.yaml</code> file &#x1011;&#x1032;&#x1000; <code>authorize</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; &#x101C;&#x1019;&#x103A;&#x1038;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; SSH Key &#x101B;&#x1032;&#x1037; path &#x1000;&#x102D;&#x102F;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B;</p>
+<h3 id="configure-your-shared-folders">Configure Your Shared Folders</h3>
+<p>&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Homestead environment &#x1014;&#x1032;&#x1037; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; local machine &#x1014;&#x103E;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x103C;&#x102C;&#x1038;&#x1019;&#x103E;&#x102C; Share &#x1010;&#x1032;&#x1037; Folder &#x1010;&#x103D;&#x1031;&#x1021;&#x102C;&#x1038;&#x101C;&#x102F;&#x1036;&#x1038;&#x1000; <code>Homestead.yaml</code> File &#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x104B; &#x1010;&#x1000;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E;&#x1037; Files &#x1010;&#x103D;&#x1031; change &#x101E;&#x103D;&#x102C;&#x1038;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; local machine &#x1014;&#x1032;&#x1037; Homestead environment &#x1000;&#x102D;&#x102F; auto sync &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x1031;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x104B; Share Folders &#x1010;&#x103D;&#x1031;&#x1021;&#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x103C;&#x102E;&#x1038;&#x1000;&#x102D;&#x102F;&#x101C;&#x100A;&#x103A;&#x1038;&#x101E;&#x1004;&#x103A;&#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x101B;&#x1004;&#x103A; configure &#x101C;&#x102F;&#x1015;&#x103A;&#x101B;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x104B;</p>
+<h3 id="configure-your-nginx-sites">Configure Your Nginx Sites</h3>
+<p>Nginx &#x1014;&#x1032;&#x1037;&#x101E;&#x102D;&#x1015;&#x103A;&#x1019;&#x101B;&#x1004;&#x103A;&#x1038;&#x1014;&#x103E;&#x102E;&#x1038;&#x1018;&#x1030;&#x1038;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A;&#x101C;&#x102C;&#x1038; &#x1015;&#x103C;&#x101E;&#x1014;&#x102C;&#x1019;&#x101B;&#x103E;&#x102D;&#x1015;&#x102B;&#x1018;&#x1030;&#x1038;&#x104B; <code>sites</code> &#x1010;&#x103D;&#x1031;&#x1000;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Homestead environment &#x1000; Folders &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &quot;domain&quot; &#x1006;&#x102E;&#x1000;&#x102D;&#x102F;&#x101C;&#x103D;&#x101A;&#x103A;&#x1000;&#x1030;&#x1005;&#x103D;&#x102C; map &#x1015;&#x1031;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B; Site configuration &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x102D;&#x102F; <code>Homestead.yaml</code> &#x1019;&#x103E;&#x102C;&#x1010;&#x103D;&#x1031;&#x1037;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; sites &#x1021;&#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x103C;&#x102E;&#x1038;&#x1000;&#x102D;&#x102F;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Homestead &#x1019;&#x103E;&#x102C;&#x1011;&#x100A;&#x1037;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104A; Homestad &#x1000; &#x101E;&#x1004;&#x1037;&#x103A;virtualized Laravel Projects &#x1010;&#x103D;&#x1031;&#x101B;&#x1032;&#x1037; environment &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x1021;&#x1006;&#x1004;&#x103A;&#x1015;&#x103C;&#x1031;&#x1005;&#x1031;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B;</p>
+<h3 id="bash-aliases">Bash Aliases</h3>
+<p>To add Bash aliases to your Homestead box, simply add to the <code>aliases</code> file in the root of the Homestead directory.</p>
+<h3 id="vagrantbox-&#x1000;&#x102D;&#x102F;&#x1005;&#x1010;&#x1004;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">VagrantBox &#x1000;&#x102D;&#x102F;&#x1005;&#x1010;&#x1004;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h3>
+<p><code>Homestead.yaml</code> file &#x1019;&#x103E;&#x102C;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; link &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; edit &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; <code>Homestead</code> directory &#x1011;&#x1032;&#x1019;&#x103E;&#x102C; <code>vagrant up</code> &#x1006;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; terminal &#x1000;&#x1014;&#x1031; run &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; Vagrant &#x1000; Virtual Machine &#x1000;&#x102D;&#x102F; boot &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x102B;&#x1037;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A; &#x1015;&#x103C;&#x102E;&#x1038;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; share folders &#x1014;&#x1032;&#x1037; Nginx sites &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; auto configure &#x101C;&#x102F;&#x1015;&#x103A;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Nginx sites &#x1010;&#x103D;&#x1031;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; &quot;domain&quot; &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x101E;&#x1004;&#x103A;&#x101B;&#x1032;&#x1037; local machine &#x1000; hosts &#x1019;&#x103E;&#x102C;&#x1011;&#x1000;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037;&#x1019;&#x1019;&#x1031;&#x1037;&#x1015;&#x102B;&#x1014;&#x1032;&#x1037;&#x1026;&#x1038;&#x104B; hosts file &#x1000;&#x101E;&#x1004;&#x1037;&#x103A; local machine &#x1000; requests &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; Homestead &#x1006;&#x102E;&#x1000;&#x102D;&#x102F; redirect &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x1031;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B; Mac &#x1014;&#x1032;&#x1037; linux &#x1019;&#x103E;&#x102C; &#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; hosts file &#x1000; <code>/etc/hosts</code> &#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x1015;&#x103C;&#x1004;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; Window &#x1019;&#x103E;&#x102C;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; <code>C:\Windows\System32\drivers\etc\hosts</code> &#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x101E;&#x1004;&#x103A;&#x1011;&#x1000;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x101B;&#x1019;&#x101A;&#x1037;&#x103A; line &#x1000; &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1000;&#x101C;&#x102D;&#x102F;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104A;</p>
+<pre><code>127.0.0.1  homestead.app
+</code></pre><p>&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; domain &#x1000;&#x102D;&#x102F;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; <code>hosts</code> file &#x1011;&#x1032;&#x1000;&#x102D;&#x102F;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x103A;&#x101B;&#x1032;&#x1037; browser &#x1000;&#x1014;&#x1031;&#x101E;&#x1004;&#x1037;&#x103A; domain &#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1000; port &#x1014;&#x1036;&#x1015;&#x102B;&#x1010;&#x103A;&#x1014;&#x1032;&#x1037;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037;&#x1006;&#x102D;&#x102F;&#x1000;&#x103A;&#x1000;&#x102D;&#x102F; access &#x101C;&#x102F;&#x1015;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x1015;&#x102B;&#x1015;&#x103C;&#x102E;&#x104B;</p>
+<pre><code>http://homestead.app:8000
+</code></pre><p>&#x101E;&#x1004;&#x103A;&#x101B;&#x1032;&#x1037; database &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x1018;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F; connect &#x101C;&#x102F;&#x1015;&#x103A;&#x1019;&#x101C;&#x1032;&#x1006;&#x102D;&#x102F;&#x1010;&#x102C;&#x1000;&#x102D;&#x102F; &#x101C;&#x1031;&#x1037;&#x101C;&#x102C;&#x1016;&#x102D;&#x102F;&#x1037; &#x1006;&#x1000;&#x103A;&#x1016;&#x1010;&#x103A;&#x1015;&#x102B;&#x1026;&#x104B;</p>
+<p><a name="daily-usage"></a></p>
+<h2 id="&#x1014;&#x1031;&#x1037;&#x1005;&#x1009;&#x103A;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1019;&#x103E;&#x1030;">&#x1014;&#x1031;&#x1037;&#x1005;&#x1009;&#x103A;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1019;&#x103E;&#x1030;</h2>
+<h3 id="ssh-&#x1000;&#x102D;&#x102F;-connect-&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">SSH &#x1000;&#x102D;&#x102F; connect &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h3>
+<p>&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Homestead environment &#x1000;&#x102D;&#x102F; SSH &#x1000;&#x1014;&#x1031; &#x1001;&#x103B;&#x102D;&#x1010;&#x103A;&#x1006;&#x1000;&#x103A;&#x101D;&#x1004;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037; &#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; <code>127.0.0.1</code> port &#x1000;&#x1010;&#x1031;&#x102C;&#x1037; 2222 &#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; SSH key &#x1000;&#x1010;&#x1031;&#x102C;&#x1037; &#x101E;&#x1004;&#x103A;&#x101B;&#x1032;&#x1037;<code>Homestead.yaml</code>&#x1019;&#x103E;&#x102C; &#x101E;&#x1004;&#x103A;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1001;&#x1032;&#x1037;&#x1010;&#x1032;&#x1037; key &#x1018;&#x1032;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; <code>vagrant ssh</code> &#x1006;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Homestead Folder &#x1000;&#x1014;&#x1031;&#x101C;&#x100A;&#x103A;&#x1038; &#x101D;&#x1004;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x101E;&#x1004;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; &#x1012;&#x102B;&#x1037;&#x1011;&#x1000;&#x103A;&#x1021;&#x1006;&#x1004;&#x103A;&#x1015;&#x103C;&#x1031;&#x1019;&#x103E;&#x1030; &#x101C;&#x102D;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x101E;&#x1031;&#x1038;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C;&#x1016;&#x1031;&#x102C;&#x103A;&#x1015;&#x103C;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; alias &#x1000;&#x102D;&#x102F; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; <code>~/.bash_aliases</code> &#x1012;&#x102B;&#x1019;&#x103E;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A; <code>~/.bash_profile</code> &#x1019;&#x103E;&#x102C;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x102C;&#x1000; &#x1015;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x101D;&#x1004;&#x103A;&#x1015;&#x102B;&#x1019;&#x101A;&#x103A;&#x104A; </p>
+<pre><code>alias vm=&apos;ssh vagrant@127.0.0.1 -p 2222&apos;
+</code></pre><h3 id="&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037;-databases-&#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F;-connect-&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Databases &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; connect &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h3>
+<p>homestead<code>&#x101B;&#x1032;&#x1037; databases &#x1010;&#x103D;&#x1031;&#x1016;&#x103C;&#x1005;&#x103A;&#x1010;&#x1032;&#x1037; MySQL &#x1014;&#x1032;&#x1037; Postgres &#x1014;&#x103E;&#x1005;&#x103A;&#x1001;&#x102F;&#x101C;&#x102F;&#x1036;&#x1038;&#x1000;&#x102D;&#x102F; box &#x1010;&#x103D;&#x1031;&#x101B;&#x1032;&#x1037;&#x1021;&#x1015;&#x103C;&#x1004;&#x103A;&#x1019;&#x103E;&#x102C; configuration &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1012;&#x102B;&#x1011;&#x1000;&#x103A;&#x1015;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038;&#x1021;&#x1006;&#x1004;&#x103A;&#x1015;&#x103C;&#x1031;&#x1016;&#x102D;&#x102F;&#x1037; Laravel &#x101B;&#x1032;&#x1037;</code>local` database &#x1000;&#x102D;&#x102F; default configure &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; database MySQL &#x1012;&#x102B;&#x1019;&#x103E;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A; Postgres &#x1000;&#x102D;&#x102F; Navicat (&#x101E;&#x102D;&#x102F;&#x1037;) Sequel Pro &#x1000;&#x1014;&#x1031;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; main machine &#x1014;&#x1032;&#x1037; connect &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037;  MySQL &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; <code>127.0.0.1</code> &#x1014;&#x1032;&#x1037; port 33060 &#x1014;&#x1032;&#x1037;Postgres &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; port 54320 &#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; Database &#x1014;&#x103E;&#x1005;&#x103A;&#x1001;&#x102F;&#x101C;&#x102F;&#x1036;&#x1038;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; username &#x1014;&#x1032;&#x1037; password &#x1000;  <code>homestead</code>/ <code>secreat</code> &#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<blockquote>
+<p><strong>Note:</strong> You should only use these non-standard ports when connecting to the databases from your main machine. You will use the default 3306 and 5432 ports in your Laravel database configuration file since Laravel is running <em>within</em> the Virtual Machine.</p>
+</blockquote>
+<h3 id="&#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1011;&#x1000;&#x103A;&#x1006;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;-&#x1011;&#x1015;&#x103A;&#x1011;&#x100A;&#x1037;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">&#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1011;&#x1000;&#x103A;&#x1006;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F; &#x1011;&#x1015;&#x103A;&#x1011;&#x100A;&#x1037;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h3>
+<p>&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Homestead environment &#x1000;&#x101E;&#x1004;&#x103A;&#x1011;&#x100A;&#x1037;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x102C;&#x1010;&#x103D;&#x1031;&#x1011;&#x100A;&#x1037;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x103C;&#x102E; run &#x101C;&#x100A;&#x103A;&#x1038; run &#x1014;&#x1031;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; Laravel applications &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Nginx sites &#x1019;&#x103E;&#x102C;&#x1011;&#x1015;&#x103A;&#x1011;&#x100A;&#x1037;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x1031;&#x102B;&#x1037;&#x104B; Homestead environment &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1019;&#x103E;&#x102C; &#x101E;&#x1004;&#x103A;&#x1000;&#x103C;&#x102D;&#x102F;&#x1000;&#x103A;&#x101E;&#x101C;&#x1031;&#x102C;&#x1000;&#x103A; Laravel installation &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; Laravel application &#x1011;&#x1000;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A; &#x1010;&#x1032;&#x1037;&#x1014;&#x1031;&#x101B;&#x102C;&#x1019;&#x103E;&#x102C; &#x1014;&#x100A;&#x103A;&#x1038;&#x1014;&#x103E;&#x1005;&#x103A;&#x1001;&#x102F;&#x101B;&#x103E;&#x102D;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1015;&#x1011;&#x1019;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; <code>Homestead.yaml</code> files &#x1019;&#x103E;&#x102C;&#x1011;&#x1000;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1015;&#x102B;  &#x1015;&#x103C;&#x102E;&#x1038;&#x101B;&#x1004;&#x103A; <code>vagrant destory</code> &#x1014;&#x1032;&#x1037; box &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x1016;&#x103B;&#x1000;&#x103A;&#x1015;&#x102B;&#x104A; &#x1015;&#x103C;&#x102E;&#x1038;&#x101B;&#x1004;&#x103A; <code>vagrant up</code> &#x1015;&#x103C;&#x1014;&#x103A;&#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x102B;&#x104B;</p>
+<p>&#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1011;&#x1000;&#x103A;&#x1014;&#x100A;&#x103A;&#x1038;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x1010;&#x1031;&#x102C;&#x1037; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Homestead environment &#x1019;&#x103E;&#x102C; <code>serve</code> script &#x1000;&#x102D;&#x102F;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102E;&#x1038; Laravel application &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x1011;&#x1000;&#x103A;&#x1011;&#x100A;&#x1037;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; <code>serve</code> script &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; Homestead environment &#x1011;&#x1032;&#x1000;&#x102D;&#x102F;&#x101D;&#x1004;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1010;&#x1031;&#x102C;&#x1037; &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1000; command &#x1000;&#x102D;&#x102F; run &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;</p>
+<pre><code>serve domain.app /home/vagrant/Code/path/to/public/directory
+</code></pre><blockquote>
+<p><strong>&#x1019;&#x103E;&#x1010;&#x103A;&#x1001;&#x103B;&#x1000;&#x103A;:</strong> <code>serve</code> command &#x1000;&#x102D;&#x102F; run &#x1015;&#x103C;&#x102E;&#x1038;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;  <code>hosts</code> file &#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x101E;&#x1004;&#x103A;&#x1011;&#x1015;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x1032;&#x1037; &#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1011;&#x1000;&#x103A; site &#x1000;&#x102D;&#x102F; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; &#x1005;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C; &#x1011;&#x1000;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037; &#x1019;&#x1019;&#x1031;&#x1037;&#x1015;&#x102B;&#x1014;&#x1032;&#x1037;&#x104B;</p>
+</blockquote>
+<p><a name="ports"></a></p>
+<h2 id="ports">Ports</h2>
+<p>&#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C;&#x1016;&#x1031;&#x102C;&#x103A;&#x1015;&#x103C;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; ports &#x1010;&#x103D;&#x1031;&#x1000;  &#x101E;&#x1004;&#x1037;&#x103A; Homestead &#x101B;&#x1032;&#x1037; ports &#x1010;&#x103D;&#x1031;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;</p>
+<ul>
+<li><strong>SSH:</strong> 2222 -&gt; Forwards To 22</li>
+<li><strong>HTTP:</strong> 8000 -&gt; Forwards To 80</li>
+<li><strong>MySQL:</strong> 33060 -&gt; Forwards To 3306</li>
+<li><strong>Postgres:</strong> 54320 -&gt; Forwards To 5432</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="configuration.html" class="navigation navigation-prev " aria-label="Previous page: Configuration လုပ်ခြင်း">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="lifecycle.html" class="navigation navigation-next " aria-label="Next page: Request Lifecycle ">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Laravel ရဲ့ Official Development Homestead အကြောင်း","level":"1.3.3","depth":2,"next":{"title":"Request Lifecycle ","level":"1.3.4","depth":2,"path":"lifecycle.md","ref":"lifecycle.md","articles":[]},"previous":{"title":"Configuration လုပ်ခြင်း","level":"1.3.2","depth":2,"path":"configuration.md","ref":"configuration.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"homestead.md","mtime":"2016-11-17T07:46:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-17T08:41:54.617Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

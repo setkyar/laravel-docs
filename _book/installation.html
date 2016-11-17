@@ -1,0 +1,928 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Laravel ကိုစတင်လေ့လာခြင်း (အခြေခံ) · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="installation.html" />
+    
+    
+    <link rel="prev" href="upgrade.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel နိဒါန်း
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel မိတ်ဆက်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="quick.html">
+            
+                <a href="quick.html">
+            
+                    
+                    Laravel အကျဉ်းချုပ်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="releases.html">
+            
+                <a href="releases.html">
+            
+                    
+                    Release Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="upgrade.html">
+            
+                <a href="upgrade.html">
+            
+                    
+                    Upgrade Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel ကိုစတင်လေ့လာခြင်း (အခြေခံ)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel install လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    Configuration လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="homestead.html">
+            
+                <a href="homestead.html">
+            
+                    
+                    Laravel ရဲ့ Official Development Homestead အကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="lifecycle.html">
+            
+                <a href="lifecycle.html">
+            
+                    
+                    Request Lifecycle 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Route လုပ်ခြင်းအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="requests.html">
+            
+                <a href="requests.html">
+            
+                    
+                    Requests နှင့် Input များအကြောင်း 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="responses.html">
+            
+                <a href="responses.html">
+            
+                    
+                    Views နှင့် Responses များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="controllers.html">
+            
+                <a href="controllers.html">
+            
+                    
+                    Controllers များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="errors.html">
+            
+                <a href="errors.html">
+            
+                    
+                    Errors နှင့် Logging များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Laravel ကိုလေ့လာခြင်း (အဆင့်မြင့်)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="billing.html">
+            
+                <a href="billing.html">
+            
+                    
+                    Billing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="cache.html">
+            
+                <a href="cache.html">
+            
+                    
+                    Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="extending.html">
+            
+                <a href="extending.html">
+            
+                    
+                    Core Extension
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="events.html">
+            
+                <a href="events.html">
+            
+                    
+                    Events
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="facades.html">
+            
+                <a href="facades.html">
+            
+                    
+                    Facades
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="html.html">
+            
+                <a href="html.html">
+            
+                    
+                    Forms & HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="helpers.html">
+            
+                <a href="helpers.html">
+            
+                    
+                    Helpers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="ioc.html">
+            
+                <a href="ioc.html">
+            
+                    
+                    IoC Container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="localization.html">
+            
+                <a href="localization.html">
+            
+                    
+                    Localization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="mail.html">
+            
+                <a href="mail.html">
+            
+                    
+                    Mail
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="packages.html">
+            
+                <a href="packages.html">
+            
+                    
+                    Package Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="pagination.html">
+            
+                <a href="pagination.html">
+            
+                    
+                    Pagination
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="queues.html">
+            
+                <a href="queues.html">
+            
+                    
+                    Queues
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="session.html">
+            
+                <a href="session.html">
+            
+                    
+                    Session
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="ssh.html">
+            
+                <a href="ssh.html">
+            
+                    
+                    SSH
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="templates.html">
+            
+                <a href="templates.html">
+            
+                    
+                    Templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="testing.html">
+            
+                <a href="testing.html">
+            
+                    
+                    Unit Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="validation.html">
+            
+                <a href="validation.html">
+            
+                    
+                    Validation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    Database
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    အခြေခံ အသုံးပြုပုံ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="queries.html">
+            
+                <a href="queries.html">
+            
+                    
+                    Query Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="eloquent.html">
+            
+                <a href="eloquent.html">
+            
+                    
+                    Eloquent ORM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="schema.html">
+            
+                <a href="schema.html">
+            
+                    
+                    Schema Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="migrations.html">
+            
+                <a href="migrations.html">
+            
+                    
+                    Migrations & Seeding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="redis.html">
+            
+                <a href="redis.html">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Artisan CLI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="commands.html">
+            
+                <a href="commands.html">
+            
+                    
+                    Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="contributing.html">
+            
+                <a href="contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Laravel ကိုစတင်လေ့လာခြင်း (အခြေခံ)</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="laravel-install-&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Laravel install &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h1>
+<ul>
+<li><a href="#install-composer">Composer &#x1000;&#x102D;&#x102F; Install &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#install-laravel">Laravel &#x1000;&#x102D;&#x102F; Install &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#server-requirements">Server &#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1001;&#x103B;&#x1000;&#x103A;&#x1019;&#x103B;&#x102C;</a></li>
+<li><a href="#configuration">Configuration &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#pretty-urls">URL &#x101C;&#x103E;&#x101C;&#x103E;&#x101C;&#x1031;&#x1038;&#x101C;&#x102D;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;</a></li>
+</ul>
+<p><a name="install-composer"></a></p>
+<h2 id="composer-&#x1000;&#x102D;&#x102F;-install-&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Composer &#x1000;&#x102D;&#x102F; Install &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h2>
+<p>Laravel &#x101B;&#x1032;&#x1037;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x101D;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037;tool .... <a href="http://getcomposer.org" target="_blank">Composer</a>, &#x101E;&#x1030;&#x1037;&#x101B;&#x1032;&#x1037; depenedencies &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; Manage &#x101C;&#x102F;&#x1015;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037;&#x104B; &#x1015;&#x1011;&#x1019;&#x1006;&#x102F;&#x1036;&#x1038; <code>composer.phar</code> copy &#x1000;&#x102D;&#x102D;&#x102F; download &#x101C;&#x102F;&#x1015;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; download &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x101E;&#x1004;&#x1037;&#x103A;&#x1019;&#x103E;&#x102C; PHAR &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037;file &#x101C;&#x1031;&#x1038;&#x101B;&#x103E;&#x102D;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x102B;&#x1015;&#x103C;&#x102E;&#x104A; &#x1021;&#x1032;&#x1012;&#x102E;&#x1037; file &#x1000;&#x102D;&#x102F;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037;local project &#x1019;&#x103E;&#x102C;&#x1012;&#x102E;&#x1010;&#x102D;&#x102F;&#x1004;&#x103A;&#x1038;&#x1011;&#x102C;&#x1038;&#x1001;&#x103B;&#x1004;&#x103A;&#x101B;&#x1004;&#x103A;&#x101C;&#x100A;&#x103A;&#x1038;&#x101B;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A; &#x1010;&#x1000;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x101E;&#x1004;&#x103A;&#x1000; <code>usr/local/bin</code> &#x1011;&#x1032;&#x1000;&#x102D;&#x102F;&#x101B;&#x103D;&#x103E;&#x1031;&#x1037;&#x1015;&#x103C;&#x102E;&#x1038;&#x1010;&#x1031;&#x102C;&#x1037;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037;  System &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; Global &#x101C;&#x102F;&#x1015;&#x103A;&#x1019;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101C;&#x100A;&#x103A;&#x1038;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; Window &#x1019;&#x103E;&#x102C;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; <a href="https://getcomposer.org/Composer-Setup.exe" target="_blank">Windows installer</a> &#x1000;&#x102D;&#x102F;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102E;&#x1038; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p><a name="install-laravel"></a></p>
+<h2 id="laravel-&#x1000;&#x102D;&#x102F;-install-&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Laravel &#x1000;&#x102D;&#x102F; Install &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h2>
+<h3 id="laravel-installer-&#x1019;&#x103E;&#x1010;&#x1005;&#x103A;&#x1006;&#x1004;&#x1037;&#x103A;">Laravel Installer &#x1019;&#x103E;&#x1010;&#x1005;&#x103A;&#x1006;&#x1004;&#x1037;&#x103A;</h3>
+<p>&#x1015;&#x1011;&#x1019;&#x1006;&#x102F;&#x1036;&#x1038;<a href="http://laravel.com/laravel.phar" target="_blank">Laravel installer PHAR archive</a> &#x1000;&#x102D;&#x102F;  download &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x102B;&#x104A; install &#x101C;&#x102F;&#x1015;&#x103A;&#x101B;&#x102C;&#x1019;&#x103E;&#x102C;&#x101C;&#x103D;&#x101A;&#x103A;&#x1000;&#x1030;&#x1021;&#x1031;&#x102C;&#x1004;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037; file name &#x1000;&#x102D;&#x102F; <code>laravel</code> &#x101C;&#x102D;&#x102F;&#x1037;&#x1015;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104A; &#x1015;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x101B;&#x1004;&#x103A;&#x1021;&#x1032;&#x1037;&#x1012;&#x102E;&#x1037; File &#x1000;&#x102D;&#x102F;  <code>/usr/local/bin</code> &#x1011;&#x1032;&#x1000;&#x102D;&#x102F;&#x101B;&#x103D;&#x103E;&#x1031;&#x1037;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; Laravel &#x1000;&#x102D;&#x102F; Install &#x101C;&#x102F;&#x1015;&#x103A;&#x1019;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; <code>laravel new</code> &#x1006;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; command line &#x1000;&#x1014;&#x1031; run &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x101B;&#x1004;&#x103A; Laravel Framework &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x102D;&#x102F;&#x1000;&#x102D;&#x102F;&#x101A;&#x103A;&#x1000;&#x103C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x1032;&#x1037;&#x1014;&#x1031;&#x101B;&#x102C;&#x1019;&#x103E;&#x102C; Install &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1015;&#x103C;&#x102E;&#x104B; <code>laravel new blog</code> &#x1006;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; command line &#x1000;&#x1014;&#x1031; run &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x101B;&#x1004;&#x103A; blog &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037;&#x1021;&#x1019;&#x100A;&#x103A;&#x1014;&#x1032;&#x1037; command line &#x1000;&#x1014;&#x1031;&#x1000;&#x102D;&#x102F;&#x101A;&#x103A; create &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037;&#x1014;&#x1031;&#x101B;&#x102C;&#x1019;&#x103E;&#x102C; Laravel Framework &#x1021;&#x101E;&#x1005;&#x103A;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x102D;&#x102F; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x1031;&#x1038;&#x1019;&#x103E;&#x102C;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1012;&#x102E;&#x1014;&#x100A;&#x103A;&#x1038;&#x1000; composer &#x1000;&#x1014;&#x1031; download &#x101C;&#x102F;&#x1015;&#x103A;&#x1010;&#x102C;&#x1011;&#x1000;&#x103A;&#x1015;&#x102D;&#x102F;&#x1019;&#x103C;&#x1014;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; Laravel &#x1000;&#x102D;&#x102F; Composer &#x1000;&#x1014;&#x1031;&#x1010;&#x1005;&#x103A;&#x1006;&#x1004;&#x1037;&#x103A; <code>create-project</code>  command &#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102E;&#x1038;&#x1010;&#x1031;&#x102C;&#x1037;&#x101C;&#x100A;&#x103A;&#x1038; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104A; terminal &#x1019;&#x103E;&#x102C; &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C;&#x101B;&#x1031;&#x1038;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; command &#x1000;&#x102D;&#x102F; run &#x1015;&#x103C;&#x102E;&#x1038;&#x1010;&#x1031;&#x102C;&#x1037;&#x101C;&#x100A;&#x103A;&#x1038; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;</p>
+<pre><code>composer create-project laravel/laravel --prefer-dist
+</code></pre><h3 id="download-&#x1019;&#x103E;&#x1010;&#x1005;&#x103A;&#x1006;&#x1004;&#x1037;&#x103A;">Download &#x1019;&#x103E;&#x1010;&#x1005;&#x103A;&#x1006;&#x1004;&#x1037;&#x103A;</h3>
+<p>Composer &#x1000;&#x102D;&#x102F; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; Laravel Framework <a href="https://github.com/laravel/laravel/archive/master.zip" target="_blank">latest version</a> &#x1000;&#x102D;&#x102F; download &#x101C;&#x102F;&#x1015;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104A;  &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; web server &#x1011;&#x1032;&#x1019;&#x103E;&#x102C;  zip &#x1000;&#x102D;&#x102F; extra &#x101C;&#x102F;&#x1015;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104A; extra &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037;  framework folder &#x1011;&#x1032;&#x1000;&#x102D;&#x102F; command line &#x1000;&#x101D;&#x1004;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x1010;&#x1031;&#x102C;&#x1037;  <code>php composer.phar install</code> &#x1012;&#x102B;&#x1019;&#x103E;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A; (<code>composer install</code>) &#x1006;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; run &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; &#x1012;&#x102E; command &#x1000; framework &#x101B;&#x1032;&#x1037; dependencies &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; install &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x102D;&#x102F;&#x1004;&#x103A;&#x1038;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x102C;&#x1015;&#x102B;&#x104B; &#x1012;&#x102E; installation &#x101C;&#x102F;&#x1015;&#x103A;&#x1010;&#x1032;&#x1037;&#x1014;&#x1031;&#x101B;&#x102C;&#x1019;&#x103E;&#x102C; webserver &#x1019;&#x103E;&#x102C; git install &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1019;&#x103E; successfully complete &#x1016;&#x103C;&#x1005;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x104B;</p>
+<p>&#x1010;&#x1000;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x101E;&#x1004;&#x103A; Framework &#x1000;&#x102D;&#x102F; update &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;<code>php composer.phar update</code> command &#x1000;&#x102D;&#x102F; run &#x1015;&#x1031;&#x1038;&#x101B;&#x1015;&#x102B;&#x1037;&#x1019;&#x101A;&#x103A;&#x104B;</p>
+<p><a name="server-requirements"></a></p>
+<h2 id="server-&#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1001;&#x103B;&#x1000;&#x103A;&#x1019;&#x103B;&#x102C;&#x1038;">Server &#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1001;&#x103B;&#x1000;&#x103A;&#x1019;&#x103B;&#x102C;&#x1038;</h2>
+<p>Laravel Framework &#x1019;&#x103E;&#x102C; system requirements &#x1010;&#x1005;&#x103A;&#x1001;&#x103B;&#x102D;&#x102F;&#x1037;&#x101B;&#x103E;&#x102D;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1018;&#x102C;&#x1010;&#x103D;&#x1031;&#x101C;&#x100A;&#x103A;&#x1038;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;</p>
+<ul>
+<li>PHP &gt;= 5.3.7</li>
+<li>MCrypt PHP Extension</li>
+</ul>
+<p>&#x1010;&#x102D;&#x102F;&#x1037;&#x1018;&#x1032;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>PHP 5.5 &#x1019;&#x103E;&#x102C; &#x1010;&#x1005;&#x103A;&#x1001;&#x103B;&#x102D;&#x102F;&#x1037; OS &#x1010;&#x103D;&#x1031;&#x1000; PHP JSON extension &#x1000;&#x102D;&#x102F; manullly install &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x1031;&#x1038;&#x101B;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1010;&#x1000;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037; Ubuntu &#x101E;&#x102F;&#x1036;&#x1038;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; <code>apt-get install php5-json</code> &#x1006;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; terminal &#x1000;&#x1014;&#x1031; run &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x102C;&#x1014;&#x1032;&#x1037;&#x1021;&#x1006;&#x1004;&#x103A;&#x1015;&#x103C;&#x1031;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p><a name="configuration"></a></p>
+<h2 id="configuration-&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Configuration &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h2>
+<p>Laravel &#x1000; configuration &#x1006;&#x102D;&#x102F;&#x1010;&#x102C;&#x1019;&#x101B;&#x103E;&#x102D;&#x101E;&#x101C;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x102B;&#x1018;&#x1032;&#x104B; &#x101E;&#x1004;&#x103A;&#x1005;&#x1015;&#x103C;&#x102E;&#x1038; develop &#x1016;&#x102D;&#x102F;&#x1037;&#x101B;&#x102C;&#x1021;&#x1006;&#x1004;&#x103A;&#x101E;&#x1004;&#x1037;&#x103A;&#x1015;&#x102B;&#x1018;&#x1032;&#x104B;&#x1018;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1018;&#x1032;&#x1015;&#x103C;&#x1031;&#x102C;&#x1015;&#x103C;&#x1031;&#x102C; &#x101E;&#x1004;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; <code>app/config/app.php</code> file &#x1014;&#x1032;&#x1037;&#x101E;&#x1030;&#x1037;&#x101B;&#x1032;&#x1037; Documencation &#x1000;&#x102D;&#x102F;&#x1015;&#x103C;&#x1014;&#x103A;&#x1000;&#x103C;&#x100A;&#x1037;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x1018;&#x1032;&#x104B; <code>app/config/app.php</code>&#x1019;&#x103E;&#x102C;&#x1018;&#x102C;&#x1010;&#x103D;&#x1031;&#x1015;&#x102B;&#x101E;&#x101C;&#x1032;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; <code>timezone</code> &#x1014;&#x1031;&#x102C;&#x1000;&#x103A; <code>locale</code>&#x1010;&#x102D;&#x102F;&#x1037;&#x1015;&#x102B;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104A;&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; application &#x1014;&#x1032;&#x1037;&#x1021;&#x1006;&#x1004;&#x103A;&#x1015;&#x103C;&#x1031;&#x1010;&#x102C;&#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; configure &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>Laravel &#x1000;&#x102D;&#x102F;&#x1010;&#x1005;&#x103A;&#x1001;&#x102B; Install &#x101C;&#x102F;&#x1015;&#x103A;&#x1010;&#x102D;&#x102F;&#x1004;&#x103A;&#x1038; <a href="configuration#environment-configuration.md">&#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; local environmet</a> &#x1000;&#x102D;&#x102F; Configure &#x1015;&#x103C;&#x1014;&#x103A;&#x101C;&#x102F;&#x1015;&#x103A;&#x101E;&#x1004;&#x1037;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; local machine &#x1019;&#x103E;&#x102C;     develop &#x101C;&#x102F;&#x1015;&#x103A;&#x1010;&#x1032;&#x1037;&#x1021;&#x1001;&#x102B; erros &#x1000;&#x102D;&#x102F;&#x1019;&#x103C;&#x1004;&#x103A;&#x101B;&#x1019;&#x101A;&#x103A;&#x104B; &#x1019;&#x1030;&#x101C;&#x1000;&#x1010;&#x1031;&#x102C;&#x1037; error reporting &#x1000; &#x101E;&#x1004;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; development production &#x1019;&#x103E;&#x102C; disable &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<blockquote>
+<p><strong>&#x1019;&#x103E;&#x1010;&#x103A;&#x1001;&#x103B;&#x1000;&#x103A;:</strong> <code>app.debug</code> &#x1000;&#x102D;&#x102F; production &#x1019;&#x103E;&#x102C;&#x1018;&#x101A;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037;&#x1019;&#x103E; true &#x1019;&#x1015;&#x1031;&#x1038;&#x101E;&#x1004;&#x1037;&#x103A;&#x1015;&#x102B;&#x1018;&#x1030;&#x1038;&#x104B;&#x1018;&#x101A;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037;&#x1019;&#x103E; &#x1019;&#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x102B;&#x1014;&#x1032;&#x1037;&#x104B;</p>
+</blockquote>
+<p><a name="permissions"></a></p>
+<h3 id="permissions-&#x1019;&#x103B;&#x102C;&#x1038;">Permissions &#x1019;&#x103B;&#x102C;&#x1038;</h3>
+<p>Laravel &#x1000;   <code>app/storage</code> &#x1000;&#x102D;&#x102F; web server &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; permission write &#x1015;&#x1031;&#x1038;&#x101B;&#x1015;&#x102B;&#x1019;&#x101A;&#x103A;&#x104B;</p>
+<p><a name="paths"></a></p>
+<h3 id="&#x101C;&#x1019;&#x103A;&#x1038;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1019;&#x103B;&#x102C;&#x1038;">&#x101C;&#x1019;&#x103A;&#x1038;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1019;&#x103B;&#x102C;&#x1038;</h3>
+<p>Framework &#x101B;&#x1032;&#x1037; &#x101C;&#x1019;&#x103A;&#x1038;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1010;&#x103D;&#x1031;&#x1000;&#x1015;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x101C;&#x1032;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104A; &#x1012;&#x102E; location &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x1015;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; <code>bootstrap/paths.php</code> &#x1019;&#x103E;&#x102C;&#x1000;&#x103C;&#x100A;&#x1037;&#x103A;&#x101B;&#x103E;&#x1030;&#x1015;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x101C;&#x100A;&#x103A;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p><a name="pretty-urls"></a></p>
+<h2 id="url-&#x101C;&#x103E;&#x101C;&#x103E;&#x101C;&#x1031;&#x1038;&#x101C;&#x102D;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;">URL &#x101C;&#x103E;&#x101C;&#x103E;&#x101C;&#x1031;&#x1038;&#x101C;&#x102D;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;</h2>
+<h3 id="apache">Apache</h3>
+<p>Framework &#x1011;&#x1032;&#x1000; <code>public/.htaccess</code> &#x1000;&#x102D;&#x102F; URL &#x1019;&#x103E;&#x102C; <code>index.php</code> &#x1019;&#x1015;&#x102B;&#x1021;&#x1031;&#x102C;&#x1004;&#x103A;&#x1016;&#x103B;&#x1031;&#x102C;&#x1000;&#x103A;&#x1011;&#x102C;&#x1038;&#x1015;&#x1031;&#x1038;&#x1019;&#x103E;&#x102C;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1010;&#x1000;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x101E;&#x1004;&#x1037;&#x103A; &#x101B;&#x1032;&#x1037; Laravel application &#x1000; Apache &#x1000;&#x102D;&#x102F;&#x101E;&#x102F;&#x1036;&#x1038;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;  <code>mod_rewrite</code> &#x1000;&#x102D;&#x102F; enable &#x101C;&#x102F;&#x1015;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037;&#x1019;&#x1019;&#x1031;&#x1037;&#x1015;&#x102B;&#x1014;&#x1032;&#x1037;&#x1026;&#x1038;&#x104B;</p>
+<p>&#x1010;&#x1000;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037; <code>.htaccess</code>file &#x1000; &#x101E;&#x1004;&#x1037;&#x103A; Application &#x1019;&#x103E;&#x102C;&#x1021;&#x101C;&#x102F;&#x1015;&#x103A;&#x1019;&#x101C;&#x102F;&#x1015;&#x103A;&#x1018;&#x1030;&#x1038;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1000;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x102D;&#x102F;&#x1005;&#x1019;&#x103A;&#x1038;&#x1000;&#x103C;&#x100A;&#x1037;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;:</p>
+<pre><code>Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+</code></pre><h3 id="nginx">Nginx</h3>
+<p>Nginx &#x1019;&#x103E;&#x102C;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1000;&#x100A;&#x103D;&#x103E;&#x1014;&#x103A;&#x1000;&#x103C;&#x102C;&#x1038;&#x1001;&#x103B;&#x1000;&#x103A;&#x1000;&#x102D;&#x102F; &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x101C;&#x102F;&#x1015;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x102C;&#x1014;&#x1032;&#x1037;URL &#x101C;&#x103E;&#x101C;&#x103E;&#x101C;&#x1031;&#x1038;&#x1010;&#x103D;&#x1031;&#x101B;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;</p>
+<pre><code>location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="upgrade.html" class="navigation navigation-prev " aria-label="Previous page: Upgrade Guide">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="installation.html" class="navigation navigation-next " aria-label="Next page: Laravel install လုပ်ခြင်း">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Laravel ကိုစတင်လေ့လာခြင်း (အခြေခံ)","level":"1.3","depth":1,"next":{"title":"Laravel install လုပ်ခြင်း","level":"1.3.1","depth":2,"path":"installation.md","ref":"installation.md","articles":[]},"previous":{"title":"Upgrade Guide","level":"1.2.4","depth":2,"path":"upgrade.md","ref":"upgrade.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"installation.md","mtime":"2016-11-17T07:46:56.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-17T08:41:54.617Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

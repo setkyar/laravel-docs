@@ -1,0 +1,971 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Configuration လုပ်ခြင်း · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="homestead.html" />
+    
+    
+    <link rel="prev" href="installation.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel နိဒါန်း
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Laravel မိတ်ဆက်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="quick.html">
+            
+                <a href="quick.html">
+            
+                    
+                    Laravel အကျဉ်းချုပ်
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="releases.html">
+            
+                <a href="releases.html">
+            
+                    
+                    Release Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="upgrade.html">
+            
+                <a href="upgrade.html">
+            
+                    
+                    Upgrade Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel ကိုစတင်လေ့လာခြင်း (အခြေခံ)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="installation.html">
+            
+                <a href="installation.html">
+            
+                    
+                    Laravel install လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    Configuration လုပ်ခြင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="homestead.html">
+            
+                <a href="homestead.html">
+            
+                    
+                    Laravel ရဲ့ Official Development Homestead အကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="lifecycle.html">
+            
+                <a href="lifecycle.html">
+            
+                    
+                    Request Lifecycle 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="routing.html">
+            
+                <a href="routing.html">
+            
+                    
+                    Route လုပ်ခြင်းအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="requests.html">
+            
+                <a href="requests.html">
+            
+                    
+                    Requests နှင့် Input များအကြောင်း 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="responses.html">
+            
+                <a href="responses.html">
+            
+                    
+                    Views နှင့် Responses များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="controllers.html">
+            
+                <a href="controllers.html">
+            
+                    
+                    Controllers များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="errors.html">
+            
+                <a href="errors.html">
+            
+                    
+                    Errors နှင့် Logging များအကြောင်း
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Laravel ကိုလေ့လာခြင်း (အဆင့်မြင့်)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="billing.html">
+            
+                <a href="billing.html">
+            
+                    
+                    Billing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="cache.html">
+            
+                <a href="cache.html">
+            
+                    
+                    Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="extending.html">
+            
+                <a href="extending.html">
+            
+                    
+                    Core Extension
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="events.html">
+            
+                <a href="events.html">
+            
+                    
+                    Events
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="facades.html">
+            
+                <a href="facades.html">
+            
+                    
+                    Facades
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="html.html">
+            
+                <a href="html.html">
+            
+                    
+                    Forms & HTML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="helpers.html">
+            
+                <a href="helpers.html">
+            
+                    
+                    Helpers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="ioc.html">
+            
+                <a href="ioc.html">
+            
+                    
+                    IoC Container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="localization.html">
+            
+                <a href="localization.html">
+            
+                    
+                    Localization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="mail.html">
+            
+                <a href="mail.html">
+            
+                    
+                    Mail
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="packages.html">
+            
+                <a href="packages.html">
+            
+                    
+                    Package Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="pagination.html">
+            
+                <a href="pagination.html">
+            
+                    
+                    Pagination
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="queues.html">
+            
+                <a href="queues.html">
+            
+                    
+                    Queues
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="session.html">
+            
+                <a href="session.html">
+            
+                    
+                    Session
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="ssh.html">
+            
+                <a href="ssh.html">
+            
+                    
+                    SSH
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="templates.html">
+            
+                <a href="templates.html">
+            
+                    
+                    Templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="testing.html">
+            
+                <a href="testing.html">
+            
+                    
+                    Unit Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="validation.html">
+            
+                <a href="validation.html">
+            
+                    
+                    Validation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    Database
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                    အခြေခံ အသုံးပြုပုံ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="queries.html">
+            
+                <a href="queries.html">
+            
+                    
+                    Query Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="eloquent.html">
+            
+                <a href="eloquent.html">
+            
+                    
+                    Eloquent ORM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="schema.html">
+            
+                <a href="schema.html">
+            
+                    
+                    Schema Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="migrations.html">
+            
+                <a href="migrations.html">
+            
+                    
+                    Migrations & Seeding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="redis.html">
+            
+                <a href="redis.html">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Artisan CLI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="artisan.html">
+            
+                <a href="artisan.html">
+            
+                    
+                    Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="commands.html">
+            
+                <a href="commands.html">
+            
+                    
+                    Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="contributing.html">
+            
+                <a href="contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Configuration လုပ်ခြင်း</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="configuration-&#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Configuration &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h1>
+<ul>
+<li><a href="#introduction">&#x1019;&#x102D;&#x1010;&#x103A;&#x1006;&#x1000;&#x103A;</a></li>
+<li><a href="#environment-configuration">Environment &#x1015;&#x103C;&#x1004;&#x103A;&#x1006;&#x1004;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#provider-configuration">Provider &#x1015;&#x103C;&#x1004;&#x103A;&#x1006;&#x1004;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#protecting-sensitive-configuration">&#x1021;&#x1019;&#x103E;&#x102C;&#x1038;&#x1001;&#x1036;&#x104A; &#x1021;&#x101E;&#x102D;&#x1001;&#x1036;&#x104D; &#x1019;&#x101B;&#x101E;&#x1031;&#x102C; &#x1021;&#x1001;&#x103B;&#x1000;&#x103A;&#x1021;&#x101C;&#x1000;&#x103A;&#x1019;&#x103B;&#x102C;&#x1038;&#x1021;&#x102C;&#x1038; &#x1000;&#x102C;&#x1000;&#x103D;&#x101A;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</a></li>
+<li><a href="#maintenance-mode">Application &#x1021;&#x102C;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x1004;&#x103A;&#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x103E;&#x102F; &#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="&#x1019;&#x102D;&#x1010;&#x103A;&#x1006;&#x1000;&#x103A;">&#x1019;&#x102D;&#x1010;&#x103A;&#x1006;&#x1000;&#x103A;</h2>
+<p>Laravel framework &#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1010;&#x1032;&#x1037; configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1021;&#x102C;&#x1038;&#x101C;&#x102F;&#x1036;&#x1038;&#x1000;&#x102D;&#x102F; <code>app/config</code> &#x101C;&#x1019;&#x103A;&#x1038;&#x1000;&#x103C;&#x1031;&#x102C;&#x1004;&#x103A;&#x1038;&#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1011;&#x102C;&#x1038;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1021;&#x102C;&#x1038;&#x101C;&#x102F;&#x1036;&#x1038;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x1010;&#x1032;&#x1037; option &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1038;&#x1005;&#x102E;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; documentation &#x1019;&#x103E;&#x102C; &#x101B;&#x1031;&#x1038;&#x1011;&#x102C;&#x1038;&#x1015;&#x102E;&#x1038;&#x101E;&#x102C;&#x1038;&#x1015;&#x102B;&#x104B; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037; options &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; documentation &#x1014;&#x1032;&#x1037;&#x1010;&#x103D;&#x1032;&#x1015;&#x103C;&#x102E;&#x1038; &#x101C;&#x1031;&#x1037;&#x101C;&#x102C; &#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>Application run &#x1014;&#x1031;&#x1010;&#x1032;&#x1037;&#x1021;&#x1001;&#x103B;&#x102D;&#x1014;&#x103A;&#x1010;&#x103D;&#x1031;&#x1019;&#x103E;&#x102C; configuration values &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1016;&#x102D;&#x102F;&#x1037;&#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x101C;&#x102C;&#x101B;&#x1004;&#x103A; <code>Config</code> class &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; &#x1006;&#x103D;&#x1032;&#x101A;&#x1030;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<h4 id="configuration-value-&#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F;-&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Configuration Value &#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h4>
+<pre><code>Config::get(&apos;app.timezone&apos;);
+</code></pre><p>&#x1006;&#x103D;&#x1032;&#x101A;&#x1030;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1010;&#x1032;&#x1037; configuration option &#x1019;&#x101B;&#x103E;&#x102D;&#x1010;&#x1032;&#x1037;&#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; default value &#x1000;&#x102D;&#x102F; return &#x1015;&#x103C;&#x1014;&#x103A;&#x1021;&#x1031;&#x102C;&#x1004;&#x103A; &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1015;&#x1031;&#x1038;&#x1011;&#x102C;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>$timezone = Config::get(&apos;app.timezone&apos;, &apos;UTC&apos;);
+</code></pre><h4 id="configuration-value-&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Configuration value &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h4>
+<p>Configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x103D;&#x1031;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1010;&#x1032;&#x1037; value &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &quot;dot&#x201D; &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; (eg. filename.value) access &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; Application run-time &#x1000;&#x102C;&#x101C;&#x1019;&#x103E;&#x102C; configuration &#x1010;&#x103D;&#x1031;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A;&#x101C;&#x100A;&#x103A;&#x1038; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>Config::set(&apos;database.default&apos;, &apos;sqlite&apos;);
+</code></pre><p>Applicastion run-time &#x1000;&#x102C;&#x101C;&#x1019;&#x103E;&#x102C; &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; configuration values &#x1010;&#x103D;&#x1031;&#x101F;&#x102C; app &#x101B;&#x1032;&#x1037; &#x101C;&#x1000;&#x103A;&#x101B;&#x103E;&#x102D; request &#x1021;&#x1015;&#x1031;&#x102B;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x1032;&#x101E;&#x1000;&#x103A;&#x101B;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102F;&#x101B;&#x103E;&#x102D;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x102D;&#x102F;&#x1004;&#x103A;&#x1038;&#x1011;&#x1015;&#x103A;&#x1016;&#x103C;&#x1005;&#x103A;&#x101C;&#x102C;&#x1019;&#x1032;&#x1037; requests &#x1010;&#x103D;&#x1031;&#x1021;&#x1011;&#x102D; &#x101A;&#x1030;&#x1006;&#x1031;&#x102C;&#x1004;&#x103A;&#x101E;&#x103D;&#x102C;&#x1038;&#x1019;&#x103E;&#x102C;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A;&#x1015;&#x102B;&#x1018;&#x1030;&#x1038;</p>
+<p><a name="environment-configuration"></a></p>
+<h2 id="environment-&#x1015;&#x103C;&#x1004;&#x103A;&#x1006;&#x1004;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Environment &#x1015;&#x103C;&#x1004;&#x103A;&#x1006;&#x1004;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h2>
+<p>Application run &#x1014;&#x1031;&#x1010;&#x1032;&#x1037; environment &#x1021;&#x1015;&#x1031;&#x102B;&#x103A;&#x1021;&#x1001;&#x103C;&#x1031;&#x1001;&#x1036;&#x1015;&#x102E;&#x1038; configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x103D;&#x1031; &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1011;&#x102C;&#x1038;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;&#x101F;&#x102C; &#x1021;&#x1011;&#x1031;&#x102C;&#x1000;&#x103A;&#x1021;&#x1000;&#x1030; &#x1021;&#x1019;&#x103B;&#x102C;&#x1038;&#x1000;&#x103C;&#x102E;&#x1038;&#x1016;&#x103C;&#x1005;&#x103A;&#x1005;&#x1031;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1025;&#x1015;&#x1019;&#x102C; - &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; local machine &#x1015;&#x1031;&#x102B;&#x103A;&#x1019;&#x103E;&#x102C; &#x1019;&#x1010;&#x1030;&#x100A;&#x102E;&#x1010;&#x1032;&#x1037; cache driver &#x1010;&#x103D;&#x1031;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; &#x1012;&#x102E; environment based configuration &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x101B;&#x102F;&#x1036;&#x1014;&#x1032;&#x1037; &#x101C;&#x103D;&#x101A;&#x103A;&#x1000;&#x1030; &#x1015;&#x103C;&#x102E;&#x1038;&#x1019;&#x103C;&#x1031;&#x102C;&#x1000;&#x103A;&#x1005;&#x1031;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; </p>
+<p><code>config</code> &#x1016;&#x102D;&#x102F;&#x1012;&#x102B;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; environmen  &#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1016;&#x1000;&#x103A;&#x1019;&#x1032;&#x1037; directory &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x102D;&#x102F; &#x1006;&#x1031;&#x102C;&#x1000;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; &#x1025;&#x1015;&#x1019;&#x102C; - <code>local</code>&#x104B; &#x1015;&#x103C;&#x102E;&#x1038;&#x101B;&#x1004;&#x103A; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E; environment &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; override &#x101C;&#x102F;&#x1015;&#x103A;&#x101E;&#x103D;&#x102C;&#x1038;&#x1019;&#x1032;&#x1037; config &#x1010;&#x103D;&#x1031;&#x104A; &#x1011;&#x1015;&#x103A;&#x1019;&#x1036;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037; options &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x103D;&#x1031;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x102E;&#x1038;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1015;&#x103C;&#x102E;&#x104B; &#x1025;&#x1015;&#x1019;&#x102C; - local environment &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; cache driver &#x1000;&#x102D;&#x102F; override &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x104A; <code>app/config/local</code> &#x1016;&#x102D;&#x102F;&#x1012;&#x102B;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; <code>cache.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1006;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x102E;&#x1038; &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x1031;&#x1038;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; code &#x1010;&#x103D;&#x1031;&#x1014;&#x1032;&#x1037; &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; </p>
+<pre><code>&lt;?php
+
+return array(
+
+    &apos;driver&apos; =&gt; &apos;file&apos;,
+
+);
+</code></pre><blockquote>
+<p><strong>&#x101E;&#x1010;&#x102D;&#x1015;&#x103C;&#x102F;&#x101B;&#x1014;&#x103A;:</strong> <code>testing</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; &#x1021;&#x1019;&#x100A;&#x103A;&#x1014;&#x1032;&#x1037; environment name &#x1000;&#x102D;&#x102F; &#x1019;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1015;&#x102B;&#x1014;&#x1032;&#x1037;&#x104B; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E;&#x1021;&#x1019;&#x100A;&#x103A;&#x101F;&#x102C; unit testing &#x1021;&#x1010;&#x103D;&#x1000;&#x103A; &#x101E;&#x102E;&#x1038;&#x101E;&#x1014;&#x1037;&#x103A;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; &#x1021;&#x1019;&#x100A;&#x103A;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+</blockquote>
+<p>base configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x1010;&#x1032;&#x1037; option &#x1021;&#x102C;&#x1038;&#x101C;&#x102F;&#x1036;&#x1038;&#x1000;&#x102D;&#x102F; &#x1015;&#x103C;&#x1014;&#x103A;&#x101C;&#x100A;&#x103A;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1015;&#x1031;&#x1038;&#x1016;&#x102D;&#x102F;&#x1037; &#x1019;&#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1015;&#x102B; &#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; override &#x101C;&#x102F;&#x1015;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037; option &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x101E;&#x102C;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1015;&#x1031;&#x1038;&#x101B;&#x1014;&#x103A;&#x104B; Base configuration files &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; environment configuration files &#x1010;&#x103D;&#x1031;&#x1000; &quot;cascade&#x201D; &#x101C;&#x102F;&#x1015;&#x103A;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x1015;&#x103C;&#x102E;&#x1038;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; &#x1018;&#x101A;&#x103A; environment &#x1019;&#x103E;&#x102C; run &#x1014;&#x1031;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x1010;&#x102C; framework &#x1000;&#x1014;&#x1031; &#x101E;&#x102D;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1011;&#x102C;&#x1038;&#x1015;&#x1031;&#x1038;&#x101B;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x104B; Default environment &#x1000;&#x1010;&#x1031;&#x102C;&#x1037; <code>production</code> &#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1021;&#x1001;&#x103C;&#x102C;&#x1038; environment &#x1010;&#x103D;&#x1031;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; setup &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x101B;&#x1019;&#x1032;&#x1037; &#x1014;&#x1031;&#x101B;&#x102C;&#x1000; root directory &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1010;&#x1032;&#x1037; <code>bootstrap/start.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x1031;&#x1038;&#x101B;&#x1015;&#x102B;&#x1019;&#x101A;&#x103A;&#x104B; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E;&#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1010;&#x1032;&#x1037; <code>$app-&gt;detectEnvironment</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037;  method &#x1011;&#x1032;&#x1000;&#x102D;&#x102F; &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; environment &#x1010;&#x103D;&#x1031;&#x1015;&#x102B;&#x1010;&#x1032;&#x1037; array &#x1010;&#x1005;&#x103A;&#x1001;&#x102F; passing &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E; array &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; &#x101C;&#x1000;&#x103A;&#x101B;&#x103E;&#x102D; environment &#x1000;&#x102D;&#x102F; &#x1006;&#x102F;&#x1036;&#x1038;&#x1016;&#x103C;&#x1010;&#x103A;&#x1010;&#x102C;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x101C;&#x102C;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x103E;&#x102D;&#x101B;&#x1004;&#x103A; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E; array &#x1011;&#x1032;&#x1000;&#x102D;&#x102F; &#x1014;&#x1031;&#x102C;&#x1000;&#x103A;&#x1011;&#x1015;&#x103A; environment &#x1010;&#x103D;&#x1031; &#x1011;&#x1015;&#x103A;&#x1011;&#x100A;&#x1037;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>&lt;?php
+
+$env = $app-&gt;detectEnvironment(array(
+
+    &apos;local&apos; =&gt; array(&apos;your-machine-name&apos;),
+
+));
+</code></pre><p>&#x1021;&#x1015;&#x1031;&#x102B;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x103C;&#x1011;&#x102C;&#x1038;&#x1010;&#x1032;&#x1037; &#x1025;&#x1015;&#x1019;&#x102C;&#x1019;&#x103E;&#x102C; <code>local</code> &#x1000; environment &#x1021;&#x1019;&#x100A;&#x103A;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; <code>your-machine-name</code> &#x1000; server &#x101B;&#x1032;&#x1037; hostname &#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; Linux &#x1014;&#x1032;&#x1037; Mac &#x1000;&#x103D;&#x1014;&#x103A;&#x1015;&#x103B;&#x1030;&#x1010;&#x102C;&#x1010;&#x103D;&#x1031;&#x1019;&#x103E;&#x102C;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; <code>hostname</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; terminal command &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; hostname &#x1000;&#x102D;&#x102F;&#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1015;&#x1031;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x1021;&#x1000;&#x101A;&#x103A;&#x104D; &#x1015;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038;&#x1011;&#x102D;&#x101B;&#x1031;&#x102C;&#x1000;&#x103A;&#x1010;&#x1032;&#x1037; environment &#x101E;&#x102D;&#x101B;&#x103E;&#x102D;&#x1019;&#x103E;&#x102F;&#x1000;&#x102D;&#x102F; &#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; <code>detectEnvironment</code> method &#x1011;&#x1032;&#x1000;&#x102D;&#x102F; &#x1000;&#x102D;&#x102F;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x101E;&#x101C;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037; environment &#x101E;&#x102D;&#x101B;&#x103E;&#x102D;&#x1019;&#x103E;&#x102F;&#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x1031;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1019;&#x1032;&#x1037; <code>Closure</code> &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000;&#x102D;&#x102F; passing &#x1015;&#x1031;&#x1038;&#x1016;&#x102D;&#x102F;&#x1037;&#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>$env = $app-&gt;detectEnvironment(function()
+{
+    return $_SERVER[&apos;MY_LARAVEL_ENV&apos;];
+});
+</code></pre><h4 id="application-&#x101B;&#x1032;&#x1037;-&#x101C;&#x1000;&#x103A;&#x101B;&#x103E;&#x102D;-environment-&#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;&#x104B;">Application &#x101B;&#x1032;&#x1037; &#x101C;&#x1000;&#x103A;&#x101B;&#x103E;&#x102D; Environment &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;&#x104B;</h4>
+<p>Application &#x101B;&#x1032;&#x1037; &#x101C;&#x1000;&#x103A;&#x101B;&#x103E;&#x102D;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x1031;&#x1010;&#x1032;&#x1037; environment &#x1000;&#x102D;&#x102F; <code>environment</code> method &#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; &#x101B;&#x101A;&#x1030;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>$environment = App::environment();
+</code></pre><p>&#x1000;&#x102D;&#x102F;&#x101A;&#x103A;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037; environment &#x101F;&#x102F;&#x1010;&#x103A;/&#x1019;&#x101F;&#x102F;&#x1010;&#x103A; &#x1000;&#x102D;&#x102F;&#x101C;&#x100A;&#x103A;&#x1038; <code>environment</code> method &#x1011;&#x1032;&#x1000;&#x102D;&#x102F; arguments &#x1010;&#x103D;&#x1031; passing &#x1015;&#x1031;&#x1038;&#x1015;&#x103C;&#x102E;&#x1038; &#x1005;&#x1005;&#x103A;&#x1000;&#x103C;&#x100A;&#x1037;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>if (App::environment(&apos;local&apos;))
+{
+    // Local environment &#x1016;&#x103C;&#x1005;&#x103A;&#x1010;&#x101A;&#x103A;
+}
+
+if (App::environment(&apos;local&apos;, &apos;staging&apos;))
+{
+    //Local &#x101E;&#x102D;&#x102F;&#x1037;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A; staging environment &#x1016;&#x103C;&#x1005;&#x103A;&#x1010;&#x101A;&#x103A;
+}
+</code></pre><p><a name="provider-configuration"></a></p>
+<h3 id="provider-&#x1015;&#x103C;&#x1004;&#x103A;&#x1006;&#x1004;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">Provider &#x1015;&#x103C;&#x1004;&#x103A;&#x1006;&#x1004;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h3>
+<p>Environment configuration &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x102E;&#x1006;&#x102D;&#x102F;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x103E;&#x102D;&#x101B;&#x1004;&#x103A;&#x104A; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; &#x1015;&#x1004;&#x103A;&#x1019; <code>app</code> configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; environment <a href="ioc#service-providers.md">service providers</a> &#x1000;&#x102D;&#x102F;&#x1011;&#x100A;&#x1037;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037; &#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x101C;&#x102C;&#x1010;&#x1032;&#x1037; &#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x1010;&#x103D;&#x1031; &#x101B;&#x103E;&#x102D;&#x101C;&#x102C;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1021;&#x1000;&#x101A;&#x103A;&#x104D; &#x1000;&#x102D;&#x102F;&#x101A;&#x103A;&#x1000; &#x1011;&#x1015;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1011;&#x102C;&#x1038;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x103E;&#x102D;&#x101B;&#x1004;&#x103A;, the environment <code>app</code> providers are overriding the providers in your primary <code>app</code> configuration file &#x1006;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; &#x101E;&#x1010;&#x102D;&#x1015;&#x1031;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B; &#x1021;&#x1032;&#x1037;&#x101C;&#x102D;&#x102F;&#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x1019;&#x103B;&#x102D;&#x102F;&#x1038;&#x1019;&#x103E;&#x102C; providers &#x1000;&#x102D;&#x102F; &#x1019;&#x101B;&#x1019;&#x1000;&#x1011;&#x1015;&#x103A;&#x1015;&#x1031;&#x102B;&#x1004;&#x103A;&#x1038;&#x1011;&#x100A;&#x1037;&#x103A;&#x1005;&#x1031;&#x1016;&#x102D;&#x102F;&#x1037;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; <code>append_config</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; helper method &#x1000;&#x102D;&#x102F; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; environment <code>app</code> configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>&apos;providers&apos; =&gt; append_config(array(
+    &apos;LocalOnlyServiceProvider&apos;,
+))
+</code></pre><p><a name="protecting-sensitive-configuration"></a></p>
+<h2 id="&#x1021;&#x1019;&#x103E;&#x102C;&#x1038;&#x1001;&#x1036;&#x104A;-&#x1021;&#x101E;&#x102D;&#x1001;&#x1036;&#x104D;-&#x1019;&#x101B;&#x101E;&#x1031;&#x102C;-&#x1021;&#x1001;&#x103B;&#x1000;&#x103A;&#x1021;&#x101C;&#x1000;&#x103A;&#x1019;&#x103B;&#x102C;&#x1038;&#x1021;&#x102C;&#x1038;-&#x1000;&#x102C;&#x1000;&#x103D;&#x101A;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;">&#x1021;&#x1019;&#x103E;&#x102C;&#x1038;&#x1001;&#x1036;&#x104A; &#x1021;&#x101E;&#x102D;&#x1001;&#x1036;&#x104D; &#x1019;&#x101B;&#x101E;&#x1031;&#x102C; &#x1021;&#x1001;&#x103B;&#x1000;&#x103A;&#x1021;&#x101C;&#x1000;&#x103A;&#x1019;&#x103B;&#x102C;&#x1038;&#x1021;&#x102C;&#x1038; &#x1000;&#x102C;&#x1000;&#x103D;&#x101A;&#x103A;&#x1001;&#x103C;&#x1004;&#x103A;&#x1038;</h2>
+<p>&#x1021;&#x1019;&#x103E;&#x1014;&#x103A;&#x1010;&#x1000;&#x101A;&#x103A;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1019;&#x1032;&#x1037; application &#x1010;&#x103D;&#x1031;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A;&#x104A; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; &#x1021;&#x1019;&#x103E;&#x102C;&#x1038;&#x1019;&#x1001;&#x1036;&#x104A; &#x1021;&#x101E;&#x102D;&#x1001;&#x1036;&#x101C;&#x102D;&#x102F;&#x1037; &#x1019;&#x101B;&#x1010;&#x1032;&#x1037; configuration &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x1019;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1015;&#x1032;&#x1014;&#x1032;&#x1037; &#x1021;&#x1001;&#x103C;&#x102C;&#x1038;&#x1010;&#x1005;&#x103A;&#x1014;&#x1031;&#x101B;&#x102C;&#x1019;&#x103E;&#x102C;&#x1011;&#x102C;&#x1038;&#x1010;&#x102C;&#x1000; &#x1015;&#x102D;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x1004;&#x1037;&#x103A;&#x1010;&#x1031;&#x102C;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1018;&#x101A;&#x103A;&#x101C;&#x102D;&#x102F;&#x1021;&#x1019;&#x103B;&#x102D;&#x102F;&#x1038;&#x1021;&#x1005;&#x102C;&#x1038;&#x1010;&#x103D;&#x1031;&#x101C;&#x1032;&#x1006;&#x102D;&#x102F;&#x1010;&#x1031;&#x102C;&#x1037; database passwords, Stripe API keys, and encryption keys &#x1005;&#x1010;&#x102C;&#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x1016;&#x103C;&#x1005;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x103E;&#x102D;&#x101B;&#x1004;&#x103A; configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x1019;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x101E;&#x1004;&#x1037;&#x103A;&#x1015;&#x102B;&#x1018;&#x1030;&#x1038;&#x104B; &#x1012;&#x102B;&#x1006;&#x102D;&#x102F;&#x1018;&#x101A;&#x103A;&#x1014;&#x1031;&#x101B;&#x102C;&#x1019;&#x103E;&#x102C;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x101C;&#x1032;? &#x1021;&#x1032;&#x1037;&#x1012;&#x102E;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; Laravel &#x1000;&#x1016;&#x103C;&#x1031;&#x101B;&#x103E;&#x1004;&#x103A;&#x1038;&#x1015;&#x1031;&#x1038;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x102C;&#x1038;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E;&#x101C;&#x102D;&#x102F; configuration &#x1021;&#x1019;&#x103B;&#x102D;&#x102F;&#x1038;&#x1021;&#x1005;&#x102C;&#x1038;&#x1010;&#x103D;&#x1031;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; &quot;dot&quot; files &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x102E;&#x1038; &#x1000;&#x102C;&#x1000;&#x103D;&#x101A;&#x103A;&#x1011;&#x102C;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x1015;&#x1011;&#x1019;&#x1006;&#x102F;&#x1036;&#x1038;&#x1021;&#x1014;&#x1031;&#x1014;&#x1032;&#x1037; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037;&#x1005;&#x1000;&#x103A;&#x101F;&#x102C; local &#x1019;&#x103E;&#x102C; run &#x1014;&#x1031;&#x1010;&#x102C;&#x1015;&#x102B;&#x1006;&#x102D;&#x102F;&#x1010;&#x102C;&#x1000;&#x102D;&#x102F; application &#x1000;&#x101E;&#x102D;&#x1021;&#x1031;&#x102C;&#x1004;&#x103A; <a href="configuration#environment-configuration.md">configure</a> &#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x1031;&#x1038;&#x101B;&#x1015;&#x102B;&#x1019;&#x101A;&#x103A;&#x104B; &#x1015;&#x103C;&#x102E;&#x1038;&#x101B;&#x1004;&#x103A; <code>.env.local.php</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1021;&#x101E;&#x1005;&#x103A;&#x1000;&#x102D;&#x102F; <code>composer.json</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x101B;&#x103E;&#x102D;&#x1010;&#x1032;&#x1037; &#x1016;&#x102D;&#x102F;&#x1012;&#x102B;&#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C; &#x1006;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x1031;&#x1038;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E; <code>.env.local.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x101F;&#x102C; &#x1021;&#x1001;&#x103C;&#x102C;&#x1038; laravel configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x103D;&#x1031;&#x101C;&#x102D;&#x102F;&#x1015;&#x1032; key-value pairs &#x1016;&#x103C;&#x1005;&#x103A;&#x1010;&#x1032;&#x1037; array &#x1010;&#x1005;&#x103A;&#x1001;&#x102F; return &#x1015;&#x103C;&#x1014;&#x103A;&#x101B;&#x1015;&#x102B;&#x1019;&#x101A;&#x103A;&#x104B; </p>
+<pre><code>&lt;?php
+
+return array(
+
+    &apos;TEST_STRIPE_KEY&apos; =&gt; &apos;super-secret-sauce&apos;,
+
+);
+</code></pre><p>&#x1021;&#x1032;&#x1037;&#x1012;&#x102E; &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1000;&#x1014;&#x1031; return &#x1015;&#x103C;&#x1014;&#x103A;&#x101C;&#x102C;&#x1010;&#x1032;&#x1037; key-value pairs &#x1010;&#x103D;&#x1031;&#x101F;&#x102C; PHP &quot;superglobals&quot; &#x1010;&#x103D;&#x1031;&#x1016;&#x103C;&#x1005;&#x103A;&#x1010;&#x1032;&#x1037; <code>$_ENV</code> &#x1014;&#x1032;&#x1037; <code>$_SERVER</code> &#x1010;&#x103D;&#x1031;&#x1006;&#x102E;&#x1000;&#x102D;&#x102F; auto &#x101B;&#x1031;&#x102C;&#x1000;&#x103A;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E; &quot;superglobals&quot; &#x1010;&#x103D;&#x1031;&#x1000;&#x1014;&#x1031;&#x1010;&#x1005;&#x103A;&#x1006;&#x1004;&#x1037;&#x103A; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; configuration &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x1015;&#x103C;&#x1014;&#x103A;&#x101C;&#x100A;&#x103A;&#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x103C;&#x102E;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; </p>
+<pre><code>&apos;key&apos; =&gt; $_ENV[&apos;TEST_STRIPE_KEY&apos;]
+</code></pre><p>&#x101E;&#x1031;&#x1001;&#x103B;&#x102C;&#x1021;&#x1031;&#x102C;&#x1004;&#x103A;&#x101C;&#x102F;&#x1015;&#x103A;&#x1016;&#x102D;&#x102F;&#x1037;&#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1010;&#x102C;&#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1000; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E; <code>.env.local.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1000;&#x102D;&#x102F; <code>.gitignore</code> &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1015;&#x1031;&#x1038;&#x101B;&#x1015;&#x102B;&#x1019;&#x101A;&#x103A;&#x104B; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E;&#x1010;&#x1031;&#x102C;&#x1037;&#x1019;&#x103E; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; team &#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1010;&#x1032;&#x1037;&#x1000;&#x103B;&#x1014;&#x103A;&#x1010;&#x1032;&#x1037; developers &#x1010;&#x103D;&#x1031;&#x101F;&#x102C; &#x101E;&#x1030;&#x1010;&#x102D;&#x102F;&#x1037;&#x101B;&#x1032;&#x1037; &#x1000;&#x102D;&#x102F;&#x101A;&#x103A;&#x1015;&#x102D;&#x102F;&#x1004;&#x103A; local configuration &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1019;&#x100A;&#x1037;&#x103A;&#x1021;&#x1015;&#x103C;&#x1004;&#x103A; &#x1000;&#x102D;&#x102F;&#x101A;&#x1037;&#x103A;&#x101B;&#x1032;&#x1037; sensitive configuration &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F;&#x101C;&#x1032; source control &#x1019;&#x103E;&#x102C;&#x1019;&#x1015;&#x102B;&#x1021;&#x1031;&#x102C;&#x1004;&#x103A; &#x1000;&#x102C;&#x1000;&#x103D;&#x101A;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x102C;&#x1038;&#x1016;&#x103C;&#x1005;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x104B;</p>
+<p>Production environment &#x1021;&#x1010;&#x103D;&#x1000;&#x103A;&#x101C;&#x100A;&#x103A;&#x1038; &#x101C;&#x102D;&#x102F;&#x1021;&#x1015;&#x103A;&#x1010;&#x1032;&#x1037; configuration &#x1010;&#x103D;&#x1031;&#x1015;&#x102B;&#x1010;&#x1032;&#x1037; <code>.env.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1000;&#x102D;&#x102F; project root &#x1016;&#x102D;&#x102F;&#x1012;&#x102B;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x1006;&#x1031;&#x102C;&#x1000;&#x103A;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x1015;&#x102B;&#x104B; <code>.env.local.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x101C;&#x102D;&#x102F;&#x1015;&#x1032; production environment &#x1019;&#x103E;&#x102C; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1019;&#x1032;&#x1037;<code>.env.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x101F;&#x102C; source control &#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x1019;&#x1015;&#x102B;&#x101E;&#x1004;&#x1037;&#x103A;&#x1015;&#x102B;&#x1018;&#x1030;&#x1038;&#x104B;</p>
+<blockquote>
+<p><strong>&#x101E;&#x1010;&#x102D;&#x1015;&#x103C;&#x102F;&#x101B;&#x1014;&#x103A;:</strong> Application &#x1000;&#x1014;&#x1031; support &#x101C;&#x102F;&#x1015;&#x103A;&#x1010;&#x1032;&#x1037; environment &#x1010;&#x1005;&#x103A;&#x1001;&#x102F;&#x1001;&#x103B;&#x1004;&#x103A;&#x1038;&#x1005;&#x102E;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; <code>.env</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x103D;&#x1031; &#x1010;&#x100A;&#x103A;&#x1006;&#x1031;&#x102C;&#x1000;&#x103A;&#x101C;&#x102C;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; &#x1025;&#x1015;&#x1019;&#x102C; - <code>development</code> environment &#x1021;&#x1010;&#x103D;&#x1000;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; <code>.env.development.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1000; &#x101B;&#x103E;&#x102D;&#x1014;&#x1031;&#x101C;&#x102D;&#x102F;&#x1037;&#x101B;&#x103E;&#x102D;&#x101B;&#x1004;&#x103A; load &#x101C;&#x102F;&#x1015;&#x103A;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B; </p>
+</blockquote>
+<p><a name="maintenance-mode"></a></p>
+<h2 id="application-&#x1021;&#x102C;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x1004;&#x103A;&#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x103E;&#x102F;&#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;">Application &#x1021;&#x102C;&#x1038;&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x1004;&#x103A;&#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x103E;&#x102F;&#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;</h2>
+<p>Application &#x101F;&#x102C; &#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x1004;&#x103A;&#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x103E;&#x102F; &#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1010;&#x1032;&#x1037; &#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x1019;&#x103E;&#x102C; &#x101B;&#x103E;&#x102D;&#x1014;&#x1031;&#x1019;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; application &#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1010;&#x1032;&#x1037; route &#x1021;&#x102C;&#x1038;&#x101C;&#x102F;&#x1036;&#x1038;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; &#x1000;&#x103C;&#x102D;&#x102F;&#x1010;&#x1004;&#x103A;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x1032;&#x1037; &#x1005;&#x102D;&#x1010;&#x103A;&#x1000;&#x103C;&#x102D;&#x102F;&#x1000;&#x103A; &#x1019;&#x103C;&#x1004;&#x103A;&#x1000;&#x103D;&#x1004;&#x103A;&#x1038;(view) &#x1000;&#x102D;&#x102F;&#x1015;&#x103C;&#x1015;&#x1031;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B; &#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x1004;&#x103A;&#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x103E;&#x102F;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x1031;&#x101B;&#x1004;&#x103A;&#x1015;&#x1032;&#x1016;&#x103C;&#x1005;&#x103A;&#x1016;&#x103C;&#x1005;&#x103A;&#x104A; update &#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x1031;&#x101B;&#x1004;&#x103A;&#x1015;&#x1032;&#x1016;&#x103C;&#x1005;&#x103A;&#x1016;&#x103C;&#x1005;&#x103A; application &#x1000;&#x102D;&#x102F; &#x101C;&#x103D;&#x101A;&#x103A;&#x101C;&#x103D;&#x101A;&#x103A;&#x1000;&#x1030;&#x1000;&#x1030;&#x1015;&#x1032; disable &#x101C;&#x102F;&#x1015;&#x103A;&#x1011;&#x102C;&#x1038;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B; <code>app/start/global.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C;&#x101B;&#x103E;&#x102D;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x102C;&#x1038;&#x1016;&#x103C;&#x1005;&#x103A;&#x1010;&#x1032;&#x1037; <code>App::down</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; method &#x1000;&#x102D;&#x102F;&#x1001;&#x1031;&#x102B;&#x103A;&#x101E;&#x102F;&#x1036;&#x1038;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x101B;&#x102F;&#x1036;&#x1015;&#x1032;&#x104B; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E; method &#x1000;&#x1014;&#x1031;&#x1015;&#x103C;&#x1014;&#x103A;&#x101C;&#x102C;&#x1010;&#x1032;&#x1037; response &#x1000;&#x102D;&#x102F; users &#x1010;&#x103D;&#x1031;&#x1006;&#x102E;&#x1000;&#x102D;&#x102F;&#x1015;&#x102D;&#x102F;&#x1037;&#x1015;&#x1031;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B;</p>
+<p>&#x1015;&#x103C;&#x102F;&#x1015;&#x103C;&#x1004;&#x103A;&#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x103E;&#x102F;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x1031;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; &#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x1000;&#x102D;&#x102F;&#x1011;&#x102C;&#x1038;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A; <code>down</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; Artisan command &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>php artisan down
+</code></pre><p>&#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x103E;&#x102F;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038;&#x101E;&#x103D;&#x102C;&#x1038;&#x101C;&#x102D;&#x102F;&#x1037; application &#x1000;&#x102D;&#x102F;&#x1015;&#x103C;&#x1014;&#x103A;&#x1015;&#x103C;&#x102E;&#x1038; &#x1021;&#x101E;&#x1000;&#x103A;&#x101E;&#x103D;&#x1004;&#x103A;&#x1038;&#x1001;&#x103B;&#x1004;&#x103A;&#x101B;&#x1004;&#x103A; <code>up</code> &#x1006;&#x102D;&#x102F;&#x1010;&#x1032;&#x1037; Artisan command &#x1000;&#x102D;&#x102F; &#x1021;&#x101E;&#x102F;&#x1036;&#x1038;&#x1015;&#x103C;&#x102F;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>php artisan up
+</code></pre><p>&#x1011;&#x102D;&#x1014;&#x103A;&#x1038;&#x101E;&#x102D;&#x1019;&#x103A;&#x1038;&#x1019;&#x103E;&#x102F;&#x1015;&#x103C;&#x102F;&#x101C;&#x102F;&#x1015;&#x103A;&#x1014;&#x1031;&#x1010;&#x1032;&#x1037;&#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031;&#x1021;&#x1010;&#x103D;&#x1000;&#x103A; &#x1005;&#x102D;&#x1010;&#x103A;&#x1000;&#x103C;&#x102D;&#x102F;&#x1000;&#x103A; &#x1019;&#x103C;&#x1004;&#x103A;&#x1000;&#x103D;&#x1004;&#x103A;&#x1038; (view) &#x101E;&#x1010;&#x103A;&#x1019;&#x103E;&#x1010;&#x103A;&#x1001;&#x103B;&#x1004;&#x103A;&#x1010;&#x101A;&#x103A;&#x1006;&#x102D;&#x102F;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; &#x1021;&#x1031;&#x102C;&#x1000;&#x103A;&#x1019;&#x103E;&#x102C;&#x1015;&#x103C;&#x1011;&#x102C;&#x1038;&#x101E;&#x101C;&#x102D;&#x102F;&#x1015;&#x1032; <code>app/start/global.php</code> &#x1016;&#x102D;&#x102F;&#x1004;&#x103A;&#x1011;&#x1032;&#x1019;&#x103E;&#x102C; &#x1014;&#x103E;&#x1005;&#x103A;&#x101E;&#x1000;&#x103A;&#x101E;&#x101C;&#x102D;&#x102F; &#x101E;&#x103D;&#x102C;&#x1038;&#x101B;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x103C;&#x1004;&#x103A;&#x1006;&#x1004;&#x103A;&#x1014;&#x102D;&#x102F;&#x1004;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+<pre><code>App::down(function()
+{
+    return Response::view(&apos;maintenance&apos;, array(), 503);
+});
+</code></pre><p>&#x1021;&#x1000;&#x101A;&#x103A;&#x104D; <code>down</code> method &#x1011;&#x1032;&#x1000;&#x102D;&#x102F; Closure &#x1010;&#x1005;&#x103A;&#x1001;&#x102F; passing &#x1015;&#x1031;&#x1038;&#x101C;&#x102D;&#x102F;&#x1000;&#x103A;&#x101B;&#x1004;&#x103A;&#x1010;&#x1031;&#x102C;&#x1037; <code>NULL</code> &#x1015;&#x1032; return &#x1015;&#x103C;&#x1014;&#x103A;&#x101C;&#x102C;&#x1015;&#x103C;&#x102E;&#x1038; &#x1021;&#x1032;&#x1037;&#x1012;&#x102E; request &#x1019;&#x103E;&#x102C;&#x1015;&#x102B;&#x1010;&#x1032;&#x1037; maintenance mode &#x1000;&#x102D;&#x102F; ignore &#x101C;&#x102F;&#x1015;&#x103A;&#x101E;&#x103D;&#x102C;&#x1038;&#x1015;&#x102B;&#x101C;&#x102D;&#x1019;&#x1037;&#x103A;&#x1019;&#x101A;&#x103A;&#x104B;</p>
+<h3 id="maintenance-mode-&#x1014;&#x103E;&#x1004;&#x1037;&#x103A;-queues">Maintenance Mode &#x1014;&#x103E;&#x1004;&#x1037;&#x103A; Queues</h3>
+<p>Application &#x101F;&#x102C; maintenance mode &#x1019;&#x103E;&#x102C; &#x101B;&#x103E;&#x102D;&#x1014;&#x1031;&#x1005;&#x1009;&#x103A;&#x1021;&#x1010;&#x103D;&#x1004;&#x103A;&#x1038; <a href="queues.html">queue jobs</a> &#x1010;&#x103D;&#x1031;&#x1000;&#x102D;&#x102F; &#x1000;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x103D;&#x101A;&#x103A;&#x1016;&#x103C;&#x1031;&#x101B;&#x103E;&#x1004;&#x103A;&#x1038;&#x1019;&#x103E;&#x102C;&#x1019;&#x101F;&#x102F;&#x1010;&#x103A;&#x1015;&#x102B;&#x1018;&#x1030;&#x1038;&#x104B; Application &#x101F;&#x102C; &#x1015;&#x102F;&#x1036;&#x1019;&#x103E;&#x1014;&#x103A;&#x1021;&#x1001;&#x103C;&#x1031;&#x1021;&#x1014;&#x1031; &#x1000;&#x102D;&#x102F;&#x1015;&#x103C;&#x1014;&#x103A;&#x101B;&#x1031;&#x102C;&#x1000;&#x103A;&#x1015;&#x102E;&#x1006;&#x102D;&#x102F;&#x1010;&#x1031;&#x102C;&#x1037;&#x1019;&#x103E; &#x1015;&#x103C;&#x1014;&#x103A;&#x101C;&#x100A;&#x103A;&#x1000;&#x102D;&#x102F;&#x1004;&#x103A;&#x1010;&#x103D;&#x101A;&#x103A;&#x1016;&#x103C;&#x1031;&#x101B;&#x103E;&#x1004;&#x103A;&#x1038;&#x1015;&#x1031;&#x1038;&#x1019;&#x103E;&#x102C;&#x1016;&#x103C;&#x1005;&#x103A;&#x1015;&#x102B;&#x1010;&#x101A;&#x103A;&#x104B;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="installation.html" class="navigation navigation-prev " aria-label="Previous page: Laravel install လုပ်ခြင်း">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="homestead.html" class="navigation navigation-next " aria-label="Next page: Laravel ရဲ့ Official Development Homestead အကြောင်း">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Configuration လုပ်ခြင်း","level":"1.3.2","depth":2,"next":{"title":"Laravel ရဲ့ Official Development Homestead အကြောင်း","level":"1.3.3","depth":2,"path":"homestead.md","ref":"homestead.md","articles":[]},"previous":{"title":"Laravel install လုပ်ခြင်း","level":"1.3.1","depth":2,"path":"installation.md","ref":"installation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"configuration.md","mtime":"2016-11-17T07:37:54.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-17T08:41:54.617Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
