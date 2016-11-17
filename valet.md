@@ -16,11 +16,12 @@
 <a name="introduction"></a>
 ## Introduction
 
-Valet is a Laravel development environment for Mac minimalists. No Vagrant, No Apache, No Nginx, No `/etc/hosts` file. You can even share your sites publicly using local tunnels. _Yeah, we like it too._
 
-Laravel Valet configures your Mac to always run [Caddy](https://caddyserver.com) in the background when your machine starts. Then, using [DnsMasq](https://en.wikipedia.org/wiki/Dnsmasq), Valet proxies all requests on the `*.dev` domain to point to sites installed on your local machine.
+Valet က Mac အတွက်ရိုးရှင်းတဲ့ Laravel development environment တစ်ခုပါဘဲ။ Vagrant မလို၊ Apache မလို၊ Nginx မလို၊ `/etc/hosts` file မလိုပါဘူး။ သင့် site ကို local tunnels သုံးပြီးတော့ publicly share လုပ်လို့ရပါသေးတယ်။
 
-In other words, a blazing fast Laravel development environment that uses roughly 7 MB of RAM. Valet isn't a complete replacement for Vagrant or Homestead, but provides a great alternative if you want flexible basics, prefer extreme speed, or are working on a machine with a limited amount of RAM.
+Laravel Valet ကဘယ်လိုအလုပ်လုပ်သလဲဆိုရင်သင့်စက်ဖွင့်လိုက်တာနဲ့ [Caddy](https://caddyserver.com)  ကို background မှာအမြဲ run ထားပြီးတော့ [DnsMasq](https://en.wikipedia.org/wiki/Dnsmasq) ကိုသုံးပြီးတော့ Valet proxies တွေအကုန်လုံးက `*.dev` domain နဲ့ သင် install လုပ်ထားတဲ့ sites တွေနဲ့ point ပေးပါတယ်။
+
+Valet က Vagrant တို့ Homestead တို့ replacement မဟုတ်ပါဘူး။ သင့်စက်ရဲ့ RAM ကို 7 MB လောက်သုံးပြီးတော့တကယ့်ကိုလျှင်မြန်တဲ့ Laravel development တစ်ခုပေါ့။နောက် Laravel valet က RAM အနည်းငယ်ပါတဲ့စက်တွေ… speed ပိုမြန်ချင်တဲ့သူတွေ အတွက်တော့အကောင်းဆုံးရွေးချယ်စရာတစ်ခုပါ။
 
 Out of the box, Valet support includes, but is not limited to:
 
@@ -38,16 +39,20 @@ Out of the box, Valet support includes, but is not limited to:
 - Static HTML
 </div>
 
-However, you may extend Valet with your own [custom drivers](#custom-valet-drivers).
+Valet ကိုသင့်  [custom drivers](#custom-valet-drivers) တွေနဲ့ extend လုပ်နိုင်ပါတယ်
 
 <a name="valet-or-homestead"></a>
 ### Valet Or Homestead
 
-As you may know, Laravel offers [Homestead](/docs/{{version}}/homestead), another local Laravel development environment. Homestead and Valet differ in regards to their intended audience and their approach to local development. Homestead offers an entire Ubuntu virtual machine with automated Nginx configuration. Homestead is a wonderful choice if you want a fully virtualized Linux development environment or are on Windows / Linux.
+Laravel Valet နဲ့ [Homestead](/docs/{{version}}/homestead) ဘာကွာလဲဆိုရင် Homestead က automated Nginx configuration နဲ့ Ubuntu virtual machine ကို offer လုပ်ပါတယ်… သင်က fully virtualized Linux development လိုချင်တယ်နောက်သင့်စက်က Window/linux ဆိုရင်တော့ Homestead ကသင့်အတွက်အကောင်းဆုံးပါ။ 
 
 Valet only supports Mac, and requires you to install PHP and a database server directly onto your local machine. This is easily achieved by using [Homebrew](http://brew.sh/) with commands like `brew install php70` and `brew install mariadb`. Valet provides a blazing fast local development environment with minimal resource consumption, so it's great for developers who only require PHP / MySQL and do not need a fully virtualized development environment.
 
 Both Valet and Homestead are great choices for configuring your Laravel development environment. Which one you choose will depend on your personal taste and your team's needs.
+
+Valet က Mac ကိုဘဲ support လုပ်ပြီးတော့ PHP နဲ့ database server ကိုသင့်စက်ထဲမှာ install လုပ်ထားဖို့လိုပါတယ်။ This is easily achieved by using [Homebrew](http://brew.sh/) with commands like `brew install php70` and `brew install mariadb`
+
+သင့် development က PHP/MySQL ဘဲလိုပြီးတော့ fully virtualized development environment လိုချင်တယ်ဆိုရင်တော့ Laravel Valet ကသင့်အတွက်ပါ။ တကယ်တော့ Homestead ကော Valet ကောနှစ်ခုလုံးသူ့ဟာနဲ့သူကောင်းပါတယ်… သင့်ကိုယ်ပိုင်အကြိုက်နဲ့ သင့် Team လိုအပ်ချက်ပေါ်မူတည်ပြီးတော့သင်ဘယ် development ကိုသုံးမလဲဆိုတာကိုယ်ပိုင်ဆုံးဖြစ်ရမှာပါ။
 
 <a name="installation"></a>
 ## Installation
@@ -218,7 +223,7 @@ The `frontControllerPath` method should return the fully qualified path to your 
     }
 
 <a name="other-valet-commands"></a>
-## Other Valet Commands
+## အခြား Valet Command များ
 
 Command  | Description
 ------------- | -------------
