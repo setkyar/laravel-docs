@@ -97,7 +97,7 @@ Of course, you are not limited to displaying the contents of the variables passe
 
     The current UNIX timestamp is {{ time() }}.
 
-> {note} Blade `{{ }}` statements are automatically sent through PHP's `htmlentities` function to prevent XSS attacks.
+> {note} Blade {% raw %}`{{ }}`{% endraw %} statements are automatically sent through PHP's `htmlentities` function to prevent XSS attacks.
 
 #### Echoing Data If It Exists
 
@@ -107,7 +107,9 @@ Sometimes you may wish to echo a variable, but you aren't sure if the variable h
 
 However, instead of writing a ternary statement, Blade provides you with the following convenient short-cut, which will be compiled to the ternary statement above:
 
+{% raw %}
     {{ $name or 'Default' }}
+{% endraw %}
 
 In this example, if the `$name` variable exists, its value will be displayed. However, if it does not exist, the word `Default` will be displayed.
 

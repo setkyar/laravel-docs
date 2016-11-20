@@ -354,7 +354,9 @@ If you have multiple forms on a single page, you may wish to name the `MessageBa
 
 You may then access the named `MessageBag` instance from the `$errors` variable:
 
-    {{ $errors->login->first('email') }}
+    {% raw %}
+        {{ $errors->login->first('email') }}
+    {% endraw %}
 
 <a name="after-validation-hook"></a>
 ### After Validation Hook

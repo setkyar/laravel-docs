@@ -174,10 +174,12 @@ Typically, you will want to pass some data to your view that you can utilize whe
     }
 
 Once the data has been set to a public property, it will automatically be available in your view, so you may access it like you would access any other data in your Blade templates:
-
+    
+    {% raw %}
     <div>
         Price: {{ $order->price }}
     </div>
+    {% endraw %}
 
 #### Via The `with` Method:
 
@@ -287,22 +289,26 @@ The `attachData` method may be used to attach a raw string of bytes as an attach
 ### Inline Attachments
 
 Embedding inline images into your emails is typically cumbersome; however, Laravel provides a convenient way to attach images to your emails and retrieving the appropriate CID. To embed an inline image, use the `embed` method on the `$message` variable within your email template. Laravel automatically makes the `$message` variable available to all of your email templates, so you don't need to worry about passing it in manually:
-
+    
+    {% raw %}
     <body>
         Here is an image:
 
         <img src="{{ $message->embed($pathToFile) }}">
     </body>
+    {% endraw %}
 
 #### Embedding Raw Data Attachments
 
 If you already have a raw data string you wish to embed into an email template, you may use the `embedData` method on the `$message` variable:
-
+    
+    {% raw %}
     <body>
         Here is an image from raw data:
 
         <img src="{{ $message->embedData($data, $name) }}">
     </body>
+    {% endraw %}
 
 <a name="sending-mail"></a>
 ## Sending Mail
