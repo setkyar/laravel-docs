@@ -1,15 +1,15 @@
 # Localization
 
-- [Introduction](#introduction)
+- [မိတ်ဆက်](#introduction)
 - [Retrieving Language Lines](#retrieving-language-lines)
     - [Replacing Parameters In Language Lines](#replacing-parameters-in-language-lines)
     - [Pluralization](#pluralization)
 - [Overriding Package Language Files](#overriding-package-language-files)
 
 <a name="introduction"></a>
-## Introduction
+## မိတ်ဆက်
 
-သင့်ရဲ့ Application အတွင်းမှာ ဘာသာစကားများစွာ လွယ်လွယ်ကူကူ ထည့်သွင်းလို့ရစေရန်၊ ဘာသာစကားအမျိုးမျိုးဖြင့် ရေးသားထားသော string တွေကို အလွယ်တကူ retrieve လုပ်နိုင်အောင် laravel ရဲ့ localization feature ကထောက်ပံ့ပေးထားပါတယ်။ Language strings are stored in files within the `resources/lang` directory. Within this directory there should be a subdirectory for each language supported by the application:
+သင့်ရဲ့ Application အတွင်းမှာ ဘာသာစကားများစွာ လွယ်လွယ်ကူကူ ထည့်သွင်းလို့ရစေရန်၊ ဘာသာစကားအမျိုးမျိုးဖြင့် ရေးသားထားသော string တွေကို အလွယ်တကူ retrieve လုပ်နိုင်အောင် laravel ရဲ့ localization feature ကထောက်ပံ့ပေးထားပါတယ်။ `resources/lang` လမ်းကြောင်း အောက်မှာရှိတဲ့ file တွေထဲမှာ ဘာသာစကား စကားစုတွေကို သိမ်းဆည်းကြရပါတယ်။ ထိုလမ်းကြောင်းအောက်မှာ ကိုယ့် Application မှာထည့်သွင်းချင်တဲ့ ဘာသာစကားတစ်ခုချင်းစီအတွက် folder အသီးသီးဆောက်ပြီး ဆောက်ပြီး အသုံးပြုရမှာဖြစ်ပါတယ်။
 
     /resources
         /lang
@@ -18,17 +18,17 @@
             /es
                 messages.php
 
-All language files simply return an array of keyed strings. For example:
+ဘာသာစကားကြိုတင်သတ်မှတ်ထားသော ဖိုင်တွေဆီမှ keyed strings တွေပါတဲ့ array return ပြန်လာပါတယ်။ ဥပမာ -
 
     <?php
 
     return [
-        'welcome' => 'Welcome to our application'
+        'welcome' => 'မင်္ဂလာပါ'
     ];
 
-### Configuring The Locale
+### ဘာသာစကားညွှန်ကိန်း(locale) များကို အစီအစဉ်ချခြင်း
 
-The default language for your application is stored in the `config/app.php` configuration file. Of course, you may modify this value to suit the needs of your application. You may also change the active language at runtime using the `setLocale` method on the `App` facade:
+သင့် application အတွက် ပုံသေ ဘာသာစကားကို `config/app.php` configuration ဖိုင်ထဲမှာ သတ်မှတ်ထားပါတယ်။ ၎င်းကို သင့် application နဲ့ကိုက်ညီအောင် ပြောင်းလဲနိုင်ပါတယ်။ Runtime တွင်လဲ `setLocale` method ကို `App` facade နဲ့တွဲဖက်ပြီး ဘာသာစကားများ ပြောင်းလဲအသုံးပြုနိုင်ပါတယ်။
 
     Route::get('welcome/{locale}', function ($locale) {
         App::setLocale($locale);
@@ -36,7 +36,7 @@ The default language for your application is stored in the `config/app.php` conf
         //
     });
 
-You may configure a "fallback language", which will be used when the active language does not contain a given language line. Like the default language, the fallback language is also configured in the `config/app.php` configuration file:
+လက်ရှိသတ်မှတ်ထားတဲ့ ဘာသာစကားမှာ မပါဝင်သော စကားစုများအတွက် အသုံးပြုနိုင်ရန် အရံဘာသာစကား (fallback language) ကိုလည်း သတ်မှတ်ပေးဖို့လိုပါလိမ့်မယ်။ "ပုံသေဘာသာစကား" သတ်မှတ်သကဲ့သို့ပင် "အရံဘာသာစကား" ကိုလဲ `config/app.php` configuration ဖိုင်ထဲမှာသတ်မှတ်နိုင်ပါတယ်။
 
     'fallback_locale' => 'en',
 
