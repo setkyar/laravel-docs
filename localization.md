@@ -42,7 +42,7 @@
 
 #### Determining The Current Locale
 
-You may use the `getLocale` and `isLocale` methods on the `App` facade to determine the current locale or check if the locale is a given value:
+`getLocale` နှင့် `isLocale` method တို့ကို `App` facade တွင်အသုံးပြုပြီး လက်ရှိအသုံးပြုနေသော ဘာသာစကားကို ဆုံးဖြတ်ခြင်း (သို့) ထို ဘာသာစကားညွှန်းကိန်းသည် ကြိုတင်သတ်မှတ်ထားခြင်းရှိမရှိ စစ်ဆေးခြင်းများပြုလုပ်နိုင်ပါတယ်။
 
     $locale = App::getLocale();
 
@@ -53,30 +53,30 @@ You may use the `getLocale` and `isLocale` methods on the `App` facade to determ
 <a name="retrieving-language-lines"></a>
 ## Retrieving Language Lines
 
-You may retrieve lines from language files using the `trans` helper function. The `trans` method accepts the file and key of the language line as its first argument. For example, let's retrieve the `welcome` language line from the `resources/lang/messages.php` language file:
+`trans` ဆိုတဲ့ helper function အသုံးပြုပြီးတော့ ဘာသာစကား files တွေမှ စကားစုများထုတ်ယူနိုင်ပါတယ်။ `trans` method က ဘာသာစကားစုတွေရဲ့ ဖိုင်နာမည် နဲ့ key တွေကို သူ့ရဲ့ ပထမ argument အနေနဲ့ လက်ခံပါတယ်။ ဥပမာ `resources/lang/messages.php` ဘာသာစကားဖိုင်အတွင်းမှ `welcome` စကားစုကို ရယူမည်ဆိုပါစို့ -
 
     echo trans('messages.welcome');
 
-Of course if you are using the [Blade templating engine](/docs/{{version}}/blade), you may use the `{{ }}` syntax to echo the language line or use the `@lang` directive:
+သင္က [Blade templating engine](/docs/{{version}}/blade) ကိုသံုးေနတာဆိုရင္ ဘာသာစကားစုေတြကို ေဖာ္ျပရန္(echo) အတြက္  `{{ }}` syntax သို႔မဟုတ္ `@lang` directive ကိုအသံုးျပဳရပါမယ္။
 
     {{ trans('messages.welcome') }}
 
     @lang('messages.welcome')
 
-If the specified language line does not exist, the `trans` function will simply return the language line key. So, using the example above, the `trans` function would return `messages.welcome` if the language line does not exist.
+အကယ္လို႔ သတ္မွတ္လိုက္တဲ့ ဘာသာစကားစု မရွိခဲ့လ်ွင္ `trans` function က ဘာသာစကားစု၏ key ကိုပဲ return ျပန္ေပးပါတယ္။ ထို႔ေၾကာင့္ အထက္ကေဖာ္ျပထားေသာ ဥပမာတြင္ ဘာသာစကားစု မရွိခဲ့လ်ွင္ `trans` function က `messages.welcome` ကို return ျပန္ေပးပါလိမ့္မယ္။
 
 <a name="replacing-parameters-in-language-lines"></a>
 ### Replacing Parameters In Language Lines
 
-If you wish, you may define place-holders in your language lines. All place-holders are prefixed with a `:`. For example, you may define a welcome message with a place-holder name:
+သင္ဆႏၵရွိလွ်င္ သင့္ရဲ႕ စကားစုေတြအတြင္းမွာ place-holder ေတြ သတ္မွတ္နုိုင္ပါတယ္။ place-holder အားလံုးက ေရွ႕မွာ `:` ခံထားပါတယ္။ ဥပမာအားျဖင့္ သင့္ရဲ႕ welcome message ကို place-holder name ထည့္သြင္းျပီး သတ္မွတ္မည္ဆိုလ်ွင္ - 
 
     'welcome' => 'Welcome, :name',
 
-To replace the place-holders when retrieving a language line, pass an array of replacements as the second argument to the `trans` function:
+စကားစုေတြကိုထုတ္ယူေသာအခါ place-holder မ်ားေနရာတြင္အစားထိုးရန္အတြက္ `trans` function ၏ ဒုတိယ argument အေနနဲ႕ အစားထိုးခ်င္သည့္ array ကိုထည့္ေပးလိုက္ရပါမယ္။
 
     echo trans('messages.welcome', ['name' => 'dayle']);
 
-If your place-holder contains all capital letters, or only has its first letter capitalized, the translated value will be capitalized accordingly:
+အစားထိုး၀င္ေရာက္လာေသာတန္ဖိုးမ်ားသည္ place-holder ရဲ႕ စကားလံုး အၾကီးအေသး ထားသိုပံုအလုိက္ ေျပာင္းလဲသြားမွာျဖစ္ပါတယ္။
 
     'welcome' => 'Welcome, :NAME', // Welcome, DAYLE
     'goodbye' => 'Goodbye, :Name', // Goodbye, Dayle
