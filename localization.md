@@ -57,26 +57,26 @@
 
     echo trans('messages.welcome');
 
-သင္က [Blade templating engine](/docs/{{version}}/blade) ကိုသံုးေနတာဆိုရင္ ဘာသာစကားစုေတြကို ေဖာ္ျပရန္(echo) အတြက္  `{{ }}` syntax သို႔မဟုတ္ `@lang` directive ကိုအသံုးျပဳရပါမယ္။
+သင်က [Blade templating engine](/docs/{{version}}/blade) ကိုသုံးနေတာဆိုရင် ဘာသာစကားစုတွေကို ဖော်ပြရန်(echo) အတွက်  `{{ }}` syntax သို့မဟုတ် `@lang` directive ကိုအသုံးပြုရပါမယ်။
 
     {{ trans('messages.welcome') }}
 
     @lang('messages.welcome')
 
-အကယ္လို႔ သတ္မွတ္လိုက္တဲ့ ဘာသာစကားစု မရွိခဲ့လ်ွင္ `trans` function က ဘာသာစကားစု၏ key ကိုပဲ return ျပန္ေပးပါတယ္။ ထို႔ေၾကာင့္ အထက္ကေဖာ္ျပထားေသာ ဥပမာတြင္ ဘာသာစကားစု မရွိခဲ့လ်ွင္ `trans` function က `messages.welcome` ကို return ျပန္ေပးပါလိမ့္မယ္။
+အကယ်လို့ သတ်မှတ်လိုက်တဲ့ ဘာသာစကားစု မရှိခဲ့လျှင် `trans` function က ဘာသာစကားစု၏ key ကိုပဲ return ပြန်ပေးပါတယ်။ ထို့ကြောင့် အထက်ကဖော်ပြထားသော ဥပမာတွင် ဘာသာစကားစု မရှိခဲ့လျှင် `trans` function က `messages.welcome` ကို return ပြန်ပေးပါလိမ့်မယ်။
 
 <a name="replacing-parameters-in-language-lines"></a>
 ### Replacing Parameters In Language Lines
 
-သင္ဆႏၵရွိလွ်င္ သင့္ရဲ႕ စကားစုေတြအတြင္းမွာ place-holder ေတြ သတ္မွတ္နုိုင္ပါတယ္။ place-holder အားလံုးက ေရွ႕မွာ `:` ခံထားပါတယ္။ ဥပမာအားျဖင့္ သင့္ရဲ႕ welcome message ကို place-holder name ထည့္သြင္းျပီး သတ္မွတ္မည္ဆိုလ်ွင္ - 
+သင်ဆန္ဒရှိလျှင် သင့်ရဲ့ စကားစုတွေအတွင်းမှာ place-holder တွေ သတ်မှတ်နိုင်ပါတယ်။ place-holder အားလုံးက ရှေ့မှာ `:` ခံထားပါတယ်။ ဥပမာအားဖြင့် သင့်ရဲ့ welcome message ကို place-holder name ထည့်သွင်းပြီး သတ်မှတ်မည်ဆိုလျှင် - 
 
     'welcome' => 'Welcome, :name',
 
-စကားစုေတြကိုထုတ္ယူေသာအခါ place-holder မ်ားေနရာတြင္အစားထိုးရန္အတြက္ `trans` function ၏ ဒုတိယ argument အေနနဲ႕ အစားထိုးခ်င္သည့္ array ကိုထည့္ေပးလိုက္ရပါမယ္။
+စကားစုတွေကိုထုတ်ယူသောအခါ place-holder များနေရာတွင်အစားထိုးရန်အတွက် `trans` function ၏ ဒုတိယ argument အနေနဲ့ အစားထိုးချင်သည့် array ကိုထည့်ပေးလိုက်ရပါမယ်။
 
     echo trans('messages.welcome', ['name' => 'dayle']);
 
-အစားထိုး၀င္ေရာက္လာေသာတန္ဖိုးမ်ားသည္ place-holder ရဲ႕ စကားလံုး အၾကီးအေသး ထားသိုပံုအလုိက္ ေျပာင္းလဲသြားမွာျဖစ္ပါတယ္။
+အစားထိုးဝင်ရောက်လာသောတန်ဖိုးများသည် place-holder ရဲ့ စကားလုံး အကြီးအသေး ထားသိုပုံအလိုက် ပြောင်းလဲသွားမှာဖြစ်ပါတယ်။
 
     'welcome' => 'Welcome, :NAME', // Welcome, DAYLE
     'goodbye' => 'Goodbye, :Name', // Goodbye, Dayle
@@ -100,6 +100,6 @@ Laravel translator ဟာ Symfony Translation component ကိုအသုံး
 <a name="overriding-package-language-files"></a>
 ## Overriding Package Language Files
 
-Some packages may ship with their own language files. Instead of changing the package's core files to tweak these lines, you may override them by placing files in the `resources/lang/vendor/{package}/{locale}` directory.
+Laravel နဲ့အတူ တွဲစပ်အသုံးပြုနိုင်တဲ့ packages တွေမှာ သူတို့ရဲ့ ကိုယ်ပိုင် ဘာသာစကားဖိုင်တွေတစ်ပါတည်းပါလာပါတယ်။ အဲ့ဒီဖိုင်တွေကို change ဖို့ packages တွေရဲ့ မူရင်းဖိုင်တွေကို သွားပြင်နေမဲ့အစား `resources/lang/vendor/{package}/{locale}` လမ်းကြောင်းအောက်ကနေတစ်ဆင့် override ပြုလုပ်နိုင်ပါတယ်။
 
-So, for example, if you need to override the English language lines in `messages.php` for a package named `skyrim/hearthfire`, you should place a language file at: `resources/lang/vendor/hearthfire/en/messages.php`. Within this file, you should only define the language lines you wish to override. Any language lines you don't override will still be loaded from the package's original language files.
+ဥပမာ `skyrim/hearthfire` လို့ အမည်တွင်တဲ့ package အတွက် `messages.php` ဖိုင်ထဲမှာရှိတဲ့ English Language ကို override လုပ်ချင်တယ်ဆိုရင် `resources/lang/vendor/hearthfire/en/messages.php` ဖိုင်ကနေတစ်ဆင့် ပြုလုပ်နိုင်ပါတယ်။ Override လုပ်ဖို့လိုအပ်တဲ့ စကားစုတွေကိုပဲ အဲ့ဒီဖိုင်ထဲမှာသတ်မှတ်ထားဖို့လိုအပ်ပါတယ်။ ကျန်တဲ့စကားစုအားလုံးကိုတော့ package ရဲ့ language ဖိုင်ထဲက နေပဲ အလုပ်လုပ်သွားမှာဖြစ်ပါတယ်။
