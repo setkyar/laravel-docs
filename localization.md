@@ -83,17 +83,17 @@
 
 
 <a name="pluralization"></a>
-### Pluralization
+### အများကိန်းပြုလုပ်ခြင်း
 
-Pluralization is a complex problem, as different languages have a variety of complex rules for pluralization. By using a "pipe" character, you may distinguish singular and plural forms of a string:
+ဘာသာစကားအမျိုးမျိုးမှာ အများကိန်းပြောင်းရန် ရှုပ်ထွေးသော စည်းမျဉ်းစည်းကမ်းတွေများစွာရှိသည့်အတွက် အများကိန်းပြောင်းခြင်းဟာ ရှုပ်ထွေးတဲ့ပြဿနာ ဖြစ်လာပါတယ်။ "pipe" character ကိုသုံးခြင်းအားဖြင့် စကားစုများတွင် အများကိန်း နှင့် အနဲကိန်းကို ခွဲခြား အသုံးပြုနိုင်ပါတယ်။
 
     'apples' => 'There is one apple|There are many apples',
 
-After defining a language line that has pluralization options, you may use the `trans_choice` function to retrieve the line for a given "count". In this example, since the count is greater than one, the plural form of the language line is returned:
+သင့်ရဲ့ စကားစုကို အများကိန်းပြုလုပ်ခြင်းအခြေအနေဖြင့် အသုံးပြုမည်ဟုရွေးခြယ်ထားပြီးနောက် ပေးလိုက်သော "count" ပေါ်မူတည်၍ စကားစုကိုထုတ်ယူသောအခါ `trans_choice` function ကိုအသုံးပြုနိုင်ပါတယ်။ ယခု ဥပမာတွင် count ၏တန်ဖိုး ၁ ထက်ကြီးတာနဲ့ စကားစုက အများကိန်းပုံစံဖြင့် return ပြန်တာမှာဖြစ်ပါတယ်။
 
     echo trans_choice('messages.apples', 10);
 
-Since the Laravel translator is powered by the Symfony Translation component, you may create even more complex pluralization rules which specify language lines for multiple number ranges:
+Laravel translator ဟာ Symfony Translation component ကိုအသုံးပြုထားတဲ့အတွက်ကြောင့် သင့်အနေနဲ့ number range အမျိုးမျိုးအတွက် ပိုမိုရှုပ်ထွေးတဲ့လုပ်ဆောင်ချက်များပင်လျှင် ပြုလုပ် နိုင်မှာဖြစ်ပါတယ်။
 
     'apples' => '{0} There are none|[1,19] There are some|[20,Inf] There are many',
 
