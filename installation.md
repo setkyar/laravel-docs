@@ -1,83 +1,122 @@
-# Laravel install လုပ်ခြင်း
+# Installation
 
-- [Composer ကို Install လုပ်ခြင်း](#install-composer)
-- [Laravel ကို Install လုပ်ခြင်း](#install-laravel)
-- [Server လိုအပ်ချက်မျာ](#server-requirements)
-- [Configuration လုပ်ခြင်း](#configuration)
-- [URL လှလှလေးလိုချင်တယ်](#pretty-urls)
+- [Installation](#installation)
+    - [Server Requirements](#server-requirements)
+    - [Installing Laravel](#installing-laravel)
+    - [Configuration](#configuration)
+- [Web Server Configuration](#web-server-configuration)
+    - [Pretty URLs](#pretty-urls)
 
-<a name="install-composer"></a>
-## Composer ကို Install လုပ်ခြင်း
+<a name="installation"></a>
+## Installation
 
-Laravel ရဲ့အသုံးဝင်တဲ့tool .... [Composer](http://getcomposer.org), သူ့ရဲ့ depenedencies တွေကို Manage လုပ်ဖို့။ ပထမဆုံး `composer.phar` copy ကိို download လုပ်လိုက်ပါ။ download လုပ်ပြီးသွားပြီဆိုရင် သင့်မှာ PHAR ဆိုတဲ့file လေးရှိသွားပါပြီ၊ အဲဒီ့ file ကိုသင့်ရဲ့local project မှာဒီတိုင်းထားချင်ရင်လည်းရပါတယ် တကယ်လို့သင်က `usr/local/bin` ထဲကိုရွှေ့ပြီးတော့သင့်ရဲ့  System အတွက် Global လုပ်မယ်ဆိုလည်းလုပ်နိုင်ပါတယ်။ Window မှာဆိုရင်တော့ [Windows installer](https://getcomposer.org/Composer-Setup.exe) ကိုသုံးပြီး install လုပ်နိုင်ပါတယ်။
-
-<a name="install-laravel"></a>
-## Laravel ကို Install လုပ်ခြင်း
-
-### Laravel Installer မှတစ်ဆင့်
-
-ပထမဆုံး[Laravel installer PHAR archive](http://laravel.com/laravel.phar) ကို  download လုပ်ပါ၊ install လုပ်ရာမှာလွယ်ကူအောင်လို့ file name ကို `laravel` လို့ပြောင်းလိုက်ပါ၊ ပြောင်းပြီးသွားရင်အဲ့ဒီ့ File ကို  `/usr/local/bin` ထဲကိုရွှေ့လိုက်ပါ။ Laravel ကို Install လုပ်မယ်ဆိုရင် `laravel new` ဆိုပြီး command line ကနေ run လိုက်ရင် Laravel Framework တစ်ခုကိုကိုယ်ကြိုက်တဲ့နေရာမှာ Install လုပ်နိုင်ပါပြီ။ `laravel new blog` ဆိုပြီး command line ကနေ run လိုက်ရင် blog ဆိုတဲ့အမည်နဲ့ command line ကနေကိုယ် create လုပ်ချင်တဲ့နေရာမှာ Laravel Framework အသစ်တစ်ခုကို install လုပ်ပေးမှာဖြစ်ပါတယ်။ ဒီနည်းက composer ကနေ download လုပ်တာထက်ပိုမြန်ပါတယ်။
-
-သင့်အနေနဲ့ Laravel ကို Composer ကနေတစ်ဆင့် `create-project`  command သုံးပြီးတော့လည်း install လုပ်နိုင်ပါတယ်၊ terminal မှာ အောက်မှာရေးထားတဲ့ command ကို run ပြီးတော့လည်း install လုပ်နိုင်ပါတယ်
-
-	composer create-project laravel/laravel --prefer-dist
-
-### Download မှတစ်ဆင့်
-
-Composer ကို install လုပ်ပြီးသွားပြီဆိုရင် Laravel Framework [latest version](https://github.com/laravel/laravel/archive/master.zip) ကို download လုပ်လိုက်ပါ၊  သင့်ရဲ့ web server ထဲမှာ  zip ကို extra လုပ်လိုက်ပါ၊ extra လုပ်ထားတဲ့  framework folder ထဲကို command line ကဝင်ပြီးတော့  `php composer.phar install` ဒါမှမဟုတ် (`composer install`) ဆိုပြီး run လိုက်ပါ။ ဒီ command က framework ရဲ့ dependencies တွေကို install လုပ်ခိုင်းလိုက်တာပါ။ ဒီ installation လုပ်တဲ့နေရာမှာ webserver မှာ git install လုပ်ထားမှ successfully complete ဖြစ်မှာပါ။
-
-တကယ်လို့သင် Framework ကို update လုပ်ချင်တယ်ဆိုရင်`php composer.phar update` command ကို run ပေးရပါ့မယ်။
+> {video} Are you a visual learner? Laracasts provides a [free, thorough introduction to Laravel](https://laracasts.com/series/laravel-from-scratch-2017) for newcomers to the framework. It's a great place to start your journey.
 
 <a name="server-requirements"></a>
-## Server လိုအပ်ချက်များ
-Laravel Framework မှာ system requirements တစ်ချို့ရှိပါတယ်။ ဘာတွေလည်းဆိုရင်
+### Server Requirements
 
-- PHP >= 5.3.7
-- MCrypt PHP Extension
+The Laravel framework has a few system requirements. Of course, all of these requirements are satisfied by the [Laravel Homestead](/docs/{{version}}/homestead) virtual machine, so it's highly recommended that you use Homestead as your local Laravel development environment.
 
-တို့ဘဲဖြစ်ပါတယ်။
+However, if you are not using Homestead, you will need to make sure your server meets the following requirements:
 
-PHP 5.5 မှာ တစ်ချို့ OS တွေက PHP JSON extension ကို manullly install လုပ်ပေးရပါတယ်။ တကယ်လို့ Ubuntu သုံးတယ်ဆိုရင် `apt-get install php5-json` ဆိုပြီး terminal ကနေ run လိုက်တာနဲ့အဆင်ပြေပါတယ်။
+<div class="content-list" markdown="1">
+- PHP >= 5.6.4
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+</div>
+
+<a name="installing-laravel"></a>
+### Installing Laravel
+
+Laravel utilizes [Composer](https://getcomposer.org) to manage its dependencies. So, before using Laravel, make sure you have Composer installed on your machine.
+
+#### Via Laravel Installer
+
+First, download the Laravel installer using Composer:
+
+    composer global require "laravel/installer"
+
+Make sure to place the `$HOME/.composer/vendor/bin` directory (or the equivalent directory for your OS) in your $PATH so the `laravel` executable can be located by your system.
+
+Once installed, the `laravel new` command will create a fresh Laravel installation in the directory you specify. For instance, `laravel new blog` will create a directory named `blog` containing a fresh Laravel installation with all of Laravel's dependencies already installed:
+
+    laravel new blog
+
+#### Via Composer Create-Project
+
+Alternatively, you may also install Laravel by issuing the Composer `create-project` command in your terminal:
+
+    composer create-project --prefer-dist laravel/laravel blog
+
+#### Local Development Server
+
+If you have PHP installed locally and you would like to use PHP's built-in development server to serve your application, you may use the `serve` Artisan command. This command will start a development server at `http://localhost:8000`:
+
+    php artisan serve
+
+Of course, more robust local development options are available via [Homestead](/docs/{{version}}/homestead) and [Valet](/docs/{{version}}/valet).
 
 <a name="configuration"></a>
-## Configuration လုပ်ခြင်း
+### Configuration
 
-Laravel က configuration ဆိုတာမရှိသလောက်ပါဘဲ။ သင်စပြီး develop ဖို့ရာအဆင်သင့်ပါဘဲ။ဘယ်လိုဘဲပြောပြော သင့်အနေနဲ့ `app/config/app.php` file နဲ့သူ့ရဲ့ Documencation ကိုပြန်ကြည့်ချင်မှာပါဘဲ။ `app/config/app.php`မှာဘာတွေပါသလဲဆိုရင်တော့ `timezone` နောက် `locale`တို့ပါပါတယ်၊သင့်ရဲ့ application နဲ့အဆင်ပြေတာတွေကို configure လုပ်နိုင်ပါတယ်။
+#### Public Directory
 
-Laravel ကိုတစ်ခါ Install လုပ်တိုင်း [သင့်ရဲ့ local environmet](configuration#environment-configuration.md) ကို Configure ပြန်လုပ်သင့်ပါတယ်။ local machine မှာ     develop လုပ်တဲ့အခါ erros ကိုမြင်ရမယ်။ မူလကတော့ error reporting က သင့်ရဲ့ development production မှာ disable လုပ်ထားပါတယ်။
+After installing Laravel, you should configure your web server's document / web root to be the `public` directory. The `index.php` in this directory serves as the front controller for all HTTP requests entering your application.
 
-> **မှတ်ချက်:** `app.debug` ကို production မှာဘယ်တော့မှ true မပေးသင့်ပါဘူး။ဘယ်တော့မှ မလုပ်ပါနဲ့။
+#### Configuration Files
 
-<a name="permissions"></a>
-### Permissions များ
+All of the configuration files for the Laravel framework are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
 
-Laravel က   `app/storage` ကို web server အတွက် permission write ပေးရပါမယ်။
+#### Directory Permissions
 
-<a name="paths"></a>
-### လမ်းကြောင်းများ
+After installing Laravel, you may need to configure some permissions. Directories within the `storage` and the `bootstrap/cache` directories should be writable by your web server or Laravel will not run. If you are using the [Homestead](/docs/{{version}}/homestead) virtual machine, these permissions should already be set.
 
-Framework ရဲ့ လမ်းကြောင်းတွေကပြောင်းလဲနိုင်ပါတယ်၊ ဒီ location တွေကိုပြောင်းချင်တယ်ဆိုရင် `bootstrap/paths.php` မှာကြည့်ရှူပြောင်းလည်းနိုင်ပါတယ်။
+#### Application Key
+
+The next thing you should do after installing Laravel is set your application key to a random string. If you installed Laravel via Composer or the Laravel installer, this key has already been set for you by the `php artisan key:generate` command.
+
+Typically, this string should be 32 characters long. The key can be set in the `.env` environment file. If you have not renamed the `.env.example` file to `.env`, you should do that now. **If the application key is not set, your user sessions and other encrypted data will not be secure!**
+
+#### Additional Configuration
+
+Laravel needs almost no other configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains several options such as `timezone` and `locale` that you may wish to change according to your application.
+
+You may also want to configure a few additional components of Laravel, such as:
+
+<div class="content-list" markdown="1">
+- [Cache](/docs/{{version}}/cache#configuration)
+- [Database](/docs/{{version}}/database#configuration)
+- [Session](/docs/{{version}}/session#configuration)
+</div>
+
+<a name="web-server-configuration"></a>
+## Web Server Configuration
 
 <a name="pretty-urls"></a>
-## URL လှလှလေးလိုချင်တယ်
+### Pretty URLs
 
-### Apache
+#### Apache
 
-Framework ထဲက `public/.htaccess` ကို URL မှာ `index.php` မပါအောင်ဖျောက်ထားပေးမှာဖြစ်ပါတယ်။ တကယ်လို့သင့် ရဲ့ Laravel application က Apache ကိုသုံးတယ်ဆိုရင်  `mod_rewrite` ကို enable လုပ်ဖို့မမေ့ပါနဲ့ဦး။
+Laravel includes a `public/.htaccess` file that is used to provide URLs without the `index.php` front controller in the path. Before serving Laravel with Apache, be sure to enable the `mod_rewrite` module so the `.htaccess` file will be honored by the server.
 
-တကယ်လို့ `.htaccess`file က သင့် Application မှာအလုပ်မလုပ်ဘူးဆိုရင် အောက်ကတစ်ခုကိုစမ်းကြည့်လိုက်ပါ:
+If the `.htaccess` file that ships with Laravel does not work with your Apache installation, try this alternative:
 
-	Options +FollowSymLinks
-	RewriteEngine On
+    Options +FollowSymLinks
+    RewriteEngine On
 
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule ^ index.php [L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
 
-### Nginx
+#### Nginx
 
-Nginx မှာဆိုရင်အောက်ကညွှန်ကြားချက်ကို လိုက်လုပ်လိုက်တာနဲ့URL လှလှလေးတွေရပါတယ်
+If you are using Nginx, the following directive in your site configuration will direct all requests to the `index.php` front controller:
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
     }
+
+Of course, when using [Homestead](/docs/{{version}}/homestead) or [Valet](/docs/{{version}}/valet), pretty URLs will be automatically configured.

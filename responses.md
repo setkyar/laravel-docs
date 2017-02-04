@@ -1,228 +1,257 @@
-# Views နှင့် Responses များအကြောင်း
+# HTTP Responses
 
-- [Basic Responses](#basic-responses)
+- [Creating Responses](#creating-responses)
+    - [Attaching Headers To Responses](#attaching-headers-to-responses)
+    - [Attaching Cookies To Responses](#attaching-cookies-to-responses)
+    - [Cookies & Encryption](#cookies-and-encryption)
 - [Redirects](#redirects)
-- [Views](#views)
-- [View Composers](#view-composers)
-- [Special Responses](#special-responses)
+    - [Redirecting To Named Routes](#redirecting-named-routes)
+    - [Redirecting To Controller Actions](#redirecting-controller-actions)
+    - [Redirecting With Flashed Session Data](#redirecting-with-flashed-session-data)
+- [Other Response Types](#other-response-types)
+    - [View Responses](#view-responses)
+    - [JSON Responses](#json-responses)
+    - [File Downloads](#file-downloads)
+    - [File Responses](#file-responses)
 - [Response Macros](#response-macros)
 
-<a name="basic-responses"></a>
-## Basic Responses
+<a name="creating-responses"></a>
+## Creating Responses
 
-#### String တစ်ခုကို Routes ကနေ return ပြန်ချင်ရင် -
+#### Strings & Arrays
 
-	Route::get('/', function()
-	{
-		return 'Hello World';
-	});
+All routes and controllers should return a response to be sent back to the user's browser. Laravel provides several different ways to return responses. The most basic response is simply returning a string from a route or controller. The framework will automatically convert the string into a full HTTP response:
 
-#### Creating Custom Responses
-
-Symfony\Component\HttpFoundation\Response` class ကနေ Response` တစ်ခုကဖြစ်လာတယ်၊  HTTPS responses တွေကို တည်ဆောက်ဖို့ရာအတွက် များစွာသော methods တွေကနေ စီစဉ်ပေးပါတယ်။
-
-	$response = Response::make($contents, $statusCode);
-
-	$response->header('Content-Type', $value);
-
-	return $response;
-
-သင်က `Response` class တစ်ခုရဲ့ method ကိုလည်းလိုချင်တယ်... ဒါပေမယ့် response content အဖြစ် return ပြန်ချင်တယ် ဆိုရင်တော့`Response::view` method ကအဆင်ပြေပါလိမ့်မယ်-
-
-	return Response::view('hello')->header('Content-Type', $type);
-
-#### Cookies တွေကို Responses တွေဆီပြန်ချင်တယ်ဆိုရင်
-
-	$cookie = Cookie::make('name', 'value');
-
-	return Response::make($content)->withCookie($cookie);
-
-<a name="redirects"></a>
-## ပြန်လည်လမ်းကြောင်းညွှန်ကြားမှူ့
-
-#### Redirect လုပ်ချင်တယ်ဆိုရင် -
-
-	return Redirect::to('user/login');
-
-#### Flash Data နဲ့ Redirect လုပ်ရင် -
-
-	return Redirect::to('user/login')->with('message', 'Login Failed');
-
-> **Note:** Since the `with` method flashes data to the session, you may retrieve the data using the typical `Session::get` method.
-
-#### Nmaed Route နှင့် Redirect လုပ်ရင်-
-
-	return Redirect::route('login');
-
-#### Route Parameters တစ်ခုနဲ့ Redirect လုပ်ရင် -
-
-
-	return Redirect::route('profile', array(1));
-
-#### Route ထဲမှာ name parameters ပါတာကို Redirect လုပ်ရင်
-
-	return Redirect::route('profile', array('user' => 1));
-
-#### Controller ရဲ့ Action တစ်ခုကနေ Redirect တစ်ခု return လုပ်ချင်ရင်
-
-	return Redirect::action('HomeController@index');
-
-#### Paramater ပါတဲ့ Controller တစ်ခုကို Redirect တစ်ခု return လုပ်ခြင်း
-
-	return Redirect::action('UserController@profile', array(1));
-
-#### Name Parameters တစ်ခုပါတဲ့ Controller Action တစ်ခုကနေ Redirect  တစ်ခု return လုပ်ခြင်း
-
-	return Redirect::action('UserController@profile', array('user' => 1));
-
-<a name="views"></a>
-## Views 
-
-သင့်ရဲ့ presentation logic ကနေ controller နဲ့ domain logic တွေ ခွဲခြားဖို့ရာအတွက် Views က အဆင်ပြေဆုံးဖြစ်အောင်စီစဉ်ပေးပါတယ်။
-Views Files တွေက `app/views` directory ထဲမှာ ရှိပါတယ်။ Views မှာ ထုံးစံအတိုင်း သင့် application ရဲ့ HTML တွေပါဝင်ပါတယ် ။
-
-အောက်မှာဖော်ပြထားတာကတော့ Views နမူနာတစ်ခုပါ:
-
-	<!-- View stored in app/views/greeting.php -->
-
-	<html>
-		<body>
-			<h1>Hello, <?php echo $name; ?></h1>
-		</body>
-	</html>
-
-အဲ့ဒီ့အထက်က View ကို browser ကိုအောက်ကလို retun ပြန်ခဲ့ပါတယ်
-
-	Route::get('/', function()
-	{
-		return View::make('greeting', array('name' => 'Taylor'));
-	});
-
-The second argument passed to `View::make` is an array of data that should be made available to the view.
-
-#### Data တွေကို View ဆီကို pass လုပ်ခြင်း
-
-	// Using conventional approach
-	$view = View::make('greeting')->with('name', 'Steve');
-
-	// Using Magic Methods
-	$view = View::make('greeting')->withName('steve');
-
-အထက်ကဥပမာမှာ `$name` variable ကို view ကနေပြီးတော့ access လုပ်နိုင်ပါတယ်၊ နောက် `Steve` ကောပေါ့။
-
-သင့်အနေနဲ့ data ထဲက array တွေကို `make` method ရဲ့ second partameter မှာ array ဖြစ်တဲ့ data ကို pass လုပ်နိုင်ပါတယ်။ သင်လုပ်ချင်ရင်ပေါ့
-
-	$view = View::make('greetings', $data);
-
-သင့်အနေနဲ့ data နည်းနည်း လေးကို views အားလုံးကို share နိုင်ပါတယ်၊
-
-	View::share('name', 'Steve');
-
-#### View တစ်ခုမှ Sub-View တစ်ခုကို pass လုပ်ခြင်း
-
-တစ်ခါတစ်လေသင့်အနေနဲ့ veiw တစ်ခုကနေ တစ်ခုပြောင်းချင်ပါလိမ့်မယ်။ ဥပမာ၊ ဒုတိယ view တစ်ခုကို `app/views/child/view.php` မှာ stored လုပ်ထားတယ်၊ ကျွန်တော်တို့ နောက်ထက် View တစ်ခုကို Pass လုပ်ချင်တယ်ဆိုရင်... like so:
-
-	$view = View::make('greeting')->nest('child', 'child.view');
-
-	$view = View::make('greeting')->nest('child', 'child.view', $data);
-
-paraent view က sub-view ဆီကနေ render လုပ်နိုင်ပါပြီ-
-
-	<html>
-		<body>
-			<h1>Hello!</h1>
-			<?php echo $child; ?>
-		</body>
-	</html>
-
-<a name="view-composers"></a>
-## View Composers
-
-View က rendered ဖြစ်တဲ့အချိန်မှာ View composers တွေက callbacks ဒါမှမဟုတ်ရင် class methods တွေကို ခေါ်ခဲ့တယ် ။ သင့် application မှ render လုပ်ပြီးတော့ သင့်ရဲ့ view ကိုအချိန်တိုင်း သေချာပေါက်ပေးရမယ့် data ရှိတဲ့အခါမျိုးဆိုရင်  ... အဲ့ဒီ့ code ကို location တစ်ခုထဲကနေ View Composer တစ်ခုက organize လုပ်နိုင်တယ် ။
-
-#### View Composer တစ်ခု သတ်မှတ်ခြင်း
-
-	View::composer('profile', function($view)
-	{
-		$view->with('count', User::count());
-	});
-
-အခု `profile` view က rendered ဖြစ်တဲ့အချိန်တိုင်းမှာ  `count` data က view ဆီကို bound ပါလိမ့်မယ်
-
-View composer တစ်ခုကနေ Multiple Views ကိုတစ်ကြိမ်တည်းသင့်အနေနဲ့ attach လုပ်နိုင်ပါတယ်
-
-    View::composer(array('profile','dashboard'), function($view)
-    {
-        $view->with('count', User::count());
+    Route::get('/', function () {
+        return 'Hello World';
     });
 
-If you would rather use a class based composer, which will provide the benefits of being resolved through the application [IoC Container](ioc.md), you may do so: 
+In addition to returning strings from your routes and controllers, you may also return arrays. The framework will automatically convert the array into a JSON response:
 
-	View::composer('profile', 'ProfileComposer');
+    Route::get('/', function () {
+        return [1, 2, 3];
+    });
 
-View Composer Class တစ်ခုကို အောက်ကလို define လုပ်နိုင်ပါတယ် :
+> {tip} Did you know you can also return [Eloquent collections](/docs/{{version}}/eloquent-collections) from your routes or controllers? They will automatically be converted to JSON. Give it a shot!
 
-	class ProfileComposer {
+#### Response Objects
 
-		public function compose($view)
-		{
-			$view->with('count', User::count());
-		}
+Typically, you won't just be returning simple strings or arrays from your route actions. Instead, you will be returning full `Illuminate\Http\Response` instances or [views](/docs/{{version}}/views).
 
-	}
+Returning a full `Response` instance allows you to customize the response's HTTP status code and headers. A `Response` instance inherits from the `Symfony\Component\HttpFoundation\Response` class, which provides a variety of methods for building HTTP responses:
 
-#### Composer နှစ်ခုသတ်မှတ်ခြင်း
+    Route::get('home', function () {
+        return response('Hello World', 200)
+                      ->header('Content-Type', 'text/plain');
+    });
 
-တစ်ချိန်တည်းမှာဘဲ Composers Group တွေကို Register လုပ်ဖို့သင့်အနေနဲ့ `composers` method ကိုသုံးနိုင်ပါတယ်။
+<a name="attaching-headers-to-responses"></a>
+#### Attaching Headers To Responses
 
+Keep in mind that most response methods are chainable, allowing for the fluent construction of response instances. For example, you may use the `header` method to add a series of headers to the response before sending it back to the user:
 
-	View::composers(array(
-		'AdminComposer' => array('admin.index', 'admin.profile'),
-		'UserComposer' => 'user',
-	));
+    return response($content)
+                ->header('Content-Type', $type)
+                ->header('X-Header-One', 'Header Value')
+                ->header('X-Header-Two', 'Header Value');
 
-> **Note:** There is no convention on where composer classes may be stored. You are free to store them anywhere as long as they can be autoloaded using the directives in your `composer.json` file.
+Or, you may use the `withHeaders` method to specify an array of headers to be added to the response:
 
-### View Creators ( View ဖန်တီးသူများ)
+    return response($content)
+                ->withHeaders([
+                    'Content-Type' => $type,
+                    'X-Header-One' => 'Header Value',
+                    'X-Header-Two' => 'Header Value',
+                ]);
 
-View **creators** တွေက view composers တွေလုပ်သလိုမျိုးတစ်ပုံစံတည်းလုပ်တာပါ။ သို့ပေမယ့်လည်း...view တွေ instantiated ဖြစ်ပြီးပြီဆိုမှ သူတို့က ချက်ချင်း fired လုပ်တာပါ။ View creator တစ်ခုလုပ်ဖို့ Register လုပ်ချင်တယ်ဆိုရင် `creator` method ကိုသုံးပါ။
+<a name="attaching-cookies-to-responses"></a>
+#### Attaching Cookies To Responses
 
-	View::creator('profile', function($view)
-	{
-		$view->with('count', User::count());
-	});
+The `cookie` method on response instances allows you to easily attach cookies to the response. For example, you may use the `cookie` method to generate a cookie and fluently attach it to the response instance like so:
 
-<a name="special-responses"></a>
-## Special Responses 
+    return response($content)
+                    ->header('Content-Type', $type)
+                    ->cookie('name', 'value', $minutes);
 
-#### JSON Response တစ်ခုပြုလုပ်ခြင်း
+The `cookie` method also accepts a few more arguments which are used less frequently. Generally, these arguments have the same purpose and meaning as the arguments that would be given to PHP's native [setcookie](https://secure.php.net/manual/en/function.setcookie.php) method:
 
-	return Response::json(array('name' => 'Steve', 'state' => 'CA'));
+    ->cookie($name, $value, $minutes, $path, $domain, $secure, $httpOnly)
 
-#### JSON Response တစ်ခုပြုလုပ်ခြင်း
+<a name="cookies-and-encryption"></a>
+#### Cookies & Encryption
 
-	return Response::json(array('name' => 'Steve', 'state' => 'CA'))->setCallback(Input::get('callback'));
+By default, all cookies generated by Laravel are encrypted and signed so that they can't be modified or read by the client. If you would like to disable encryption for a subset of cookies generated by your application, you may use the `$except` property of the `App\Http\Middleware\EncryptCookies` middleware, which is located in the `app/Http/Middleware` directory:
 
-#### File Download Response တစ်ခုပြုလုပ်ခြင်း
+    /**
+     * The names of the cookies that should not be encrypted.
+     *
+     * @var array
+     */
+    protected $except = [
+        'cookie_name',
+    ];
 
-	return Response::download($pathToFile);
+<a name="redirects"></a>
+## Redirects
 
-	return Response::download($pathToFile, $name, $headers);
+Redirect responses are instances of the `Illuminate\Http\RedirectResponse` class, and contain the proper headers needed to redirect the user to another URL. There are several ways to generate a `RedirectResponse` instance. The simplest method is to use the global `redirect` helper:
 
-> **Note:** Symfony HttpFoundation, which manages file downloads, requires the file being downloaded to have an ASCII file name.
+    Route::get('dashboard', function () {
+        return redirect('home/dashboard');
+    });
+
+Sometimes you may wish to redirect the user to their previous location, such as when a submitted form is invalid. You may do so by using the global `back` helper function. Since this feature utilizes the [session](/docs/{{version}}/session), make sure the route calling the `back` function is using the `web` middleware group or has all of the session middleware applied:
+
+    Route::post('user/profile', function () {
+        // Validate the request...
+
+        return back()->withInput();
+    });
+
+<a name="redirecting-named-routes"></a>
+### Redirecting To Named Routes
+
+When you call the `redirect` helper with no parameters, an instance of `Illuminate\Routing\Redirector` is returned, allowing you to call any method on the `Redirector` instance. For example, to generate a `RedirectResponse` to a named route, you may use the `route` method:
+
+    return redirect()->route('login');
+
+If your route has parameters, you may pass them as the second argument to the `route` method:
+
+    // For a route with the following URI: profile/{id}
+
+    return redirect()->route('profile', ['id' => 1]);
+
+#### Populating Parameters Via Eloquent Models
+
+If you are redirecting to a route with an "ID" parameter that is being populated from an Eloquent model, you may simply pass the model itself. The ID will be extracted automatically:
+
+    // For a route with the following URI: profile/{id}
+
+    return redirect()->route('profile', [$user]);
+
+If you would like to customize the value that is placed in the route parameter, you should override the `getRouteKey` method on your Eloquent model:
+
+    /**
+     * Get the value of the model's route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+
+<a name="redirecting-controller-actions"></a>
+### Redirecting To Controller Actions
+
+You may also generate redirects to [controller actions](/docs/{{version}}/controllers). To do so, pass the controller and action name to the `action` method. Remember, you do not need to specify the full namespace to the controller since Laravel's `RouteServiceProvider` will automatically set the base controller namespace:
+
+    return redirect()->action('HomeController@index');
+
+If your controller route requires parameters, you may pass them as the second argument to the `action` method:
+
+    return redirect()->action(
+        'UserController@profile', ['id' => 1]
+    );
+
+<a name="redirecting-with-flashed-session-data"></a>
+### Redirecting With Flashed Session Data
+
+Redirecting to a new URL and [flashing data to the session](/docs/{{version}}/session#flash-data) are usually done at the same time. Typically, this is done after successfully performing an action when you flash a success message to the session. For convenience, you may create a `RedirectResponse` instance and flash data to the session in a single, fluent method chain:
+
+    Route::post('user/profile', function () {
+        // Update the user's profile...
+
+        return redirect('dashboard')->with('status', 'Profile updated!');
+    });
+
+After the user is redirected, you may display the flashed message from the [session](/docs/{{version}}/session). For example, using [Blade syntax](/docs/{{version}}/blade):
+
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
+<a name="other-response-types"></a>
+## Other Response Types
+
+The `response` helper may be used to generate other types of response instances. When the `response` helper is called without arguments, an implementation of the `Illuminate\Contracts\Routing\ResponseFactory` [contract](/docs/{{version}}/contracts) is returned. This contract provides several helpful methods for generating responses.
+
+<a name="view-responses"></a>
+### View Responses
+
+If you need control over the response's status and headers but also need to return a [view](/docs/{{version}}/views) as the response's content, you should use the `view` method:
+
+    return response()
+                ->view('hello', $data, 200)
+                ->header('Content-Type', $type);
+
+Of course, if you do not need to pass a custom HTTP status code or custom headers, you should use the global `view` helper function.
+
+<a name="json-responses"></a>
+### JSON Responses
+
+The `json` method will automatically set the `Content-Type` header to `application/json`, as well as convert the given array to JSON using the `json_encode` PHP function:
+
+    return response()->json([
+        'name' => 'Abigail',
+        'state' => 'CA'
+    ]);
+
+If you would like to create a JSONP response, you may use the `json` method in combination with the `withCallback` method:
+
+    return response()
+                ->json(['name' => 'Abigail', 'state' => 'CA'])
+                ->withCallback($request->input('callback'));
+
+<a name="file-downloads"></a>
+### File Downloads
+
+The `download` method may be used to generate a response that forces the user's browser to download the file at the given path. The `download` method accepts a file name as the second argument to the method, which will determine the file name that is seen by the user downloading the file. Finally, you may pass an array of HTTP headers as the third argument to the method:
+
+    return response()->download($pathToFile);
+
+    return response()->download($pathToFile, $name, $headers);
+
+> {note} Symfony HttpFoundation, which manages file downloads, requires the file being downloaded to have an ASCII file name.
+
+<a name="file-responses"></a>
+### File Responses
+
+The `file` method may be used to display a file, such as an image or PDF, directly in the user's browser instead of initiating a download. This method accepts the path to the file as its first argument and an array of headers as its second argument:
+
+    return response()->file($pathToFile);
+
+    return response()->file($pathToFile, $headers);
 
 <a name="response-macros"></a>
 ## Response Macros
 
-သင့်အနေနဲ့ကိုယ်ပိုင် response တစ်ခုပြုလုပ်ပြီးတော့ routes နဲ့ controllers တွေကနေပြန်ပြီးတော့အသုံးပြုချင်တယ်ဆိုရင်... သင့်အနေနဲ့ `Response::macro` method ကိုသုံးနိုင်ပါတယ်
+If you would like to define a custom response that you can re-use in a variety of your routes and controllers, you may use the `macro` method on the `Response` facade. For example, from a [service provider's](/docs/{{version}}/providers) `boot` method:
 
-	Response::macro('caps', function($value)
-	{
-		return Response::make(strtoupper($value));
-	});
+    <?php
 
-`micro` function ကသူ့ရဲ့  name တစ်ခုကို first argument အဖြစ်လက်ခံထားတယ်၊ နောက် Closure ကတော့ သူ့ရဲ့ဒုတိယတစ်ခုပါ။ micro name က `Response` class ကို ခေါ်တဲ့အချိန်မှာ macro closure က execute ဖြစ်သွားပါတယ် :
+    namespace App\Providers;
 
-	return Response::caps('foo');
+    use Illuminate\Support\ServiceProvider;
+    use Illuminate\Support\Facades\Response;
 
-micros တွေကို သင့်ရဲ့ `app/start`  files ထဲမှာ define လုပ်ထားရပါမယ်။  တစ်နည်းအားဖြင့် သင့် separate လုပ်ထားတဲ့ macros တွေကို `start` files မှာသင်ပြန် organize လုပ်ရပါမယ်။
+    class ResponseMacroServiceProvider extends ServiceProvider
+    {
+        /**
+         * Register the application's response macros.
+         *
+         * @return void
+         */
+        public function boot()
+        {
+            Response::macro('caps', function ($value) {
+                return Response::make(strtoupper($value));
+            });
+        }
+    }
+
+The `macro` function accepts a name as its first argument, and a Closure as its second. The macro's Closure will be executed when calling the macro name from a `ResponseFactory` implementation or the `response` helper:
+
+    return response()->caps('foo');

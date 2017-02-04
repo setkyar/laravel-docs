@@ -1,146 +1,100 @@
-# Configuration လုပ်ခြင်း
+# Configuration
 
-- [မိတ်ဆက်](#introduction)
-- [Environment ပြင်ဆင်ခြင်း](#environment-configuration)
-- [Provider ပြင်ဆင်ခြင်း](#provider-configuration)
-- [အမှားခံ၊ အသိခံ၍ မရသော အချက်အလက်များအား ကာကွယ်ခြင်း](#protecting-sensitive-configuration)
-- [Application အားပြုပြင်ထိန်းသိမ်းမှု အခြေအနေ](#maintenance-mode)
+- [Introduction](#introduction)
+- [Environment Configuration](#environment-configuration)
+    - [Determining The Current Environment](#determining-the-current-environment)
+- [Accessing Configuration Values](#accessing-configuration-values)
+- [Configuration Caching](#configuration-caching)
+- [Maintenance Mode](#maintenance-mode)
 
 <a name="introduction"></a>
-## မိတ်ဆက်
+## Introduction
 
-Laravel framework မှာရှိတဲ့ configuration ဖိုင်အားလုံးကို `app/config` လမ်းကြောင်းအောက်မှာသိမ်းထားပါတယ်။ ဖိုင်အားလုံးမှာပါတဲ့ option တစ်ခုချင်းစီအတွက် documentation မှာ ရေးထားပီးသားပါ။ အသုံးပြုနိုင်တဲ့ options တွေကို documentation နဲ့တွဲပြီး လေ့လာ နိုင်ပါတယ်။
-
-Application run နေတဲ့အချိန်တွေမှာ configuration values တွေကို အသုံးပြုဖို့လိုအပ်လာရင် `Config` class ကိုအသုံးပြုပြီး ဆွဲယူနိုင်ပါတယ်။
-
-#### Configuration Value များကို အသုံးပြုခြင်း
-
-	Config::get('app.timezone');
-
-ဆွဲယူအသုံးပြုလိုက်တဲ့ configuration option မရှိတဲ့အခြေအနေအတွက် default value ကို return ပြန်အောင် သတ်မှတ်ပေးထားနိုင်ပါတယ်။
-
-	$timezone = Config::get('app.timezone', 'UTC');
-
-#### Configuration value သတ်မှတ်ခြင်း
-
-Configuration ဖိုင်တွေထဲမှာရှိတဲ့ value တွေကို "dot” ကိုအသုံးပြုပြီး (eg. filename.value) access လုပ်နိုင်ပါတယ်။ Application run-time ကာလမှာ configuration တွေသတ်မှတ်ဖို့အတွက်လည်း အသုံးပြုနိုင်ပါတယ်။
-
-	Config::set('database.default', 'sqlite');
-
-Applicastion run-time ကာလမှာ သတ်မှတ်ထားတဲ့ configuration values တွေဟာ app ရဲ့ လက်ရှိ request အပေါ်မှာပဲသက်ရောက်မှုရှိပါတယ်။ နောက်ပိုင်းထပ်ဖြစ်လာမဲ့ requests တွေအထိ ယူဆောင်သွားမှာမဟုတ်ပါဘူး
+All of the configuration files for the Laravel framework are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
 
 <a name="environment-configuration"></a>
-## Environment ပြင်ဆင်ခြင်း
+## Environment Configuration
 
-Application run နေတဲ့ environment အပေါ်အခြေခံပီး configuration ဖိုင်တွေ သတ်မှတ်ထားခြင်းဟာ အထောက်အကူ အများကြီးဖြစ်စေပါတယ်။ ဥပမာ - ကိုယ့်ရဲ့ local machine ပေါ်မှာ မတူညီတဲ့ cache driver တွေအသုံးပြုချင်တယ်ဆိုရင် ဒီ environment based configuration ကိုအသုံးပြုရုံနဲ့ လွယ်ကူ ပြီးမြောက်စေနိုင်ပါတယ်။ 
+It is often helpful to have different configuration values based on the environment the application is running in. For example, you may wish to use a different cache driver locally than you do on your production server.
 
-`config` ဖိုဒါထဲမှာ ကိုယ့်ရဲ့ environmen  လိုက်ဖက်မဲ့ directory တစ်ခုကို ဆောက်လိုက်ပါ။ ဥပမာ - `local`။ ပြီးရင် အဲ့ဒီ environment အတွက် override လုပ်သွားမဲ့ config တွေ၊ ထပ်မံသတ်မှတ်ချင်တဲ့ options တွေကို configuration ဖိုင်တွေပြုလုပ်ပီးသတ်မှတ်နိုင်ပါပြီ။ ဥပမာ - local environment အတွက် cache driver ကို override လုပ်ချင်တယ်ဆိုရင်၊ `app/config/local` ဖိုဒါထဲမှာ `cache.php` ဖိုင်ဆောက်ပီး အောက်မှာပေးထားတဲ့ code တွေနဲ့ ပြုလုပ်လိုက်ပါ။ 
+To make this a cinch, Laravel utilizes the [DotEnv](https://github.com/vlucas/phpdotenv) PHP library by Vance Lucas. In a fresh Laravel installation, the root directory of your application will contain a `.env.example` file. If you install Laravel via Composer, this file will automatically be renamed to `.env`. Otherwise, you should rename the file manually.
 
-	<?php
+> {tip} You may also create a `.env.testing` file. This file will override values from the `.env` file when running PHPUnit tests or executing Artisan commands with the `--env=testing` option.
 
-	return array(
+#### Retrieving Environment Configuration
 
-		'driver' => 'file',
+All of the variables listed in this file will be loaded into the `$_ENV` PHP super-global when your application receives a request. However, you may use the `env` helper to retrieve values from these variables in your configuration files. In fact, if you review the Laravel configuration files, you will notice several of the options already using this helper:
 
-	);
+    'debug' => env('APP_DEBUG', false),
 
-> **သတိပြုရန်:** `testing` ဆိုတဲ့ အမည်နဲ့ environment name ကို မသတ်မှတ်ပါနဲ့။ အဲ့ဒီအမည်ဟာ unit testing အတွက် သီးသန့်သတ်မှတ်ထားတဲ့ အမည်ဖြစ်ပါတယ်။
+The second value passed to the `env` function is the "default value". This value will be used if no environment variable exists for the given key.
 
-base configuration ဖိုင်မှာပါတဲ့ option အားလုံးကို ပြန်လည်သတ်မှတ်ပေးဖို့ မလိုအပ်ပါ လိုအပ်ပြီး ကိုယ့်အနေနဲ့ override လုပ်ချင်တဲ့ option တွေကိုသာသတ်မှတ်ပေးရန်။ Base configuration files တွေကို environment configuration files တွေက "cascade” လုပ်သွားပါလိမ့်မယ်။
+Your `.env` file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration.
 
-ပြီးရင်တော့ ဘယ် environment မှာ run နေတယ်ဆိုတာ framework ကနေ သိနိုင်ဖို့အတွက် သတ်မှတ်ထားပေးရမှာပါ။ Default environment ကတော့ `production` ဖြစ်ပါတယ်။ အခြား environment တွေအတွက် setup ပြုလုပ်ရမဲ့ နေရာက root directory အောက်မှာရှိတဲ့ `bootstrap/start.php` ဖိုင်ထဲမှာပြုလုပ်ပေးရပါမယ်။ အဲ့ဒီဖိုင်ထဲမှာရှိတဲ့ `$app->detectEnvironment` ဆိုတဲ့  method ထဲကို သတ်မှတ်ထားတဲ့ environment တွေပါတဲ့ array တစ်ခု passing လုပ်ထားပါတယ်။ အဲ့ဒီ array ကိုအသုံးပြုပြီး လက်ရှိ environment ကို ဆုံးဖြတ်တာဖြစ်ပါတယ်။ လိုအပ်လာလို့ရှိရင် အဲ့ဒီ array ထဲကို နောက်ထပ် environment တွေ ထပ်ထည့်နိုင်ပါတယ်။
+If you are developing with a team, you may wish to continue including a `.env.example` file with your application. By putting place-holder values in the example configuration file, other developers on your team can clearly see which environment variables are needed to run your application.
 
-    <?php
+<a name="determining-the-current-environment"></a>
+### Determining The Current Environment
 
-    $env = $app->detectEnvironment(array(
+The current application environment is determined via the `APP_ENV` variable from your `.env` file. You may access this value via the `environment` method on the `App` [facade](/docs/{{version}}/facades):
 
-        'local' => array('your-machine-name'),
+    $environment = App::environment();
 
-    ));
+You may also pass arguments to the `environment` method to check if the environment matches a given value. The method will return `true` if the environment matches any of the given values:
 
-အပေါ်မှာပြထားတဲ့ ဥပမာမှာ `local` က environment အမည်ဖြစ်ပြီး `your-machine-name` က server ရဲ့ hostname ဖြစ်ပါတယ်။ Linux နဲ့ Mac ကွန်ပျူတာတွေမှာဆိုရင် `hostname` ဆိုတဲ့ terminal command ကိုအသုံးပြုပြီး hostname ကိုသတ်မှတ်ပေးနိုင်ပါတယ်။
+    if (App::environment('local')) {
+        // The environment is local
+    }
 
-အကယ်၍ ပိုပြီးထိရောက်တဲ့ environment သိရှိမှုကို လိုအပ်တယ်ဆိုရင်တော့ `detectEnvironment` method ထဲကို ကိုယ်လိုအပ်သလိုအသုံးပြုနိုင်တဲ့ environment သိရှိမှုတွေကိုပြုလုပ်ပေးနိုင်မဲ့ `Closure` တစ်ခုကို passing ပေးဖို့လိုအပ်ပါတယ်။
+    if (App::environment('local', 'staging')) {
+        // The environment is either local OR staging...
+    }
 
-	$env = $app->detectEnvironment(function()
-	{
-		return $_SERVER['MY_LARAVEL_ENV'];
-	});
+<a name="accessing-configuration-values"></a>
+## Accessing Configuration Values
 
-#### Application ရဲ့ လက်ရှိ Environment ကိုအသုံးပြုခြင်း။
+You may easily access your configuration values using the global `config` helper function from anywhere in your application. The configuration values may be accessed using "dot" syntax, which includes the name of the file and option you wish to access. A default value may also be specified and will be returned if the configuration option does not exist:
 
-Application ရဲ့ လက်ရှိအသုံးပြုနေတဲ့ environment ကို `environment` method ကိုအသုံးပြုပြီး ရယူနိုင်ပါတယ်။
+    $value = config('app.timezone');
 
-	$environment = App::environment();
+To set configuration values at runtime, pass an array to the `config` helper:
 
-ကိုယ်အသုံးပြုချင်တဲ့ environment ဟုတ်/မဟုတ် ကိုလည်း `environment` method ထဲကို arguments တွေ passing ပေးပြီး စစ်ကြည့်နိုင်ပါတယ်။
+    config(['app.timezone' => 'America/Chicago']);
 
-	if (App::environment('local'))
-	{
-		// Local environment ဖြစ်တယ်
-	}
+<a name="configuration-caching"></a>
+## Configuration Caching
 
-	if (App::environment('local', 'staging'))
-	{
-		//Local သို့မဟုတ် staging environment ဖြစ်တယ်
-	}
+To give your application a speed boost, you should cache all of your configuration files into a single file using the `config:cache` Artisan command. This will combine all of the configuration options for your application into a single file which will be loaded quickly by the framework.
 
-<a name="provider-configuration"></a>
-### Provider ပြင်ဆင်ခြင်း
+You should typically run the `php artisan config:cache` command as part of your production deployment routine. The command should not be run during local development as configuration options will frequently need to be changed during the course of your application's development.
 
-Environment configuration ကို အသုံးပြုပြီဆိုလို့ရှိရင်၊ ကိုယ့်ရဲ့ ပင်မ `app` configuration ဖိုင်ထဲမှာ environment [service providers](ioc#service-providers.md) ကိုထည့်ပေါင်းထည့်ဖို့ လိုအပ်လာတဲ့ အခြေအနေတွေ ရှိလာနိုင်ပါတယ်။ အကယ်၍ ကိုယ်က ထပ်ပေါင်းထည့်ထားတယ်ဆိုလို့ရှိရင်, the environment `app` providers are overriding the providers in your primary `app` configuration file ဆိုပြီး သတိပေးပါလိမ့်မယ်။ အဲ့လိုအခြေအနေမျိုးမှာ providers ကို မရမကထပ်ပေါင်းထည့်စေဖို့အတွက် `append_config` ဆိုတဲ့ helper method ကို ကိုယ့်ရဲ့ environment `app` configuration ဖိုင်ထဲမှာ အသုံးပြုနိုင်ပါတယ်။
-
-	'providers' => append_config(array(
-		'LocalOnlyServiceProvider',
-	))
-
-<a name="protecting-sensitive-configuration"></a>
-## အမှားခံ၊ အသိခံ၍ မရသော အချက်အလက်များအား ကာကွယ်ခြင်း
-
-အမှန်တကယ်အသုံးပြုမဲ့ application တွေအတွက်၊ ကိုယ့်ရဲ့ အမှားမခံ၊ အသိခံလို့ မရတဲ့ configuration တွေကို configuration ဖိုင်ထဲမှာ မသိမ်းပဲနဲ့ အခြားတစ်နေရာမှာထားတာက ပိုပြီးသင့်တော်ပါတယ်။ ဘယ်လိုအမျိုးအစားတွေလဲဆိုတော့ database passwords, Stripe API keys, and encryption keys စတာတွေကို ဖြစ်နိုင်လို့ရှိရင် configuration ဖိုင်ထဲမှာမသိမ်းသင့်ပါဘူး။ ဒါဆိုဘယ်နေရာမှာသိမ်းမလဲ? အဲ့ဒီအတွက် Laravel ကဖြေရှင်းပေးပြီးသားဖြစ်ပါတယ်။ အဲ့ဒီလို configuration အမျိုးအစားတွေအတွက် "dot" files တွေကိုအသုံးပြုပြီး ကာကွယ်ထားနိုင်ပါတယ်။
-
-ပထမဆုံးအနေနဲ့ ကိုယ့်ရဲ့စက်ဟာ local မှာ run နေတာပါဆိုတာကို application ကသိအောင် [configure](configuration#environment-configuration.md) လုပ်ပေးရပါမယ်။ ပြီးရင် `.env.local.php` ဆိုတဲ့ ဖိုင်အသစ်ကို `composer.json` ဖိုင်ရှိတဲ့ ဖိုဒါအောက်မှာ ဆောက်ပေးလိုက်ပါ။ အဲ့ဒီ `.env.local.php` ဖိုင်ဟာ အခြား laravel configuration ဖိုင်တွေလိုပဲ key-value pairs ဖြစ်တဲ့ array တစ်ခု return ပြန်ရပါမယ်။ 
-
-	<?php
-
-	return array(
-
-		'TEST_STRIPE_KEY' => 'super-secret-sauce',
-
-	);
-
-အဲ့ဒီ ဖိုင်ထဲကနေ return ပြန်လာတဲ့ key-value pairs တွေဟာ PHP "superglobals" တွေဖြစ်တဲ့ `$_ENV` နဲ့ `$_SERVER` တွေဆီကို auto ရောက်သွားပါလိမ့်မယ်။ အဲ့ဒီ "superglobals" တွေကနေတစ်ဆင့် ကိုယ့်ရဲ့ configuration ဖိုင်ထဲမှာ ပြန်လည်အသုံးပြုနိုင်ပြီဖြစ်ပါတယ်။ 
-
-	'key' => $_ENV['TEST_STRIPE_KEY']
-
-သေချာအောင်လုပ်ဖို့လိုအပ်တာတစ်ခုက အဲ့ဒီ `.env.local.php` ဖိုင်ကို `.gitignore` လုပ်ထားပေးရပါမယ်။ အဲ့ဒီတော့မှ ကိုယ့်ရဲ့ team မှာရှိတဲ့ကျန်တဲ့ developers တွေဟာ သူတို့ရဲ့ ကိုယ်ပိုင် local configuration တွေကိုပြုလုပ်နိုင်မည့်အပြင် ကိုယ့်ရဲ့ sensitive configuration တွေကိုလဲ source control မှာမပါအောင် ကာကွယ်ပြီးသားဖြစ်မှာပါ။
-
-Production environment အတွက်လည်း လိုအပ်တဲ့ configuration တွေပါတဲ့ `.env.php` ဖိုင်ကို project root ဖိုဒါထဲမှာ ဆောက်လိုက်ပါ။ `.env.local.php` ဖိုင်လိုပဲ production environment မှာ အသုံးပြုမဲ့`.env.php` ဖိုင်ဟာ source control ထဲမှာ မပါသင့်ပါဘူး။
-
-> **သတိပြုရန်:** Application ကနေ support လုပ်တဲ့ environment တစ်ခုချင်းစီအတွက် `.env` ဖိုင်တွေ တည်ဆောက်လာနိုင်ပါတယ်။ ဥပမာ - `development` environment အတွက်ဆိုရင် `.env.development.php` ဖိုင်က ရှိနေလို့ရှိရင် load လုပ်သွားပါလိမ့်မယ်။ 
+> {note} If you execute the `config:cache` command during your deployment process, you should be sure that you are only calling the `env` function from within your configuration files.
 
 <a name="maintenance-mode"></a>
-## Application အားပြုပြင်ထိန်းသိမ်းမှုအခြေအနေ
+## Maintenance Mode
 
-Application ဟာ ပြုပြင်ထိန်းသိမ်းမှု ပြုလုပ်တဲ့ အခြေအနေမှာ ရှိနေမယ်ဆိုရင် application မှာရှိတဲ့ route အားလုံးအတွက် ကြိုတင်ပြုလုပ်ထားနိုင်တဲ့ စိတ်ကြိုက် မြင်ကွင်း(view) ကိုပြပေးပါလိမ့်မယ်။ ပြုပြင်ထိန်းသိမ်းမှုပြုလုပ်နေရင်ပဲဖြစ်ဖြစ်၊ update လုပ်နေရင်ပဲဖြစ်ဖြစ် application ကို လွယ်လွယ်ကူကူပဲ disable လုပ်ထားနိုင်ပါတယ်။ `app/start/global.php` ဖိုင်ထဲမှာရှိပြီးသားဖြစ်တဲ့ `App::down` ဆိုတဲ့ method ကိုခေါ်သုံးလိုက်ရုံပဲ။ အဲ့ဒီ method ကနေပြန်လာတဲ့ response ကို users တွေဆီကိုပို့ပေးပါလိမ့်မယ်။
+When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a `MaintenanceModeException` will be thrown with a status code of 503.
 
-ပြုပြင်ထိန်းသိမ်းမှုပြုလုပ်နေပါတယ်ဆိုတဲ့ အခြေအနေကိုထားချင်တယ်ဆိုရင် `down` ဆိုတဲ့ Artisan command ကို အသုံးပြုနိုင်ပါတယ်။
+To enable maintenance mode, simply execute the `down` Artisan command:
 
-	php artisan down
+    php artisan down
 
-ထိန်းသိမ်းမှုပြုလုပ်ပြီးသွားလို့ application ကိုပြန်ပြီး အသက်သွင်းချင်ရင် `up` ဆိုတဲ့ Artisan command ကို အသုံးပြုနိုင်ပါတယ်။
+You may also provide `message` and `retry` options to the `down` command. The `message` value may be used to display or log a custom message, while the `retry` value will be set as the `Retry-After` HTTP header's value:
 
-	php artisan up
+    php artisan down --message="Upgrading Database" --retry=60
 
-ထိန်းသိမ်းမှုပြုလုပ်နေတဲ့အခြေအနေအတွက် စိတ်ကြိုက် မြင်ကွင်း (view) သတ်မှတ်ချင်တယ်ဆိုရင်တော့ အောက်မှာပြထားသလိုပဲ `app/start/global.php` ဖိုင်ထဲမှာ နှစ်သက်သလို သွားရောက်ပြင်ဆင်နိုင်ပါတယ်။
+To disable maintenance mode, use the `up` command:
 
-	App::down(function()
-	{
-		return Response::view('maintenance', array(), 503);
-	});
+    php artisan up
 
-အကယ်၍ `down` method ထဲကို Closure တစ်ခု passing ပေးလိုက်ရင်တော့ `NULL` ပဲ return ပြန်လာပြီး အဲ့ဒီ request မှာပါတဲ့ maintenance mode ကို ignore လုပ်သွားပါလိမ့်မယ်။
+#### Maintenance Mode Response Template
 
-### Maintenance Mode နှင့် Queues
+The default template for maintenance mode responses is located in `resources/views/errors/503.blade.php`. You are free to modify this view as needed for your application.
 
-Application ဟာ maintenance mode မှာ ရှိနေစဉ်အတွင်း [queue jobs](queues.md) တွေကို ကိုင်တွယ်ဖြေရှင်းမှာမဟုတ်ပါဘူး။ Application ဟာ ပုံမှန်အခြေအနေ ကိုပြန်ရောက်ပီဆိုတော့မှ ပြန်လည်ကိုင်တွယ်ဖြေရှင်းပေးမှာဖြစ်ပါတယ်။
+#### Maintenance Mode & Queues
+
+While your application is in maintenance mode, no [queued jobs](/docs/{{version}}/queues) will be handled. The jobs will continue to be handled as normal once the application is out of maintenance mode.
+
+#### Alternatives To Maintenance Mode
+
+Since maintenance mode requires your application to have several seconds of downtime, consider alternatives like [Envoyer](https://envoyer.io) to accomplish zero-downtime deployment with Laravel.

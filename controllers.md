@@ -1,224 +1,319 @@
-# Controllers များအကြောင်း
+# Controllers
 
+- [Introduction](#introduction)
 - [Basic Controllers](#basic-controllers)
-- [Controller Filters](#controller-filters)
-- [RESTful Controllers](#restful-controllers)
+    - [Defining Controllers](#defining-controllers)
+    - [Controllers & Namespaces](#controllers-and-namespaces)
+    - [Single Action Controllers](#single-action-controllers)
+- [Controller Middleware](#controller-middleware)
 - [Resource Controllers](#resource-controllers)
-- [Handling Missing Methods](#handling-missing-methods)
+    - [Partial Resource Routes](#restful-partial-resource-routes)
+    - [Naming Resource Routes](#restful-naming-resource-routes)
+    - [Naming Resource Route Parameters](#restful-naming-resource-route-parameters)
+    - [Supplementing Resource Controllers](#restful-supplementing-resource-controllers)
+- [Dependency Injection & Controllers](#dependency-injection-and-controllers)
+- [Route Caching](#route-caching)
+
+<a name="introduction"></a>
+## Introduction
+
+Instead of defining all of your request handling logic as Closures in route files, you may wish to organize this behavior using Controller classes. Controllers can group related request handling logic into a single class. Controllers are stored in the `app/Http/Controllers` directory.
 
 <a name="basic-controllers"></a>
 ## Basic Controllers
 
-Application ရဲ့  Route ပိုင်းဆိုင်ရာအာလုံးကို `routes.php` တဖိုင်တည်းမှာ အားလုံး သတ်မှတ်ထားသလို ၊ အဲဒီ route တွေရဲ့  Action အားလုံးကို Controller က Class တွေနဲ့ ထိန်းချုပ်နိုင်မှာပါ။ Controllers က routes မှာသတ်မှတ်တဲ့ Action တွေကို ထိန်းချုပ်ပေးယုံ သာမက Framework တခုအတွက် အားသာချက်တခုဖြစ်တဲ့ [Automatic dependency injection][1] တွေပါအသုံးပြုနိုင်မှာပါ။
+<a name="defining-controllers"></a>
+### Defining Controllers
 
-Controllers ဖိုင်တွေကို ပုံမှန်အားဖြင့် `app/controllers` အောက်မှာ သိမ်းဆည်းထားပါတယ်။ အဲဒီ Controller ဖိုင်တွေကို  `Composer.json` မှာ `Classmap စနစ်ဖြင့်အသုံးပြုထားပါတယ်။ဘယ်လိုပဲဖြစ်ဖြစ် Controllers တွေက Application ရဲ့ ဘယ်နေရာမှာ မဆို အလုပ်လုပ်နိုင်ပါတယ်။ Route မှာ Controllers ကို သိမ်းဆန်းထားတဲ့နေရာအတွက် သတ်မှတ်ချက်တွေက မရှိပါ။ဘာလို့လဲဆိုတော့ Composer က Classmap autoload သုံးပြုထားတဲ့ controller class ကို အလိုလို သိမှတ်ပြုပြီးသားဖြစ်နေလို့ပါ။Controllers ဖိုင်တွေကို နှစ်သက်ရာ နေရာမှာ သိမ်းဆည်းပြီး အလုပ်လုပ်နိုင်ပါတယ်။
+Below is an example of a basic controller class. Note that the controller extends the base controller class included with Laravel. The base class provides a few convenience methods such as the `middleware` method, which may be used to attach middleware to controller actions:
 
-အခြေခံအားဖြင့် Controller Class တခုရဲ့ ပုံစံက အောက်ပါအတိုင်းရေးသားပါတယ်။
+    <?php
 
-	class UserController extends BaseController {
+    namespace App\Http\Controllers;
 
-		/**
-		 * Show the profile for the given user.
-		 */
-		public function showProfile($id)
-		{
-			$user = User::find($id);
+    use App\User;
+    use App\Http\Controllers\Controller;
 
-			return View::make('user.profile', array('user' => $user));
-		}
+    class UserController extends Controller
+    {
+        /**
+         * Show the profile for the given user.
+         *
+         * @param  int  $id
+         * @return Response
+         */
+        public function show($id)
+        {
+            return view('user.profile', ['user' => User::findOrFail($id)]);
+        }
+    }
 
-	}
+You can define a route to this controller action like so:
 
+    Route::get('user/{id}', 'UserController@show');
 
-Controllers တွေအားလုံးက `BaseController` Class ကို ထပ်ကွန့် အသုံးပြုရမှာပါ။ `BaseController` ကိုလဲ `app/controllers` မှာ သိမ်းဆည်းထားပြီး ပြန်လည်အသုံးပြုနိုင်တဲ့ ဖိုင်အနေနဲ့သိမ်းဆည်းထားပါတယ်။`BaseContoller` ဆိုတာက Laravel framework ရဲ့  `Controller` Class ကို ထပ်ကွန့် အသုံးပြုထားပါတယ်။အခုဆိုရင်တော့ Route ဖိုင်မှ တဆင့် အသုံးပြုလိုတဲ့ Controller action ကို အောက်ပါအတိုင်းသတ်မှတ်နိုင်ပါပြီ။
+Now, when a request matches the specified route URI, the `show` method on the `UserController` class will be executed. Of course, the route parameters will also be passed to the method.
 
-	Route::get('user/{id}', 'UserController@showProfile');
+> {tip} Controllers are not **required** to extend a base class. However, you will not have access to convenience features such as the `middleware`, `validate`, and `dispatch` methods.
 
+<a name="controllers-and-namespaces"></a>
+### Controllers & Namespaces
 
-PHP ရဲ့  magic function namespaces ကို အသုံးပြုပြီး Controller ကို သတ်မှတ်မယ်ဆိုရင်တော့ အောက်ကပုံစံအတိုင်း Route ပေးတဲ့အချိန်မှာ သတ်မှတ်နိုင်ပါတယ်။
+It is very important to note that we did not need to specify the full controller namespace when defining the controller route. Since the `RouteServiceProvider` loads your route files within a route group that contains the namespace, we only specified the portion of the class name that comes after the `App\Http\Controllers` portion of the namespace.
 
-	Route::get('foo', 'Namespace\FooController@method');
+If you choose to nest your controllers deeper into the `App\Http\Controllers` directory, simply use the specific class name relative to the `App\Http\Controllers` root namespace. So, if your full controller class is `App\Http\Controllers\Photos\AdminController`, you should register routes to the controller like so:
 
-> **Note::** အခုချိန်မှာ ကျွန်တော်တို့က PHP classes တွေ ကို autoload အသုံးပြုနိုင်ရန်အတွက် [Composer](http://getcomposer.org) ကို အသုံးပြုထားပါတယ်။ ဒါကြောင့် Controller file ကို System ရဲ့ ဘယ်နေရာမှာပဲထားထား ၊ Composer က အဲဒီ ဖိုင်ကို သိနေသ၍ အသုံးပြုနိုင်မှာပါ။ Controllers ဖိုင်ရဲ့ တည်နေရာကို အတည်တကျ အသေ သတ်မှတ်ထားသလိုမျိုးမရှိပါဘူး။Routing to controllers is entirely de-coupled from the file system.
+    Route::get('foo', 'Photos\AdminController@method');
 
+<a name="single-action-controllers"></a>
+### Single Action Controllers
 
-Controller ကို သတ်မှတ်ထားတဲ့ Route ကို အောက်ကပုံစံအတိုင်း သတ်မှတ်နိုင်ပါတယ်။
+If you would like to define a controller that only handles a single action, you may place a single `__invoke` method on the controller:
 
-	Route::get('foo', array('uses' => 'FooController@method','as' => 'name'));
+    <?php
 
-Controller Action ပါတဲ့ URL ( Link ) တခု ဖန်တီးဖို့အတွက် `URL::action` ဆိုပြီးသုံးပြုနိုင်သလို `action` helper function ကိုလဲ အောက်ပါအတိုင်းသုံးပြုနိုင်ပါတယ်။
+    namespace App\Http\Controllers;
 
-	$url = URL::action('FooController@method');
+    use App\User;
+    use App\Http\Controllers\Controller;
 
-	$url = action('FooController@method');
+    class ShowProfile extends Controller
+    {
+        /**
+         * Show the profile for the given user.
+         *
+         * @param  int  $id
+         * @return Response
+         */
+        public function __invoke($id)
+        {
+            return view('user.profile', ['user' => User::findOrFail($id)]);
+        }
+    }
 
-Controller action တစ်ခုရဲ့ နာမည်ကို သိရန်အတွက် 'currentRouteAction' method ကို အောက်က ပုံစံအတိုင်း အသုံးပြုနိုင်ပါတယ်။
+When registering routes for single action controllers, you do not need to specify a method:
 
-	$action = Route::currentRouteAction();
+    Route::get('user/{id}', 'ShowProfile');
 
-<a name="controller-filters"></a>
-## Controller Filters
+<a name="controller-middleware"></a>
+## Controller Middleware
 
-[Filters](routing#route-filters.md) က Controller ပါတဲ့ route တခုသတ်မှတ်ကတည်းက အောက်ပါပုံစံအတိုင်း သတ်မှတ်ခဲ့ပါတယ်။
+[Middleware](/docs/{{version}}/middleware) may be assigned to the controller's routes in your route files:
 
-	Route::get('profile', array('before' => 'auth',
-				'uses' => 'UserController@showProfile'));
+    Route::get('profile', 'UserController@show')->middleware('auth');
 
-နောက်တစ်နည်းက Controller ဖိုင်ထဲရောက်မှ အောက်ကပုံစံအတိုင်းလဲ အသုံးပြုနိုင်ပါတယ်။
+However, it is more convenient to specify middleware within your controller's constructor. Using the `middleware` method from your controller's constructor, you may easily assign middleware to the controller's action. You may even restrict the middleware to only certain methods on the controller class:
 
-	class UserController extends BaseController {
+    class UserController extends Controller
+    {
+        /**
+         * Instantiate a new controller instance.
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+            $this->middleware('auth');
 
-		/**
-		 * Instantiate a new UserController instance.
-		 */
-		public function __construct()
-		{
-			$this->beforeFilter('auth', array('except' => 'getLogin'));
+            $this->middleware('log')->only('index');
 
-			$this->beforeFilter('csrf', array('on' => 'post'));
+            $this->middleware('subscribed')->except('store');
+        }
+    }
 
-			$this->afterFilter('log', array('only' =>
-								array('fooAction', 'barAction')));
-		}
+Controllers also allow you to register middleware using a Closure. This provides a convenient way to define a middleware for a single controller without defining an entire middleware class:
 
-	}
+    $this->middleware(function ($request, $next) {
+        // ...
 
+        return $next($request);
+    });
 
-You may also specify controller filters inline using a Closure:
-
-	class UserController extends BaseController {
-
-		/**
-		 * Instantiate a new UserController instance.
-		 */
-		public function __construct()
-		{
-			$this->beforeFilter(function()
-			{
-				//
-			});
-		}
-
-	}
-
-Controller တစ်ခုအတွက် Filter ကို သီးခြားအသုံးပြုချင်ရင်တော့ `@` ဆိုတဲ့ syntax ကို အသုံးပြုပြီး အောက်ပါအတိုင်း သတ်မှတ်ပေးရပါတယ်။
-
-	class UserController extends BaseController {
-
-		/**
-		 * Instantiate a new UserController instance.
-		 */
-		public function __construct()
-		{
-			$this->beforeFilter('@filterRequests');
-		}
-
-		/**
-		 * Filter the incoming requests.
-		 */
-		public function filterRequests($route, $request)
-		{
-			//
-		}
-
-	}
-
-<a name="restful-controllers"></a>
-
-## RESTful Controllers
-
-Laravel တွင် Controller တွေရဲ့  Action အားလုံးအတွက် REST ဖြင့် Route ကနေ အလွယ်တကူ သတ်မှတ်နိုင်ပါတယ်။ ပထမဆုံး method အတွက် Route  ကို 'Route::controller' ဖြင့် သတ်မှတ်ပါ။
-
-	Route::controller('users', 'UserController');
-
-`controller` method တွင် arguments နှစ်ခု လက်ခံပါတယ်။ ပထမတခုက Base URL controller handles( ဥပမာ. create, index ) ဖြစ်ပြီး ၊ ဒုတိယတခုကတော့ Controller ရဲ့ နာမည်ဖြစ်ပါတယ်။ နောက်တစ်ခုက Controller တွင် Method(getindex/postprofile)တွေကို HTTP verb အလိုက် ထည့်ပေးရပါမယ်။
-
-	class UserController extends BaseController {
-
-		public function getIndex()
-		{
-			//
-		}
-
-		public function postProfile()
-		{
-			//
-		}
-
-	}
-
-`index` method က route မှာပေးထားတဲ့ index ကို အလုပ်လုပ်ပါတယ်။ ကျွန်တော်တို့ အပေါ်မှာဆို route name ကို users ဆိုပြီးပေးခဲ့ပါတယ်။ အဲဒါဆိုရင် users လို့ခေါ်ရင် Controller ထဲက index က အလုပ်လုပ်သွားမှာပါ။
-
-Controller action မှာ စကားစုအများကြီးပါလာသုံးခဲ့ရင် `dash` syntax သုံးနည်းနဲ့ Mathod ကို သတ်မှတ်ပေးရပါတယ်။ ဥပမာ "OurController" ထဲက method တစ်ခု ကို getAdminProfile လို့ပေးထားရင် url ကို `users/admin-profile` လို့ခေါ်လို့ရသွားမှာပါ။
-
-	public function getAdminProfile() {}
+> {tip} You may assign middleware to a subset of controller actions; however, it may indicate your controller is growing too large. Instead, consider breaking your controller into multiple, smaller controllers.
 
 <a name="resource-controllers"></a>
 ## Resource Controllers
 
-Resource controllers က sources တွေ အသုံးပြုပြီး Restful controller တွေ ဖန်တီးတဲ့အခါ အလွယ်တကူအသုံးပြုနိုင်အောင်လုပ်ဆောင်ပေးပါတယ်။ ဥပမာ ဓါတ်ပုံ စီမံတဲ့ controller တစ်တခု ပြုလုပ်မယ်ဆိုပါစို ့။ Terminal(CMD) ကနေ တစ်ဆင့် Artisan command ဖြင့် `controller:make` ကိုအသုံးပြုပြီးတော့ `Route::resource` ဆိုပြီး route သတ်မှတ်ပေးလိုက်ရင် resoure controller တစ်ခု အလွယ်တကူရရှိမှာဖြစ်ပါတယ်။
+Laravel resource routing assigns the typical "CRUD" routes to a controller with a single line of code. For example, you may wish to create a controller that handles all HTTP requests for "photos" stored by your application. Using the `make:controller` Artisan command, we can quickly create such a controller:
 
-Controller တစ်ခုကို Terminal(cmd) ကနေ ဖန်တီးဖို့အတွက် အောက်က ကွန်မန်းဖြင့် စမ်းကြည့်ပါ။
+    php artisan make:controller PhotoController --resource
 
-	php artisan controller:make PhotoController
+This command will generate a controller at `app/Http/Controllers/PhotoController.php`. The controller will contain a method for each of the available resource operations.
 
-ပြီးရင်တော့ အပေါ်မှာ လုပ်ထားတဲ့ Controller ကို အသုံးပြုနိုင်ရန်အတွက်အောက်ကအတိုင်း Route မှာ သတ်မှတ်ပေးပါ။
+Next, you may register a resourceful route to the controller:
 
-	Route::resource('photo', 'PhotoController');
+    Route::resource('photos', 'PhotoController');
 
-
-အခုဆိုရင် သာမန် Route လေးတစ်ကြောင်းနဲ့ Photo အတွက် RESTful action တစ်ခုရရှိသွားပါပြီ။အခုလိုမျိုးသတ်မှတ်ရုံဖြင့် အောက်ကအတိုင်း Action တွေ အကုန်အသုံးပြုနိုင်သွားပါပြီ။
+This single route declaration creates multiple routes to handle a variety of actions on the resource. The generated controller will already have methods stubbed for each of these actions, including notes informing you of the HTTP verbs and URIs they handle.
 
 #### Actions Handled By Resource Controller
 
-Verb      | Path                        | Action       | Route Name
-----------|-----------------------------|--------------|---------------------
-GET       | /resource                   | index        | resource.index
-GET       | /resource/create            | create       | resource.create
-POST      | /resource                   | store        | resource.store
-GET       | /resource/{resource}        | show         | resource.show
-GET       | /resource/{resource}/edit   | edit         | resource.edit
-PUT/PATCH | /resource/{resource}        | update       | resource.update
-DELETE    | /resource/{resource}        | destroy      | resource.destroy
+Verb      | URI                  | Action       | Route Name
+----------|-----------------------|--------------|---------------------
+GET       | `/photos`              | index        | photos.index
+GET       | `/photos/create`       | create       | photos.create
+POST      | `/photos`              | store        | photos.store
+GET       | `/photos/{photo}`      | show         | photos.show
+GET       | `/photos/{photo}/edit` | edit         | photos.edit
+PUT/PATCH | `/photos/{photo}`      | update       | photos.update
+DELETE    | `/photos/{photo}`      | destroy      | photos.destroy
 
-တခါတလေကျတော့ အပေါ်ကအတိုင်း Controller မှာ Action တွေ အသုံးမလိုတဲ့အခါမျိုးတွေရှိလာရင် အောက်ကအတိုင်း --only ဆိုပြီး သုံးပြုလိုတဲ့ Action ကိုပဲ ရွေးချယ်သတ်မှတ်နိုင်ပါတယ်။
+#### Specifying The Resource Model
 
-	php artisan controller:make PhotoController --only=index,show
+If you are using route model binding and would like the resource controller's methods to type-hint a model instance, you may use the `--model` option when generating the controller:
 
-	php artisan controller:make PhotoController --except=index
+    php artisan make:controller PhotoController --resource --model=Photo
 
+#### Spoofing Form Methods
 
-ပြီးတော့ Route မှ တဆင့်လဲ လိုအပ်တဲ့ Action တွေ ကို only ကို အသုံးပြုပြီး သတ်မှတ်ပေးသွားနိုင်ပါတယ်။
+Since HTML forms can't make `PUT`, `PATCH`, or `DELETE` requests, you will need to add a hidden `_method` field to spoof these HTTP verbs. The `method_field` helper can create this field for you:
 
-	Route::resource('photo', 'PhotoController',
-					array('only' => array('index', 'show')));
+    {{ method_field('PUT') }}
 
-	Route::resource('photo', 'PhotoController',
-					array('except' => array('create', 'store', 'update', 'destroy')));
+<a name="restful-partial-resource-routes"></a>
+### Partial Resource Routes
 
-ပုံမှန်အားဖြင့် Resource controller action တွေမှာ route name တွေက အလိုလျောက်သတ်မှတ်ပေးထားပြီးသားပါ။တကယ်လို ့ အဲဒီ route name ကို ကိုယ့်ဘာသာ အောက်က ပုံစံအတိုင်း သတ်မှတ်ပေးလို့ရနိုင်ပါသေးတယ်။
+When declaring a resource route, you may specify a subset of actions the controller should handle instead of the full set of default actions:
 
-	Route::resource('photo', 'PhotoController',
-					array('names' => array('create' => 'photo.build')));
+    Route::resource('photo', 'PhotoController', ['only' => [
+        'index', 'show'
+    ]]);
 
-#### Adding Additional Routes To Resource Controllers
+    Route::resource('photo', 'PhotoController', ['except' => [
+        'create', 'store', 'update', 'destroy'
+    ]]);
 
-တကယ်လို့ resource controller မှာ ပုံမှန် routes တွေနဲ့ မလုံလောက်လို့ အသစ်ထပ်ထည့်လို့ရနိုင်ပါသေးတယ်။ အဲဒီ route name ကိုတော့ `Route::resource` ကို မရေးခင်မှာအောက်က ပုံစံအတိုင်း ရေးပေးရပါမယ်။
+<a name="restful-naming-resource-routes"></a>
+### Naming Resource Routes
 
-	Route::get('photos/popular');
-	Route::resource('photos', 'PhotoController');
+By default, all resource controller actions have a route name; however, you can override these names by passing a `names` array with your options:
 
-<a name="handling-missing-methods"></a>
-## Handling Missing Methods
+    Route::resource('photo', 'PhotoController', ['names' => [
+        'create' => 'photo.build'
+    ]]);
 
-"catch-all method" ဆိုတာက Controller ပေးထားပြီး Mehod မရှိတဲ့အခါမှာ အလုပ်လုပ်မယ့် အခြေအနေဖြစ်ပါတယ်။ Method နာမည်ကိုတော့ "MissingMethod" ဆိုပြီးအောက်ကပုံစံအတိုင်း အသုံးပြုရမှာပါ။
+<a name="restful-naming-resource-route-parameters"></a>
+### Naming Resource Route Parameters
 
-#### Defining A Catch-All Method
+By default, `Route::resource` will create the route parameters for your resource routes based on the "singularized" version of the resource name. You can easily override this on a per resource basis by passing `parameters` in the options array. The `parameters` array should be an associative array of resource names and parameter names:
 
-	public function missingMethod($parameters = array())
-	{
-		//
-	}
+    Route::resource('user', 'AdminUserController', ['parameters' => [
+        'user' => 'admin_user'
+    ]]);
 
+ The example above generates the following URIs for the resource's `show` route:
 
-  [1]: /docs/ioc
+    /user/{admin_user}
+
+<a name="restful-supplementing-resource-controllers"></a>
+### Supplementing Resource Controllers
+
+If you need to add additional routes to a resource controller beyond the default set of resource routes, you should define those routes before your call to `Route::resource`; otherwise, the routes defined by the `resource` method may unintentionally take precedence over your supplemental routes:
+
+    Route::get('photos/popular', 'PhotoController@method');
+
+    Route::resource('photos', 'PhotoController');
+
+> {tip} Remember to keep your controllers focused. If you find yourself routinely needing methods outside of the typical set of resource actions, consider splitting your controller into two, smaller controllers.
+
+<a name="dependency-injection-and-controllers"></a>
+## Dependency Injection & Controllers
+
+#### Constructor Injection
+
+The Laravel [service container](/docs/{{version}}/container) is used to resolve all Laravel controllers. As a result, you are able to type-hint any dependencies your controller may need in its constructor. The declared dependencies will automatically be resolved and injected into the controller instance:
+
+    <?php
+
+    namespace App\Http\Controllers;
+
+    use App\Repositories\UserRepository;
+
+    class UserController extends Controller
+    {
+        /**
+         * The user repository instance.
+         */
+        protected $users;
+
+        /**
+         * Create a new controller instance.
+         *
+         * @param  UserRepository  $users
+         * @return void
+         */
+        public function __construct(UserRepository $users)
+        {
+            $this->users = $users;
+        }
+    }
+
+Of course, you may also type-hint any [Laravel contract](/docs/{{version}}/contracts). If the container can resolve it, you can type-hint it. Depending on your application, injecting your dependencies into your controller may provide better testability.
+
+#### Method Injection
+
+In addition to constructor injection, you may also type-hint dependencies on your controller's methods. A common use-case for method injection is injecting the `Illuminate\Http\Request` instance into your controller methods:
+
+    <?php
+
+    namespace App\Http\Controllers;
+
+    use Illuminate\Http\Request;
+
+    class UserController extends Controller
+    {
+        /**
+         * Store a new user.
+         *
+         * @param  Request  $request
+         * @return Response
+         */
+        public function store(Request $request)
+        {
+            $name = $request->name;
+
+            //
+        }
+    }
+
+If your controller method is also expecting input from a route parameter, simply list your route arguments after your other dependencies. For example, if your route is defined like so:
+
+    Route::put('user/{id}', 'UserController@update');
+
+You may still type-hint the `Illuminate\Http\Request` and access your `id` parameter by defining your controller method as follows:
+
+    <?php
+
+    namespace App\Http\Controllers;
+
+    use Illuminate\Http\Request;
+
+    class UserController extends Controller
+    {
+        /**
+         * Update the given user.
+         *
+         * @param  Request  $request
+         * @param  string  $id
+         * @return Response
+         */
+        public function update(Request $request, $id)
+        {
+            //
+        }
+    }
+
+<a name="route-caching"></a>
+## Route Caching
+
+> {note} Closure based routes cannot be cached. To use route caching, you must convert any Closure routes to controller classes.
+
+If your application is exclusively using controller based routes, you should take advantage of Laravel's route cache. Using the route cache will drastically decrease the amount of time it takes to register all of your application's routes. In some cases, your route registration may even be up to 100x faster. To generate a route cache, just execute the `route:cache` Artisan command:
+
+    php artisan route:cache
+
+After running this command, your cached routes file will be loaded on every request. Remember, if you add any new routes you will need to generate a fresh route cache. Because of this, you should only run the `route:cache` command during your project's deployment.
+
+You may use the `route:clear` command to clear the route cache:
+
+    php artisan route:clear

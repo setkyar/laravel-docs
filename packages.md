@@ -1,251 +1,277 @@
 # Package Development
 
 - [Introduction](#introduction)
-- [Creating A Package](#creating-a-package)
-- [Package Structure](#package-structure)
+    - [A Note On Facades](#a-note-on-facades)
 - [Service Providers](#service-providers)
-- [Deferred Providers](#deferred-providers)
-- [Package Conventions](#package-conventions)
-- [Development Workflow](#development-workflow)
-- [Package Routing](#package-routing)
-- [Package Configuration](#package-configuration)
-- [Package Views](#package-views)
-- [Package Migrations](#package-migrations)
-- [Package Assets](#package-assets)
-- [Publishing Packages](#publishing-packages)
+- [Routing](#routing)
+- [Resources](#resources)
+    - [Configuration](#configuration)
+    - [Migrations](#migrations)
+    - [Routes](#routes)
+    - [Translations](#translations)
+    - [Views](#views)
+- [Commands](#commands)
+- [Public Assets](#public-assets)
+- [Publishing File Groups](#publishing-file-groups)
 
 <a name="introduction"></a>
 ## Introduction
 
-Laravelတွင် တခြား functions တွေ အသစ်ထည့်တဲ့အခါမှာ Packages တွေခွဲပြီးအသစ်ထပ်ထည့်တဲ့နည်းက သမရိုးကျ နည်းလမ်းကောင်းတခုဖြစ်ပါတယ်။ လူအများစုဆောင်းပြီး project တွေကို ဖန်တီးရာတဲ့အခါမှာ အရမ်းအသုံးတည့်တဲ့နည်းလမ်းဖြစ်ပါတယ်။ ဥပမာ [Carbon](https://github.com/briannesbitt/Carbon), or  [Behat](https://github.com/Behat/Behat).
+Packages are the primary way of adding functionality to Laravel. Packages might be anything from a great way to work with dates like [Carbon](https://github.com/briannesbitt/Carbon), or an entire BDD testing framework like [Behat](https://github.com/Behat/Behat).
 
-သေချာတာပေါ့ဗျာ ၊ Packages တွေကို အသုံးပြုရာမှာ ပုံစံမျိုးစုံရှိပါတယ်။ တချိုဟာတွေက Laravel တစ်ခုတည်းမဟုတ်ပဲ အခြားခြားသော Framework တွေမှာပါ အလုပ်လုပ်တဲ့ stand-alone packages တွေဖြစ်တယ်။ အပေါ်က CarBon နဲ့ Behat လို packages တွေကတော့ Stand-alon တွေဖြစ်ပါတယ် ။ အဲဒီလိုဖန်တီးထားတဲ့ packages တွေကို Laravel မှာသုံးမယ်ဆိုရင်တော့ ထုံးစံတိုင်း "composer.json" ဖိုင်မှာ သွားထည့့်ပေးလိုက်တာနဲ့ သုံးပြုနိုင်မှာပါ။
+Of course, there are different types of packages. Some packages are stand-alone, meaning they work with any PHP framework. Carbon and Behat are examples of stand-alone packages. Any of these packages may be used with Laravel by simply requesting them in your `composer.json` file.
 
-တခြားတချက်ကတော့ တခြား packages တွေက Laravel အတွက်ပဲလို့ အသေသတ်မှတ်ပီး ထုတ်လုပ်ထားတဲ့ packages တွေလဲ ရှိပါတယ် ။ ဥပမာ အရင် laravel version တွေမှာ တုန်းက "bundles" လို packages တွေမျိုးပါ။ အဲဒီ packages တွေမှာ  routes, controllers, views, configuration, နဲ့ migrations ဖွဲ့စည်းထားပြီး laravel ရဲ့  လုပ်ဆောင်နိုင်မူတွေကို တိုးချဲ့ အသုံးပြုနိုင်ပါတယ်။ Stan-alone packages တစ်ခု ဖန်တီးဖို့ဆိုတာ အရမ်းခက်တဲ့ ကိစ္စတော့မဟုတ်ပါဘူး ၊ အခုအောက်မှာ ထပ်ဖော်ပြမယ့် နည်းလမ်းတွေအတိုင်း ဖန်တီးကြည့်နိုင်ပါတယ်။
+On the other hand, other packages are specifically intended for use with Laravel. These packages may have routes, controllers, views, and configuration specifically intended to enhance a Laravel application. This guide primarily covers the development of those packages that are Laravel specific.
 
-Laravel အတွက် Packages တွေကို  [Packagist](http://packagist.org)မှာတင်ပြီး ဖြန့်ချီနိုင်ပြီး [Composer](http://getcomposer.org) လို အရမ်းမိုက်တဲ့ Package destributuin tool တွေသုံးပြု ပြီး ဖန်တီးရမှာပါ။
+<a name="a-note-on-facades"></a>
+### A Note On Facades
 
-<a name="creating-a-package"></a>
-## Creating A Package
-
-Laravel မှာသုံးပြုဖို့အတွက် packages တစ်ခုတည်ဆောက်ဖို့အတွက်ကတော့ 'workbench' Artisan command ကို အသုံးပြုပြီးလွယ်လွယ်ကူကူကိုဖန်တီးနိုင်ပါတယ်။ အဲလိုလုပ်ဖို့အတွက် ပထမဆုံး 'app/config/workbench.php' မှာ name နဲ့ email လေးအရင်သွားဖြည့်ပေးရပါတယ်။ အဲဒီ name နဲ့ email ကို အသစ်ဆောက်မယ့် packages တွေ က 'composer.json' မှာ ပြန်အသုံးပြုဖို့အတွက်ဖြစ်ပါတယ်။ကဲ့ ဒီလောက်ပြင်ဆင်ပြီးရင် package တစ်ခု တည်ဆောက်ဖို့ အဆင်သင့်ဖြစ်နေပါပြီ။အောက်က ကွန်မန်းကို Terminal(cmd) မှာ ထည့် run လိုက်ပါ။
-
-#### Issuing The Workbench Artisan Command
-
-	php artisan workbench vendor/package --resources
-
-အပေါ်က command ထဲမှာ vendor ဆိုတာက package တစ်ခုကို authors တွေခွဲရေးတဲ့အခါမှာ package name ကို ခွဲခွဲခြားခြားသိနိုင်အောင်ပေးထားတဲ့နာမည်ဖြစ်ပါတယ်။ Vendor ဆိုတာက အဲဒီ package ကို ဖန်တီးတဲ့လူဖြစ်ပြီး package ဆိုတာကတော့ ကိုယ်လုပ်တဲ့ package name ဖြစ်ပါတယ်။ ဥပမာ ကျွန်တော် Taylar Otwell က "Zapper" ဆိုတဲ့ package တစ်ခုတည်ဆောက်လိုက်ရင် Package name က 'Zapper' ဖြစ်ပြး Vendor name က Taylar ဖြစ်ပါတယ်။ပုံမှန်အားဖြင့်တော့ workbench က framework package တခုတည်ဆောက်ပါတယ်။ "--resources" command က workbench ကို `migrations`, `views`, `config`, စသဖြင့်လိုအပ်တဲ့ ဖိုင်တွေကို ဖန်တီးပေးဖို ့ပြောပါတယ်။
-
-အပေါ်က 'Workbench' ကို run ပြီးပြီဆိုရင်တော့ ၊ ကိုယ်ပေးထားတဲ့ နာမည်အတိုင်းပဲ 'workbench' ဆိုတဲ့ဖိုဒါထဲမှာ vendor name နဲ့ ဖိုဒါတွေရောက်လာပြီး အထဲမှာ package နာမည်နဲ့ လိုအပ်တဲ့ဖိုင်တွေအကုန် အလိုလျောက်ရှိနေပါလိမ့်မယ်။ ပြီးရင်တော့ တည်ဆောက်လိုက်တဲ့ package ကို laravel ကနေ သုံးပြုနိုင်ရန်အတွက် 'ServiceProvider' ကြော်ငြာပေးရပါတယ်။ Service Provider ကို 'app/config/app.php' မှာ သွားထည့်ပေးရပါတယ်။အဲဒီမှာ သွားထည့်ပေးလိုက်ရင် workbench ထဲက package တွေကို laravel ကနေ အသုံးပြုနိုင်ပါပြီ။ Service Provider က '[Package]ServiceProvider' ကိုအသုံးပြုပါတယ်။ဥပမာအရဆိုရင် 'app/config/app.php' က Provider မှာ 'Taylor\Zapper\ZapperServiceProvider' ဆိုပြီး array ထဲမှာ သွားထည့်ပေးရမှာပါ။
-
-အခုလို Provider မှာ သွားထည့်ပေးပြီးရင်တော့ packages ကို လိုအပ်သလိုမျိုး စတင် အသုံးပြုနိုပ်ပါပြီ။ ပထမဆုံး package structure နဲ ့ development workflow ကို အရင်လေ့လာသင့်ပါတယ်။
-
-> **Note:** Service Provider cannot be found ဆိုပြီး error ပြနေရင် `php artisan dump-autoload` ကို root directory မှာ terminal(cmd) မှ တစ်ဆင့် run ပြီး ပြန်စမ်းကြည့်ပါ။
-
-<a name="package-structure"></a>
-## Package Structure
-
-'workbench' command ကို အသုံးပြုပြီးတဲ့အခါမှာ အဲဒီ command က ကိုယ်ဖန်တီးလိုက်တဲ့ packages ကို laravel နှင့် တွဲဖက်အသုံးပြုနိုင်အောင် အကုန်အလိုလျောက်ပြုလုပ်ပေးပါတယ်။
-
-#### Basic Package Directory Structure
-
-	/src
-		/Vendor
-			/Package
-				PackageServiceProvider.php
-		/config
-		/lang
-		/migrations
-		/views
-	/tests
-	/public
-
-အပေါ်က file structure ကိုအရင်လေ့လာကြည့်ရအောင်။ 'src/Vendor/Package' က တော့ 'ServiceProvider' ပါဝင်တဲ့အတွက် package's classes တွေရဲ့  အဓိကနေရာလို့ပြောရမှာပါ။ `config`, `lang`, `migrations`, နဲ့ `views' တွေကတော့ packages အတွက် လိုအပ်တဲ့ resources တွေပါဝင်မယ့်ဖိုင်တွေဖြစ်ပါတယ်။
-Packages တစ်ခုမှာလဲ Laravel မှာရှိတဲ့ resources တွေ အတိုင်း တည်ရှိနေမှာပါ။
+When writing a Laravel application, it generally does not matter if you use contracts or facades since both provide essentially equal levels of testability. However, when writing packages, it is best to use [contracts](/docs/{{version}}/contracts) instead of [facades](/docs/{{version}}/facades). Since your package will not have access to all of Laravel's testing helpers, it will be easier to mock or stub a contract than to mock a facade.
 
 <a name="service-providers"></a>
 ## Service Providers
 
-Service providers ဖိုင်တွေကတော့ packages တွေရဲ့ အသက်ဖိုင်လို့ပြောရမှာပါ။ပုံမှန်အားဖြင့် Service Provider မှာ 'boot' နဲ့ 'register' ဆိုတဲ့ methodsနှစ်ခုပါဝင်ပါတယ်။
-ဒီ methods နှစ်ခုမှာပဲ အကုန်လုံးပြုလုပ်နိုင်ပါတယ်။ ဥပမာ routes ဖိုင်ချိတ်ဖို့ ၊IoC Container တွေ register bindings လုပ်ဖို့ ၊ events တွေထည့်ဖို့ ၊ အကုန်လုံးနည်းပါးကို ဒီ method နှစ်ခုတစ်ဆင့် အလုပ်လုပ်သွားမှာပါ။
+[Service providers](/docs/{{version}}/providers) are the connection points between your package and Laravel. A service provider is responsible for binding things into Laravel's [service container](/docs/{{version}}/container) and informing Laravel where to load package resources such as views, configuration, and localization files.
+
+A service provider extends the `Illuminate\Support\ServiceProvider` class and contains two methods: `register` and `boot`. The base `ServiceProvider` class is located in the `illuminate/support` Composer package, which you should add to your own package's dependencies. To learn more about the structure and purpose of service providers, check out [their documentation](/docs/{{version}}/providers).
+
+<a name="routing"></a>
+## Routing
+
+To define routes for your package, pass the routes file path to the `loadRoutesFrom` method from within your package service provider's `boot` method. From within your routes file, you may use the `Illuminate\Support\Facades\Route` facade to [register routes](/docs/{{version}}/routing) just as you would within a typical Laravel application:
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadRoutesFrom(__DIR__.'/path/to/routes.php');
+    }
 
-"register" method က Service Provider ကို register ပြုလုပ်ပြီးတာနဲ့ အလုပ်လုပ်မယ့် method ဖြစ်ပါတယ်။ 'boot' method ကတော့ request အသက်မဝင်ခင်အချိန်ထိပဲ အလုပ်လုပ်မှာဖြစ်ပါတယ်။ ဒါဆိုရင်တော့ service provider ထဲက actions တွေ registe လုပ်ပြီးတဲ့အချိန် (သို ့) တခြား provider တစ်ခုရဲ့  service ကို ကျော်လွန်(override)အသုံးပြုလိုပါက 'boot' method ကို အသုံးပြုသင့်ပါတယ်။
+<a name="resources"></a>
+## Resources
+
+<a name="configuration"></a>
+### Configuration
+
+Typically, you will need to publish your package's configuration file to the application's own `config` directory. This will allow users of your package to easily override your default configuration options. To allow your configuration files to be published, call the `publishes` method from the `boot` method of your service provider:
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/path/to/config/courier.php' => config_path('courier.php'),
+        ]);
+    }
+
+Now, when users of your package execute Laravel's `vendor:publish` command, your file will be copied to the specified publish location. Of course, once your configuration has been published, its values may be accessed like any other configuration file:
 
-'workbench' command နှင့် package တစ်ခုတည်ဆောက်လိုက်တာနဲ့ 'boot' method မှာ အောက်ဖော်ပြပါအတိုင်း action တစ်ခု ပါဝင်နေပါတယ်။
+    $value = config('courier.option');
+
+> {note} You should not define Closures in your configuration files. They can not be serialized correctly when users execute the `config:cache` Artisan command.
+
+#### Default Package Configuration
+
+You may also merge your own package configuration file with the application's published copy. This will allow your users to define only the options they actually want to override in the published copy of the configuration. To merge the configurations, use the `mergeConfigFrom` method within your service provider's `register` method:
+
+    /**
+     * Register bindings in the container.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/path/to/config/courier.php', 'courier'
+        );
+    }
 
-	$this->package('vendor/package');
+> {note} This method only merges the first level of the configuration array. If your users partially define a multi-dimensional configuration array, the missing options will not be merged.
 
-ဒီ method က laravel ကို packages ထဲက views,config, other resource တွေကို အသုံးပြုနိုင်အောင်လုပ်ပေးပါတယ်။ ပုံမှန်အားဖြင့်တော့ အဲဒီ ကုတ်ကို ပြုပြင်ဖို့မလိုအပ်ပါဘူး။
+<a name="routes"></a>
+### Routes
 
-ပုံမှန်အားဖြင့် package တစ်ခုတည်ဆောက်ပြီးတဲ့အခါ အဲဒီ packages ရဲ့  resource တွေက 'vendor/package' အောက်မှာရှိပါတယ်။ဘယ်လိုဖြစ်ဖြစ်  package method ကို argument နောက်တစ်ခု ထပ်ထည့်ပြီး package resource နေရာတွေကို လိုအပ်သလို အောက်ကပုံစံအတိုင်း ပြောင်းလဲနိုင်ပါသေးတယ်။
+If your package contains routes, you may load them using the `loadRoutesFrom` method. This method will automatically determine if the application's routes are cached and will not load your routes file if the routes have already been cached:
 
-	// Passing custom namespace to package method
-	$this->package('vendor/package', 'custom-namespace');
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
+    }
+
+<a name="migrations"></a>
+### Migrations
 
-	// Package resources now accessed via custom-namespace
-	$view = View::make('custom-namespace::foo');
+If your package contains [database migrations](/docs/{{version}}/migrations), you may use the `loadMigrationsFrom` method to inform Laravel how to load them. The `loadMigrationsFrom` method accepts the path to your package's migrations as its only argument:
 
-Service provider classes တွေအတွက် app directory ထဲမှာ နေရာအတည်တစ်ကျ သတ်မှတ်ထားတာမျိုးလဲမရှိပါဘူး။ 'app' ထဲမှ  'Providers' namespace ပေးပြီး ထားချင်တဲ့နေရာမှာ ထားနိုင်ပါတယ်။ ဒဲဒီ class ဖိုင်တွေကို Composer's [auto-loading facilities](http://getcomposer.org/doc/01-basic-usage.md#autoloading) က သိမှတ်ပြုနေသ၍ အဲဒီ class ဖိုင်ထဲက class တွေကို app က ယူသုံးနိုင်မှာပါ။
-
-'Package ထဲက resources ( ဥပမာ Configuration ၊ Views ) နေရာတွေကို ပြောင်းလိုက်ပြီဆိုရင် ပြောင်းလိုက်တဲ့နေရာကို 'package' methord မှာ တတိယမြောက် argument တစ်ခုအဖြစ် အောက်ပါအတိုင်းထည့်သင့်ပေးသင့်ပါတယ်။
-
-	$this->package('vendor/package', null, '/path/to/resources');
-
-<a name="deferred-providers"></a>
-## Deferred Providers
-
-
-If you are writing a service provider that does not register any resources such as configuration or views, you may choose to make your provider "deferred". A deferred service provider is only loaded and registered when one of the services it provides is actually needed by the application IoC container. If none of the provider's services are needed for a given request cycle, the provider is never loaded.
-
-To defer the execution of your service provider, set the `defer` property on the provider to `true`:
-
-	protected $defer = true;
-
-Next you should override the `provides` method from the base `Illuminate\Support\ServiceProvider` class and return an array of all of the bindings that your provider adds to the IoC container. For example, if your provider registers `package.service` and `package.another-service` in the IoC container, your `provides` method should look like this:
-
-	public function provides()
-	{
-		return array('package.service', 'package.another-service');
-	}
-
-<a name="package-conventions"></a>
-## Package Conventions
-
-
-When utilizing resources from a package, such as configuration items or views, a double-colon syntax will generally be used:
-
-#### Loading A View From A Package
-
-	return View::make('package::view.name');
-
-#### Retrieving A Package Configuration Item
-
-	return Config::get('package::group.option');
-
-> **Note:** If your package contains migrations, consider prefixing the migration name with your package name to avoid potential class name conflicts with other packages.
-
-<a name="development-workflow"></a>
-## Development Workflow
-
-
-When developing a package, it is useful to be able to develop within the context of an application, allowing you to easily view and experiment with your templates, etc. So, to get started, install a fresh copy of the Laravel framework, then use the `workbench` command to create your package structure.
-
-After the `workbench` command has created your package. You may `git init` from the `workbench/[vendor]/[package]` directory and `git push` your package straight from the workbench! This will allow you to conveniently develop the package in an application context without being bogged down by constant `composer update` commands.
-
-Since your packages are in the `workbench` directory, you may be wondering how Composer knows to autoload your package's files. When the `workbench` directory exists, Laravel will intelligently scan it for packages, loading their Composer autoload files when the application starts!
-
-If you need to regenerate your package's autoload files, you may use the `php artisan dump-autoload` command. This command will regenerate the autoload files for your root project, as well as any workbenches you have created.
-
-#### Running The Artisan Autoload Command
-
-	php artisan dump-autoload
-
-<a name="package-routing"></a>
-## Package Routing
-
-In prior versions of Laravel, a `handles` clause was used to specify which URIs a package could respond to. However, in Laravel 4, a package may respond to any URI. To load a routes file for your package, simply `include` it from within your service provider's `boot` method.
-
-#### Including A Routes File From A Service Provider
-
-	public function boot()
-	{
-		$this->package('vendor/package');
-
-		include __DIR__.'/../../routes.php';
-	}
-
-> **Note:** If your package is using controllers, you will need to make sure they are properly configured in your `composer.json` file's auto-load section.
-
-<a name="package-configuration"></a>
-## Package Configuration
-
-#### Accessing Package Configuration Files
-
-Some packages may require configuration files. These files should be defined in the same way as typical application configuration files. And, when using the default `$this->package` method of registering resources in your service provider, may be accessed using the usual "double-colon" syntax:
-
-	Config::get('package::file.option');
-
-#### Accessing Single File Package Configuration
-
-However, if your package contains a single configuration file, you may simply name the file `config.php`. When this is done, you may access the options directly, without specifying the file name:
-
-	Config::get('package::option');
-
-#### Registering A Resource Namespace Manually
-
-Sometimes, you may wish to register package resources such as views outside of the typical `$this->package` method. Typically, this would only be done if the resources were not in a conventional location. To register the resources manually, you may use the `addNamespace` method of the `View`, `Lang`, and `Config` classes:
-
-	View::addNamespace('package', __DIR__.'/path/to/views');
-
-Once the namespace has been registered, you may use the namespace name and the "double colon" syntax to access the resources:
-
-	return View::make('package::view.name');
-
-The method signature for `addNamespace` is identical on the `View`, `Lang`, and `Config` classes.
-
-### Cascading Configuration Files
-
-When other developers install your package, they may wish to override some of the configuration options. However, if they change the values in your package source code, they will be overwritten the next time Composer updates the package. Instead, the `config:publish` artisan command should be used:
-
-	php artisan config:publish vendor/package
-
-When this command is executed, the configuration files for your application will be copied to `app/config/packages/vendor/package` where they can be safely modified by the developer!
-
-> **Note:** The developer may also create environment specific configuration files for your package by placing them in `app/config/packages/vendor/package/environment`.
-
-<a name="package-views"></a>
-## Package Views
-
-If you are using a package in your application, you may occasionally wish to customize the package's views. You can easily export the package views to your own `app/views` directory using the `view:publish` Artisan command:
-
-	php artisan view:publish vendor/package
-
-This command will move the package's views into the `app/views/packages` directory. If this directory doesn't already exist, it will be created when you run the command. Once the views have been published, you may tweak them to your liking! The exported views will automatically take precedence over the package's own view files.
-
-<a name="package-migrations"></a>
-## Package Migrations
-
-#### Creating Migrations For Workbench Packages
-
-You may easily create and run migrations for any of your packages. To create a migration for a package in the workbench, use the `--bench` option:
-
-	php artisan migrate:make create_users_table --bench="vendor/package"
-
-#### Running Migrations For Workbench Packages
-
-	php artisan migrate --bench="vendor/package"
-
-#### Running Migrations For An Installed Package
-
-Packages ထဲမှာ database migrate လုပ်ဖို့အတွက် workbench ထဲမှာ 
-To run migrations for a finished package that was installed via Composer into the `vendor` directory, you may use the `--package` directive:
-
-	php artisan migrate --package="vendor/package"
-
-<a name="package-assets"></a>
-## Package Assets
-
-#### Moving Package Assets To Public
-'packages' တွေမှာ 'Javascript, Css, images လို assets တွေပါကောင်းပါနိုင်ပါတယ်။ အဲဒီ assets တွေကို app မှ တဆင့်တန်းဆွဲခေါ်သုံးဖို့မဖြစ်နိုင်ပါဘူး  ။ အဲဒီအတွက် 'package' ထဲက assets တွေကို public အောက်ကို ပြောင်းထည့်ပေးဖို့လိုအပ်ပါတယ်။ အဲဒီအတွက် `asset:publish`  ကွန်မန်း ကို  အောက်ကအတိုင်း အသုံးပြုပြီး ပြောင်းထည့်ပေးနိုင်ပါတယ်။
-
-	php artisan asset:publish
-
-	php artisan asset:publish vendor/package
-
-တကယ်လို တည်ဆောက်ထားတဲ့ 'package' က 'workbench' အောက်မှာပဲရှိသေးရင်တော့ ' --bench ' ကိုအောက်ပါအတိုင်းထပ်ထည့်ပြီးရေးပေးရပါတယ်။
-
-	php artisan asset:publish --bench="vendor/package"
-
-ဒီကွန်မန်းက package ထဲမှ assets တွေကို 'public/packages' ထဲကို သက်ဆိုင်ရင် package နဲ့ vendor နာမည်တွေအလိုက်ဖိုဒါတွေ အလိုလျောက်ဆောက်ပြီး သိမ်းဆည်းပေးသွားမှာပါ။ ဥပမာ 'workbench' အောက်မှာ 'usersape/kusod' ဆိုပြီး packages ဆောက်ထားရင် 'public/packages/userscape/kudos' ဆိုပြီး ရောက်သွားမှာပါ။ ဒီလိုလုပ်ခြင်းအားဖြင့် asset တွေနဲ့ပက်သက်ပြီး  လုံခြုံရေးဆိုင်ရာ အားသာချက်များ ရရှိနိုင်ပါတယ်။
-
-<a name="publishing-packages"></a>
-## Publishing Packages
-
-ကိုယ်တည်ဆောက်ထားတဲ့'Package' က အသုံးပြုဖို ့အားလုံးပြင်ဆင်ပြီးသွားရင်တော့ [Packagist](http://packagist.org) ကို တခြားသူတွေပါသုံးပြုနိုင်အောင် တင်ထားပေးသင့်ပါတယ်။ တကယ်လို့ ကိုယ် တည်ဆောက်လိုက်တဲ့ 'package' က laravel အတွက်ပဲ သီးသန့်တည်ဆောက်ထားရင်တော့ 'composer.json' မှာ 'laravel' ဆိုပြီး tag ထည့်ပေးဖို့လိုအပ်ပါတယ်။
-
-
-Also, it is courteous and helpful to tag your releases so that developers can depend on stable versions when requesting your package in their `composer.json` files. If a stable version is not ready, consider using the `branch-alias` Composer directive.
-
-Once your package has been published, feel free to continue developing it within the application context created by `workbench`. This is a great way to continue to conveniently develop the package even after it has been published.
-
-Some organizations choose to host their own private repository of packages for their own developers. If you are interested in doing this, review the documentation for the [Satis](http://github.com/composer/satis) project provided by the Composer team.
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/path/to/migrations');
+    }
+
+Once your package's migrations have been registered, they will automatically be run when the `php artisan migrate` command is executed. You do not need to export them to the application's main `database/migrations` directory.
+
+<a name="translations"></a>
+### Translations
+
+If your package contains [translation files](/docs/{{version}}/localization), you may use the `loadTranslationsFrom` method to inform Laravel how to load them. For example, if your package is named `courier`, you should add the following to your service provider's `boot` method:
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadTranslationsFrom(__DIR__.'/path/to/translations', 'courier');
+    }
+
+Package translations are referenced using the `package::file.line` syntax convention. So, you may load the `courier` package's `welcome` line from the `messages` file like so:
+
+    echo trans('courier::messages.welcome');
+
+#### Publishing Translations
+
+If you would like to publish your package's translations to the application's `resources/lang/vendor` directory, you may use the service provider's `publishes` method. The `publishes` method accepts an array of package paths and their desired publish locations. For example, to publish the translation files for the `courier` package, you may do the following:
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadTranslationsFrom(__DIR__.'/path/to/translations', 'courier');
+
+        $this->publishes([
+            __DIR__.'/path/to/translations' => resource_path('lang/vendor/courier'),
+        ]);
+    }
+
+Now, when users of your package execute Laravel's `vendor:publish` Artisan command, your package's translations will be published to the specified publish location.
+
+<a name="views"></a>
+### Views
+
+To register your package's [views](/docs/{{version}}/views) with Laravel, you need to tell Laravel where the views are located. You may do this using the service provider's `loadViewsFrom` method. The `loadViewsFrom` method accepts two arguments: the path to your view templates and your package's name. For example, if your package's name is `courier`, you would add the following to your service provider's `boot` method:
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadViewsFrom(__DIR__.'/path/to/views', 'courier');
+    }
+
+Package views are referenced using the `package::view` syntax convention. So, once your view path is registered in a service provider, you may load the `admin` view from the `courier` package like so:
+
+    Route::get('admin', function () {
+        return view('courier::admin');
+    });
+
+#### Overriding Package Views
+
+When you use the `loadViewsFrom` method, Laravel actually registers two locations for your views: the application's `resources/views/vendor` directory and the directory you specify. So, using the `courier` example, Laravel will first check if a custom version of the view has been provided by the developer in `resources/views/vendor/courier`. Then, if the view has not been customized, Laravel will search the package view directory you specified in your call to `loadViewsFrom`. This makes it easy for package users to customize / override your package's views.
+
+#### Publishing Views
+
+If you would like to make your views available for publishing to the application's `resources/views/vendor` directory, you may use the service provider's `publishes` method. The `publishes` method accepts an array of package view paths and their desired publish locations:
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadViewsFrom(__DIR__.'/path/to/views', 'courier');
+
+        $this->publishes([
+            __DIR__.'/path/to/views' => resource_path('views/vendor/courier'),
+        ]);
+    }
+
+Now, when users of your package execute Laravel's `vendor:publish` Artisan command, your package's views will be copied to the specified publish location.
+
+<a name="commands"></a>
+## Commands
+
+To register your package's Artisan commands with Laravel, you may use the `commands` method. This method expects an array of command class names. Once the commands have been registered, you may execute them using the [Artisan CLI](/docs/{{version}}/artisan):
+
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                FooCommand::class,
+                BarCommand::class,
+            ]);
+        }
+    }
+
+<a name="public-assets"></a>
+## Public Assets
+
+Your package may have assets such as JavaScript, CSS, and images. To publish these assets to the application's `public` directory, use the service provider's `publishes` method. In this example, we will also add a `public` asset group tag, which may be used to publish groups of related assets:
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/path/to/assets' => public_path('vendor/courier'),
+        ], 'public');
+    }
+
+Now, when your package's users execute the `vendor:publish` command, your assets will be copied to the specified publish location. Since you will typically need to overwrite the assets every time the package is updated, you may use the `--force` flag:
+
+    php artisan vendor:publish --tag=public --force
+
+<a name="publishing-file-groups"></a>
+## Publishing File Groups
+
+You may want to publish groups of package assets and resources separately. For instance, you might want to allow your users to publish your package's configuration files without being forced to publish your package's assets. You may do this by "tagging" them when calling the `publishes` method from a package's service provider. For example, let's use tags to define two publish groups in the `boot` method of a package service provider:
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/../config/package.php' => config_path('package.php')
+        ], 'config');
+
+        $this->publishes([
+            __DIR__.'/../database/migrations/' => database_path('migrations')
+        ], 'migrations');
+    }
+
+Now your users may publish these groups separately by referencing their tag when executing the `vendor:publish` command:
+
+    php artisan vendor:publish --tag=config

@@ -1,360 +1,312 @@
-# Route လုပ်ခြင်း
+# Routing
 
-- [လမ်းကြောင်းပေးခြင်း အခြေခံ](#basic-routing)
-- [လမ်းကြောင်းထိန်းကွပ် ကိန်းများ](#route-parameters)
-- [Route Filterများ](#route-filters)
-- [အမည်ရှိ လမ်းကြောင်းများ](#named-routes)
-- [လမ်းကြောင်းအုပ်စုများ](#route-groups)
-- [Sub-Domain များ အသုံးပြု ၍ လမ်းကြောင်းပေးခြင်း](#sub-domain-routing)
-- [လမ်းကြောင်းရှေ့ ဆွယ်ပေးခြင်း](#route-prefixing)
-- [လမ်းကြောင်း နှင့် Model ချိတ်တွယ်ခြင်း](#route-model-binding)
-- [404 error များ ထုတ်လွှတ်ခြင်း](#throwing-404-errors)
-- [Controller များအား လမ်းကြောင်းပေးခြင်း](#routing-to-controllers)
+- [Basic Routing](#basic-routing)
+- [Route Parameters](#route-parameters)
+    - [Required Parameters](#required-parameters)
+    - [Optional Parameters](#parameters-optional-parameters)
+    - [Regular Expression Constraints](#parameters-regular-expression-constraints)
+- [Named Routes](#named-routes)
+- [Route Groups](#route-groups)
+    - [Middleware](#route-group-middleware)
+    - [Namespaces](#route-group-namespaces)
+    - [Sub-Domain Routing](#route-group-sub-domain-routing)
+    - [Route Prefixes](#route-group-prefixes)
+- [Route Model Binding](#route-model-binding)
+    - [Implicit Binding](#implicit-binding)
+    - [Explicit Binding](#explicit-binding)
+- [Form Method Spoofing](#form-method-spoofing)
+- [Accessing The Current Route](#accessing-the-current-route)
 
 <a name="basic-routing"></a>
+## Basic Routing
 
-###လမ်းကြောင်းပေးခြင်း(Routing) အခြေခံ
+The most basic Laravel routes simply accept a URI and a `Closure`, providing a very simple and expressive method of defining routes:
 
-သင့် application ၏ လမ်းကြောင်း အများစု ကို `app/routes.php` ဖိုင် တွင် သတ်မှတ်ရပါမည်။ `Laravel` တွင် အရိုးရှင်းဆုံး လမ်းကြောင်းတစ်ခုသည် `URI` တစ်ခု နှင့် `closure` ပြန်ခေါ်ချိတ် method (callback method) တစ်ခု ပါ ၀င် ပါသည်။
-#### အခြေခံ GET လမ်းကြောင်း
+    Route::get('foo', function () {
+        return 'Hello World';
+    });
 
-	Route::get('/', function()
-	{
-		return 'Hello World';
-	});
+#### The Default Route Files
 
-#### အခြေခံ POST လမ်းကြောင်း
+All Laravel routes are defined in your route files, which are located in the `routes` directory. These files are automatically loaded by the framework. The `routes/web.php` file defines routes that are for your web interface. These routes are assigned the `web` middleware group, which provides features like session state and CSRF protection. The routes in `routes/api.php` are stateless and are assigned the `api` middleware group.
 
-	Route::post('foo/bar', function()
-	{
-		return 'Hello World';
-	});
+For most applications, you will begin by defining routes in your `routes/web.php` file.
 
-#### လမ်းကြောင်းတစ်ခုအား HTTP ကြိယာ အများ ဖြင့် မှတ်ပုံတင်ခြင်း
+#### Available Router Methods
 
-	Route::match(array('GET', 'POST'), '/', function()
-	{
-		return 'Hello World';
-	});
+The router allows you to register routes that respond to any HTTP verb:
 
-#### လမ်းကြောင်းတစ်ခုအား မည်သည့် HTTP ကြိယာဖြင့် ဖြစ်စေ သက်ဆိုင်စေရန် မှတ်ပုံတင်ခြင်း
+    Route::get($uri, $callback);
+    Route::post($uri, $callback);
+    Route::put($uri, $callback);
+    Route::patch($uri, $callback);
+    Route::delete($uri, $callback);
+    Route::options($uri, $callback);
 
-	Route::any('foo', function()
-	{
-		return 'Hello World';
-	});
+Sometimes you may need to register a route that responds to multiple HTTP verbs. You may do so using the `match` method. Or, you may even register a route that responds to all HTTP verbs using the `any` method:
 
-#### လမ်းကြောင်းတစ်ခုအား HTTPS ဖြင့် မဖြစ်မနေ အသုံးပြ ုစေချင်း
+    Route::match(['get', 'post'], '/', function () {
+        //
+    });
 
-	Route::get('foo', array('https', function()
-	{
-		return 'Must be over HTTPS';
-	}));
+    Route::any('foo', function () {
+        //
+    });
 
-မကြာခဏ သင့် လမ်းကြောင်းများအတွက် `URL` များ ထုတ်ရန် လိုအပ်ပါလိမ့်မည်။ ထို့အတွက် `URL::to` method ဖြင့် အသုံးပြုနိုင်ပါသည်။
+#### CSRF Protection
 
-	$url = URL::to('foo');
+Any HTML forms pointing to `POST`, `PUT`, or `DELETE` routes that are defined in the `web` routes file should include a CSRF token field. Otherwise, the request will be rejected. You can read more about CSRF protection in the [CSRF documentation](/docs/{{version}}/csrf):
+
+    <form method="POST" action="/profile">
+        {{ csrf_field() }}
+        ...
+    </form>
 
 <a name="route-parameters"></a>
-## လမ်းကြောင်းထိန်းကွပ် ကိန်းရှင်များ
+## Route Parameters
 
-	Route::get('user/{id}', function($id)
-	{
-		return 'User '.$id;
-	});
+<a name="required-parameters"></a>
+### Required Parameters
 
-#### မထည့်လည်းရသော လမ်းကြောင်းထိန်းကွပ်ကိန်းရှင်များ
+Of course, sometimes you will need to capture segments of the URI within your route. For example, you may need to capture a user's ID from the URL. You may do so by defining route parameters:
 
-	Route::get('user/{name?}', function($name = null)
-	{
-		return $name;
-	});
+    Route::get('user/{id}', function ($id) {
+        return 'User '.$id;
+    });
 
-#### ပေးထားသော မူလတန်ဖိုးများဖြင့် လမ်းကြောင်းထိန်းကွပ်ကိန်းရှင်များ
+You may define as many route parameters as required by your route:
 
-	Route::get('user/{name?}', function($name = 'John')
-	{
-		return $name;
-	});
+    Route::get('posts/{post}/comments/{comment}', function ($postId, $commentId) {
+        //
+    });
 
-#### Regular Expression များဖြင့် လမ်းကြောင်းထိန်းကွပ်ကိန်းများအား ကန့်သတ်ခြင်း
+Route parameters are always encased within `{}` braces and should consist of alphabetic characters. Route parameters may not contain a `-` character. Use an underscore (`_`) instead.
 
-	Route::get('user/{name}', function($name)
-	{
-		//
-	})
-	->where('name', '[A-Za-z]+');
+<a name="parameters-optional-parameters"></a>
+### Optional Parameters
 
-	Route::get('user/{id}', function($id)
-	{
-		//
-	})
-	->where('id', '[0-9]+');
+Occasionally you may need to specify a route parameter, but make the presence of that route parameter optional. You may do so by placing a `?` mark after the parameter name. Make sure to give the route's corresponding variable a default value:
 
-#### Where အကန့်အသတ်များအား Array အဖြစ်ဖြင့် ပေးပို့ခြင်း
+    Route::get('user/{name?}', function ($name = null) {
+        return $name;
+    });
 
-အကယ်၍ လို အပ်ပါက ကန့်သတ်ချက်များအား `Array` အဖြစ်တွဲ၍လည်း သုံးနိုင်ပါသည်။
+    Route::get('user/{name?}', function ($name = 'John') {
+        return $name;
+    });
 
-	Route::get('user/{id}/{name}', function($id, $name)
-	{
-		//
-	})
-	->where(array('id' => '[0-9]+', 'name' => '[a-z]+'))
+<a name="parameters-regular-expression-constraints"></a>
+### Regular Expression Constraints
 
-#### Global Pattern များ သတ်မှတ်ခြင်း
+You may constrain the format of your route parameters using the `where` method on a route instance. The `where` method accepts the name of the parameter and a regular expression defining how the parameter should be constrained:
 
-အကယ်၍ လမ်းကြောင်းထိန်းကွပ်တစ်မျိ  ုးအား ပေးထားသော regular expression တစ်ခုဖြင့် ကန့်သတ်လိုပါက `pattern` method ကို အသုံးပြ ုနိုင်ပါသည်။
+    Route::get('user/{name}', function ($name) {
+        //
+    })->where('name', '[A-Za-z]+');
 
-	Route::pattern('id', '[0-9]+');
+    Route::get('user/{id}', function ($id) {
+        //
+    })->where('id', '[0-9]+');
 
-	Route::get('user/{id}', function($id)
-	{
-		// Only called if {id} is numeric.
-	});
+    Route::get('user/{id}/{name}', function ($id, $name) {
+        //
+    })->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
 
-#### လမ်းကြောင်းထိန်းကွပ်ကိန်းတစ်ခု၏ တန်ဖိုး ကို အသုံးပြ ုခြင်း
+<a name="parameters-global-constraints"></a>
+#### Global Constraints
 
-အကယ်၍ လမ်းကြောင်းထိန်းကွပ် ကိန်းတစ်ခု ၏ တန်ဖိုးအား လမ်းကြောင်း၏ အပြင်ဘက်တွင် အသုံးပြု လိုပါက `Route::input` method ကို အသုံးပြု နိုင်ပါသည်။
+If you would like a route parameter to always be constrained by a given regular expression, you may use the `pattern` method. You should define these patterns in the `boot` method of your `RouteServiceProvider`:
 
-	Route::filter('foo', function()
-	{
-		if (Route::input('id') == 1)
-		{
-			//
-		}
-	});
+    /**
+     * Define your route model bindings, pattern filters, etc.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Route::pattern('id', '[0-9]+');
 
-<a name="route-filters"></a>
-## Route filter များ
+        parent::boot();
+    }
 
-route filter များ သည်  ပေးထားသော လမ်းကြောင်းတစ်ခုကို အသုံးပြ ုနိုင်စွမ်း ကန့်သတ်ရာ၌ လွယ်ကူသက်သာအောင် ဖန်တီးပေးထားသော နည်းလမ်းတစ်မျိ  ုးဖြစ်ပါသည်။ ၎င်းတို့ သည် သင့် site တွင်  အသိအမှတ်ပြု  စစ်ဆေးချက်များ (Authentications) လို အပ်ပါက အသုံးဝင်နိုင်ပါသည်။ Laravel framework အတွင်း၌ပင် `auth filter`, `auth.basic filter`, `guest filter`, `csrffilter` အစရှိသဖြင့် များစွာသော route filter များ ပါ၀င်ပါသည်။၎င်းတို့ အားလုံး သည် `app/filters.php` ဖိုင်တွင် တည်ရှိပါသည်။
+Once the pattern has been defined, it is automatically applied to all routes using that parameter name:
 
-#### Route filter တစ်ခု သတ်မှတ်ခြင်း
-
-	Route::filter('old', function()
-	{
-		if (Input::get('age') < 200)
-		{
-			return Redirect::to('home');
-		}
-	});
-
-အကယ်၍ ပေးထားသော Web Server ၏ တုန့်ပြန်ချက် သည် route filter တစ်ခုဆီမှ ပြန်လာခြင်းဖြစ်ပါက ထို တုန့်ပြန်ချက်အား မူလတောင်းဆိုချက်၏ တုန့်ပြန်ချက်အဖြစ် စဉ်းစားမည်ဖြစ်ပြီး လမ်းကြောင်းကို execute လုပ်မည် မဟုတ်ပါ။ထို့ပြင် သတ်မှတ်ထားပြီးသော နောက်ဆွယ် route filters(after filters)ကို လည်း ပျက်ပြယ်စေမည် ဖြစ်ပါသည်။
-
-#### လမး်ကြောင်းတစ်ခုပေါ်သို့ Route filter တစ်ခု ချိတ်ဆက်ခြင်း
-
-	Route::get('user', array('before' => 'old', function()
-	{
-		return 'You are over 200 years old!';
-	}));
-
-####  Controller Action တစ်ခု သို့ Route filter တစ်ခု ချိတ်ဆက်ခြင်း
-
-	Route::get('user', array('before' => 'old', 'uses' => 'UserController@showProfile'));
-
-#### လမ်းကြောင်းတစ်ခုပေါ်သို့ Route filter အများ ချိတ်ဆက်ခြင်း
-
-	Route::get('user', array('before' => 'auth|old', function()
-	{
-		return 'You are authenticated and over 200 years old!';
-	}));
-
-#### လမ်းကြောင်းတစ်ခုပေါ်သို့ Route filter အများ အား Array အဖြစ်ဖြင့် ချိတ်ဆက်ခြင်း
-
-	Route::get('user', array('before' => array('auth', 'old'), function()
-	{
-		return 'You are authenticated and over 200 years old!';
-	}));
-
-#### Route filter ထိန်းကွပ်ကိန်းများ သတ်မှတ်ခြင်း
-
-	Route::filter('age', function($route, $request, $value)
-	{
-		//
-	});
-
-	Route::get('user', array('before' => 'age:200', function()
-	{
-		return 'Hello World';
-	}));
-
-နောက်ဆွယ် Route filter များ သည် `$response` အား တတိယမြောက် argument အဖြစ် လက်ခံရရှိပါသည်။
-
-	Route::filter('log', function($route, $request, $response)
-	{
-		//
-	});
-
-#### Pattern အခြေခံ Filter များ
-
-Route filter တစ်ခုအား လမ်းကြောင်းတို့၏ URI ပေါ် အခြေခံ ၍ သတ်မှတ်ထားသော လမ်းကြောင်း အုပ်စုတစ်ခု လုံး ပေါ်သို့ သက်ရောက်စေရန်လည်း သတ်မှတ်နိုင်ပါသည်။ 
-
-	Route::filter('admin', function()
-	{
-		//
-	});
-
-	Route::when('admin/*', 'admin');
-
-ပေးထားသော ဥပမာတွင် `admin` route filter သည် `admin/` ဖြင့် စသော လမ်းကြောင်းအားလုံး ပေါ်သို့ သက်ရောက်မည် ဖြစ်ပါသည်။ ခရေပွင့် စာလုံး `*` ကို မည်သည့် စာလုံးနှင့်မဆို ကိုက်ညီစေမည့် သံခိတ် စာလုံး အဖြစ် အသုံးပြု နိုင်ပါသည်။
-
-ထို့ အပြင် HTTP ကြိယာများဖြင့်လည်း pattern အခြေခံ filter များ အား ကန့်သတ်နိုင်ပါသည်။
-You may also constrain pattern filters by HTTP verbs:
-
-	Route::when('admin/*', 'admin', array('post'));
-
-#### Filter class များ
-
-အဆင့်မြင့် route filter များ တွင် Closure တစ်ခု ထက် class တစ်ခုကို အသုံးပြု ချင် ကောင်း အသုံးပြု ပါလိမ့်မည်။စင်စစ် filter class များသည် application [IoC Container](ioc.md) မှ တစ်ဆင့် ပြန်ဖြည်ချင်းဖြစ်ရာ dependency injection ကို အသုံး ပြု နိုင်စေ၍ test လုပ်ခြင်းကို အထောက်အပံ့ကောင်းကောင်းပေးနိုင်ပါသည်။
-
-#### Class အခြေခံ filter တစ်ခု အား မှတ်ပုံတင်ခြင်း
-
-	Route::filter('foo', 'FooFilter');
-
-ပုံမှန်အားဖြင့် `FooFilter` class ၏ `filter` method ကို ခေါ်ပါလိမ့်မည်။
-
-	class FooFilter {
-
-		public function filter()
-		{
-			// Filter logic...
-		}
-
-	}
-
-အကယ်၍ `filter` method ကို မသုံးလိုပါက အခြား method တစ်ခုကို သတ်မှတ်လိုက်ရုံပင်။
-
-	Route::filter('foo', 'FooFilter@foo');
+    Route::get('user/{id}', function ($id) {
+        // Only executed if {id} is numeric...
+    });
 
 <a name="named-routes"></a>
-## အမည်ရှိ လမ်းကြောင်းများ
+## Named Routes
 
-အမည်ရှိလမ်းကြောင်းများသည် လမ်းကြောင်းလွှဲများ ပြု လုပ်သောအခါ သို့မဟုတ် URL များ ရေးသားသောအခါ လမ်းကြောင်းများကို ညွှန်းဆိုရာ ၌ ပိုမိုလွယ်ကူစေပါသည်။
+Named routes allow the convenient generation of URLs or redirects for specific routes. You may specify a name for a route by chaining the `name` method onto the route definition:
 
-	Route::get('user/profile', array('as' => 'profile', function()
-	{
-		//
-	}));
+    Route::get('user/profile', function () {
+        //
+    })->name('profile');
 
-Controller action အတွဲများ အတွက် လည်း လမ်းကြောင်းအမည်များ သတ်မှတ်နိုင်ပါသည်။
+You may also specify route names for controller actions:
 
-	Route::get('user/profile', array('as' => 'profile', 'uses' => 'UserController@showProfile'));
+    Route::get('user/profile', 'UserController@showProfile')->name('profile');
 
-အထက်ပါအတိုင်းသတ်မှတ်ပြီးပါက ပေးထားသော လမ်းကြောင်းနာမည်ဖြင့် URL များ ထုတ်ရာ၌ ဖြစ်စေ လမ်းကြောင်းလွှဲများ အသုံးပြု ရာ ၌ ဖြစ်စေ သုံးနိုင်ပါပြီ။
+#### Generating URLs To Named Routes
 
-	$url = URL::route('profile');
+Once you have assigned a name to a given route, you may use the route's name when generating URLs or redirects via the global `route` function:
 
-	$redirect = Redirect::route('profile');
+    // Generating URLs...
+    $url = route('profile');
 
-လက်ရှိ ရောက်ရှိနေသော လမ်းကြောင်း၏ အမည်ကို `currentRouteName` method ဖြင့် သိရှိအသုံးပြု နိုင်ပါသည်။
+    // Generating Redirects...
+    return redirect()->route('profile');
 
-	$name = Route::currentRouteName();
+If the named route defines parameters, you may pass the parameters as the second argument to the `route` function. The given parameters will automatically be inserted into the URL in their correct positions:
+
+    Route::get('user/{id}/profile', function ($id) {
+        //
+    })->name('profile');
+
+    $url = route('profile', ['id' => 1]);
 
 <a name="route-groups"></a>
-## လမ်းကြောင်း အုပ်စုများ
+## Route Groups
 
-တစ်ခါတစ်ရံ  လမ်းကြောင်း အုပ်စု တစ်ခု ပေါ်သို့ filter များ သက်ရောက်ဖို့ လိုအပ်ကောင်းလိုအပ်နိုင်ပါသည်။ ထိုအခါမျိ  ုးတွင် လမ်းကြောင်းတစ်ခုစီအတွက် filter များသတ်မှတ်မည့်အစား လမ်းကြောင်းအုပ်စု တစ်ခုကို အသုံးပြု နိုင်ပါသည်။
+Route groups allow you to share route attributes, such as middleware or namespaces, across a large number of routes without needing to define those attributes on each individual route. Shared attributes are specified in an array format as the first parameter to the `Route::group` method.
 
-	Route::group(array('before' => 'auth'), function()
-	{
-		Route::get('/', function()
-		{
-			// Has Auth Filter
-		});
+<a name="route-group-middleware"></a>
+### Middleware
 
-		Route::get('user/profile', function()
-		{
-			// Has Auth Filter
-		});
-	});
+To assign middleware to all routes within a group, you may use the `middleware` key in the group attribute array. Middleware are executed in the order they are listed in the array:
 
-`group` array အတွင်းတွင်`namespace` ထိန်းကွပ်ကိန်းထည့်၍ လည်း ပေးထားသော အုပ်စုအတွင်းရှိ controller များအား namespace တစ်ခုအတွင်း ကျရောက်နေစေရန် စီမံနိုင်ပါသည်။
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/', function ()    {
+            // Uses Auth Middleware
+        });
 
-	Route::group(array('namespace' => 'Admin'), function()
-	{
-		//
-	});
+        Route::get('user/profile', function () {
+            // Uses Auth Middleware
+        });
+    });
 
-<a name="sub-domain-routing"></a>
-## Sub-Domain များ အသုံးပြု ၍ လမ်းကြောင်းပေးခြင်း
+<a name="route-group-namespaces"></a>
+### Namespaces
 
-Laravel လမ်းကြောင်းများတွင် သံခိတ်သုံး sub-domain များကို ကောင်းမွန်စွာ စီမံအသုံးချနိုင်ပြီး domain မှ သံခိတ် ထိန်းကွပ်ကိန်းများ ကို ပေးပို့နိုင်ပါသည်။
+Another common use-case for route groups is assigning the same PHP namespace to a group of controllers using the `namespace` parameter in the group array:
 
-#### Sub-domain လမ်းကြောင်းများ မှတ်ပုံတင်ခြင်း
+    Route::group(['namespace' => 'Admin'], function () {
+        // Controllers Within The "App\Http\Controllers\Admin" Namespace
+    });
 
-	Route::group(array('domain' => '{account}.myapp.com'), function()
-	{
+Remember, by default, the `RouteServiceProvider` includes your route files within a namespace group, allowing you to register controller routes without specifying the full `App\Http\Controllers` namespace prefix. So, you only need to specify the portion of the namespace that comes after the base `App\Http\Controllers` namespace.
 
-		Route::get('user/{id}', function($account, $id)
-		{
-			//
-		});
+<a name="route-group-sub-domain-routing"></a>
+### Sub-Domain Routing
 
-	});
+Route groups may also be used to handle sub-domain routing. Sub-domains may be assigned route parameters just like route URIs, allowing you to capture a portion of the sub-domain for usage in your route or controller. The sub-domain may be specified using the `domain` key on the group attribute array:
 
-<a name="route-prefixing"></a>
-## လမ်းကြောင်းရှေ့ ဆွယ်ပေးခြင်း
+    Route::group(['domain' => '{account}.myapp.com'], function () {
+        Route::get('user/{id}', function ($account, $id) {
+            //
+        });
+    });
 
-လမ်းကြောင်း အုပ်စု တစ်ခု အား `prefix` ထိန်းကွပ်ကိန်းအား `group` array တွင် ထည့်သွင်း၍ ရှေ့ ဆွယ် လမ်းကြောင်းတစ်ခုပေးနိုင်ပါသည်။
+<a name="route-group-prefixes"></a>
+### Route Prefixes
 
-	Route::group(array('prefix' => 'admin'), function()
-	{
+The `prefix` group attribute may be used to prefix each route in the group with a given URI. For example, you may want to prefix all route URIs within the group with `admin`:
 
-		Route::get('user', function()
-		{
-			//
-		});
-
-	});
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('users', function ()    {
+            // Matches The "/admin/users" URL
+        });
+    });
 
 <a name="route-model-binding"></a>
-## လမ်းကြောင်း နှင့် Model ချိတ်တွယ်ခြင်း
+## Route Model Binding
 
-Model ချိတ်တွယ်ခြင်း သည် model instance တစ်ခုအား လမ်းကြောင်းများ အတွင်းသို့ အလွယ်တကူ ထိုးသွင်းနိုင်စေပါသည်။ ဥပမာ user တစ်ယောက်၏ id ကို လမ်းကြောင်းအတွင်း ထည့်သွင်းမည့်အစား ပေးထားသော id နှင့် ကိုက်ညီသည့် user model instance တစ်ခုကို တိုက်ရိုက်ထည့်သွင်းနိုင်ပါသည်။ ပထမဦးစွာ`Route::model` method ကို အသုံးပြု ပြီး ပေးထားသော ထိန်းကွပ်ကိန်းအတွင်း အသုံးပြု မည့် model အမည်ကို သတ်မှတ်ပေးရပါမည်။
+When injecting a model ID to a route or controller action, you will often query to retrieve the model that corresponds to that ID. Laravel route model binding provides a convenient way to automatically inject the model instances directly into your routes. For example, instead of injecting a user's ID, you can inject the entire `User` model instance that matches the given ID.
 
-#### ထိန်းကွပ်ကိန်းတစ်ခုအား model တစ်ခုဖြင့် ချိတ်တွယ်ခြင်း
+<a name="implicit-binding"></a>
+### Implicit Binding
 
-	Route::model('user', 'User');
+Laravel automatically resolves Eloquent models defined in routes or controller actions whose variable names match a route segment name. For example:
 
-ပြီးနောက် `{user}` ထိန်းကွပ်ကိန်းပါ၀င်သည့် လမ်းကြောင်းတစ်ခု သတ်မှတ်ပေးရပါမည်။
+    Route::get('api/users/{user}', function (App\User $user) {
+        return $user->email;
+    });
 
-	Route::get('profile/{user}', function(User $user)
-	{
-		//
-	});
+In this example, since the Eloquent `$user` variable defined on the route matches the `{user}` segment in the route's URI, Laravel will automatically inject the model instance that has an ID matching the corresponding value from the request URI. If a matching model instance is not found in the database, a 404 HTTP response will automatically be generated.
 
-`{user}` ထိန်းကွပ်ကိန်းကို `User` model ဖြင့် ချိတ်တွယ်ခဲ့သဖြင့် `User` instance တစ်ခုကို လမ်းကြောင်းအတွင်းသို့ ထိုးသွင်းပါလိမ့်မည်။ ဥပမာအားဖြင့် `profile/1` သို့ လာသော တောင်းဆိုချက်တစ်ခုသည် ID 1 ရှိသော `User` instance တစ်ခုကို ထိုးသွင်းပါလိမ့်မည်။
+#### Customizing The Key Name
 
->**မှတ်ချက်** အကယ်၍ ကိုက်ညီသည့် model instance တစ်ခုကို database တွင် ရှာမတွေ့ ပါက 404 error ဖြစ်ပေါ်ပါလိမ့်မည်။
+If you would like model binding to use a database column other than `id` when retrieving a given model class, you may override the `getRouteKeyName` method on the Eloquent model:
 
-အကယ်၍ မိမိဘာသာ "not found" တုန့်ပြန်ချက်တစ်ခု သတ်မှတ်လိုပါက `model` method တွင် Closure တစ်ခုအား တတိယ arugment အဖြစ် ပေးပို့နိုင်ပါသည်။
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
-	Route::model('user', 'User', function()
-	{
-		throw new NotFoundHttpException;
-	});
+<a name="explicit-binding"></a>
+### Explicit Binding
 
-တစ်ခါတစ်ရံ ကိုယ်တိုင် လမ်းကြောင်းထိန်းကွပ်ကိန်းများ မိမိ ဘာသာ ဖြည်လိုခြင်း မျိ  ုးရှိနိုင်ပါသည်။ ထို့ အတွက် `Route::bind` method ကို သုံးလိုက်ရုံပင်။
+To register an explicit binding, use the router's `model` method to specify the class for a given parameter. You should define your explicit model bindings in the `boot` method of the `RouteServiceProvider` class:
 
-	Route::bind('user', function($value, $route)
-	{
-		return User::where('name', $value)->first();
-	});
+    public function boot()
+    {
+        parent::boot();
 
-<a name="throwing-404-errors"></a>
-## 404 error များ ထုတ်လွှတ်ခြင်း
+        Route::model('user', App\User::class);
+    }
 
-လမ်းကြောင်းတစ်ခု ဆီမှ 404 error တစ်ခု ဖြစ်ပေါ်အောင် ကိုယ်တိုင် ပြု လုပ်နည်း နှစ်မျ  ိုး ရှိပါသည်။ ပထမတစ်နည်း မှာ `App::abort` method ကို အသုံးပြု ခြင်းဖြစ်သည်။
+Next, define a route that contains a `{user}` parameter:
 
-	App::abort(404);
+    Route::get('profile/{user}', function (App\User $user) {
+        //
+    });
 
-ဒုတိယတည်နည်းမှာ `Symfony\Component\HttpKernel\Exception\NotFoundHttpException` ကို ကိုယ်တိုင် ထုတ်လွှတ်ခြင်းဖြစ်သည်။
+Since we have bound all `{user}` parameters to the `App\User` model, a `User` instance will be injected into the route. So, for example, a request to `profile/1` will inject the `User` instance from the database which has an ID of `1`.
 
-404 exception များ ကိုင်တွယ်ခြင်း နှင့် ၎င်းတို့ အတွက် ကိုယ်ပိုင်တုန့်ပြန်ချက်များ ပြု လုပ်ခြင်းတို့ နှင့် ပတ်သက်၍ [errors](errors#handling-404-errors.md) အပိုင်းတွင် ပိုမို ဖတ်ရှုနိုင်ပါသည်။
+If a matching model instance is not found in the database, a 404 HTTP response will be automatically generated.
 
-<a name="routing-to-controllers"></a>
-## Controller များ အား လမ်းကြောင်းပေးခြင်း
+#### Customizing The Resolution Logic
 
-Laravel တွင် လမ်းကြောင်းပေးရာ၌ Closure များ ကိုသာ မဟုတ် controller class များကို လည်း အသုံးပြု နိုင်သည့် အပြင်  [resource controllers](/docs/controllers#resource-controllers လမ်းကြောင်းများ ပါ ခွင့်ပြုထားပါသည်။
+If you wish to use your own resolution logic, you may use the `Route::bind` method. The `Closure` you pass to the `bind` method will receive the value of the URI segment and should return the instance of the class that should be injected into the route:
 
-[Controllers](controllers.md) လမ်းညွှန် တွင်အသေးစိတ် ဖတ်ရှု နိုင်ပါသည်။
+    public function boot()
+    {
+        parent::boot();
+
+        Route::bind('user', function ($value) {
+            return App\User::where('name', $value)->first();
+        });
+    }
+
+<a name="form-method-spoofing"></a>
+## Form Method Spoofing
+
+HTML forms do not support `PUT`, `PATCH` or `DELETE` actions. So, when defining `PUT`, `PATCH` or `DELETE` routes that are called from an HTML form, you will need to add a hidden `_method` field to the form. The value sent with the `_method` field will be used as the HTTP request method:
+
+    <form action="/foo/bar" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    </form>
+
+You may use the `method_field` helper to generate the `_method` input:
+
+    {{ method_field('PUT') }}
+
+<a name="accessing-the-current-route"></a>
+## Accessing The Current Route
+
+You may use the `current`, `currentRouteName`, and `currentRouteAction` methods on the `Route` facade to access information about the route handling the incoming request:
+
+    $route = Route::current();
+
+    $name = Route::currentRouteName();
+
+    $action = Route::currentRouteAction();
+
+Refer to the API documentation for both the [underlying class of the Route facade](https://laravel.com/api/{{version}}/Illuminate/Routing/Router.html) and [Route instance](https://laravel.com/api/{{version}}/Illuminate/Routing/Route.html) to review all accessible methods.
