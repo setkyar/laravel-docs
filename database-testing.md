@@ -10,6 +10,7 @@
     - [Creating Models](#creating-models)
     - [Persisting Models](#persisting-models)
     - [Relationships](#relationships)
+- [Available Assertions](#available-assertions)
 
 <a name="introduction"></a>
 ## Introduction
@@ -24,6 +25,8 @@ Laravel provides a variety of helpful tools to make it easier to test your datab
             'email' => 'sally@example.com'
         ]);
     }
+
+You can also used the `assertDatabaseMissing` helper to assert that data does not exist in the database.
 
 Of course, the `assertDatabaseHas` method and other helpers like it are for convenience. You are free to use any of PHPUnit's built-in assertion methods to supplement your tests.
 
@@ -119,11 +122,17 @@ Of course, you are free to add your own additional factories to the `ModelFactor
 <a name="factory-states"></a>
 ### Factory States
 
-States allow you to define discrete modifications that can be applied to your model factories in any combination. For example, your `User` model might have a `delinquent` state that modifies one of its default attribute values. You may define your state transformations using the `state` method:
+States allow you to define discrete modifications that can be applied to your model factories in any combination. For example, your `User` model might have a `delinquent` state that modifies one of its default attribute values. You may define your state transformations using the `state` method. For simple states, you may pass an array of attribute modifications:
 
-    $factory->state(App\User::class, 'delinquent', function ($faker) {
+    $factory->state(App\User::class, 'delinquent', [
+        'account_status' => 'delinquent',
+    ]);
+
+If your state requires calculation or a `$faker` instance, you may use a Closure to calculate the state's attribute modifications:
+
+    $factory->state(App\User::class, 'address', function ($faker) {
         return [
-            'account_status' => 'delinquent',
+            'address' => $faker->address,
         ];
     });
 
@@ -224,3 +233,14 @@ These Closures also receive the evaluated attribute array of the factory that de
             }
         ];
     });
+
+<a name="available-assertions"></a>
+## Available Assertions
+
+Laravel provides several database assertions for your [PHPUnit](https://phpunit.de/) tests:
+
+Method  | Description
+------------- | -------------
+`$this->assertDatabaseHas($table, array $data);`  |  Assert that a table in the database contains the given data.
+`$this->assertDatabaseMissing($table, array $data);`  |  Assert that a table in the database does not contain the given data.
+`$this->assertSoftDeleted($table, array $data);`  |  Assert that the given record has been soft deleted.

@@ -30,7 +30,11 @@ The most basic Laravel routes simply accept a URI and a `Closure`, providing a v
 
 All Laravel routes are defined in your route files, which are located in the `routes` directory. These files are automatically loaded by the framework. The `routes/web.php` file defines routes that are for your web interface. These routes are assigned the `web` middleware group, which provides features like session state and CSRF protection. The routes in `routes/api.php` are stateless and are assigned the `api` middleware group.
 
-For most applications, you will begin by defining routes in your `routes/web.php` file.
+For most applications, you will begin by defining routes in your `routes/web.php` file. The routes defined in `routes/web.php` may be accessed by entering the defined route's URL in your browser. For example, you may access the following route by navigating to `http://your-app.dev/user` in your browser:
+
+    Route::get('/user', 'UsersController@index');
+
+Routes defined in the `routes/api.php` file are nested within a route group by the `RouteServiceProvider`. Within this group, the `/api` URI prefix is automatically applied so you do not need to manually apply it to every route in the file. You may modify the prefix and other route group options by modifying your `RouteServiceProvider` class.
 
 #### Available Router Methods
 
@@ -80,7 +84,7 @@ You may define as many route parameters as required by your route:
         //
     });
 
-Route parameters are always encased within `{}` braces and should consist of alphabetic characters. Route parameters may not contain a `-` character. Use an underscore (`_`) instead.
+Route parameters are always encased within `{}` braces and should consist of alphabetic characters, and may not contain a `-` character. Instead of using the `-` character, use an underscore (`_`) instead. Route parameters are injected into route callbacks / controllers based on their order - the names of the callback / controller arguments do not matter.
 
 <a name="parameters-optional-parameters"></a>
 ### Optional Parameters
@@ -166,6 +170,26 @@ If the named route defines parameters, you may pass the parameters as the second
 
     $url = route('profile', ['id' => 1]);
 
+#### Inspecting The Current Route
+
+If you would like to determine if the current request was routed to a given named route, you may use the `named` method on a Route instance. For example, you may check the current route name from a route middleware:
+
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if ($request->route()->named('profile')) {
+            //
+        }
+
+        return $next($request);
+    }
+
 <a name="route-groups"></a>
 ## Route Groups
 
@@ -174,24 +198,24 @@ Route groups allow you to share route attributes, such as middleware or namespac
 <a name="route-group-middleware"></a>
 ### Middleware
 
-To assign middleware to all routes within a group, you may use the `middleware` key in the group attribute array. Middleware are executed in the order they are listed in the array:
+To assign middleware to all routes within a group, you may use the `middleware` method before defining the group. Middleware are executed in the order they are listed in the array:
 
-    Route::group(['middleware' => 'auth'], function () {
-        Route::get('/', function ()    {
-            // Uses Auth Middleware
+    Route::middleware(['first', 'second'])->group(function () {
+        Route::get('/', function () {
+            // Uses first & second Middleware
         });
 
         Route::get('user/profile', function () {
-            // Uses Auth Middleware
+            // Uses first & second Middleware
         });
     });
 
 <a name="route-group-namespaces"></a>
 ### Namespaces
 
-Another common use-case for route groups is assigning the same PHP namespace to a group of controllers using the `namespace` parameter in the group array:
+Another common use-case for route groups is assigning the same PHP namespace to a group of controllers using the `namespace` method:
 
-    Route::group(['namespace' => 'Admin'], function () {
+    Route::namespace('Admin')->group(function () {
         // Controllers Within The "App\Http\Controllers\Admin" Namespace
     });
 
@@ -200,9 +224,9 @@ Remember, by default, the `RouteServiceProvider` includes your route files withi
 <a name="route-group-sub-domain-routing"></a>
 ### Sub-Domain Routing
 
-Route groups may also be used to handle sub-domain routing. Sub-domains may be assigned route parameters just like route URIs, allowing you to capture a portion of the sub-domain for usage in your route or controller. The sub-domain may be specified using the `domain` key on the group attribute array:
+Route groups may also be used to handle sub-domain routing. Sub-domains may be assigned route parameters just like route URIs, allowing you to capture a portion of the sub-domain for usage in your route or controller. The sub-domain may be specified by calling the the `domain` method before defining the group:
 
-    Route::group(['domain' => '{account}.myapp.com'], function () {
+    Route::domain('{account}.myapp.com')->group(function () {
         Route::get('user/{id}', function ($account, $id) {
             //
         });
@@ -211,10 +235,10 @@ Route groups may also be used to handle sub-domain routing. Sub-domains may be a
 <a name="route-group-prefixes"></a>
 ### Route Prefixes
 
-The `prefix` group attribute may be used to prefix each route in the group with a given URI. For example, you may want to prefix all route URIs within the group with `admin`:
+The `prefix` method may be used to prefix each route in the group with a given URI. For example, you may want to prefix all route URIs within the group with `admin`:
 
-    Route::group(['prefix' => 'admin'], function () {
-        Route::get('users', function ()    {
+    Route::prefix('admin')->group(function () {
+        Route::get('users', function () {
             // Matches The "/admin/users" URL
         });
     });
@@ -227,13 +251,13 @@ When injecting a model ID to a route or controller action, you will often query 
 <a name="implicit-binding"></a>
 ### Implicit Binding
 
-Laravel automatically resolves Eloquent models defined in routes or controller actions whose variable names match a route segment name. For example:
+Laravel automatically resolves Eloquent models defined in routes or controller actions whose type-hinted variable names match a route segment name. For example:
 
     Route::get('api/users/{user}', function (App\User $user) {
         return $user->email;
     });
 
-In this example, since the Eloquent `$user` variable defined on the route matches the `{user}` segment in the route's URI, Laravel will automatically inject the model instance that has an ID matching the corresponding value from the request URI. If a matching model instance is not found in the database, a 404 HTTP response will automatically be generated.
+Since the `$user` variable is type-hinted as the `App\User` Eloquent model and the variable name matches the `{user}` URI segment, Laravel will automatically inject the model instance that has an ID matching the corresponding value from the request URI. If a matching model instance is not found in the database, a 404 HTTP response will automatically be generated.
 
 #### Customizing The Key Name
 

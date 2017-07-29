@@ -3,6 +3,7 @@
 - [Accessing The Request](#accessing-the-request)
     - [Request Path & Method](#request-path-and-method)
     - [PSR-7 Requests](#psr7-requests)
+- [Input Trimming & Normalization](#input-trimming-and-normalization)
 - [Retrieving Input](#retrieving-input)
     - [Old Input](#old-input)
     - [Cookies](#cookies)
@@ -131,6 +132,13 @@ Once you have installed these libraries, you may obtain a PSR-7 request by type-
 
 > {tip} If you return a PSR-7 response instance from a route or controller, it will automatically be converted back to a Laravel response instance and be displayed by the framework.
 
+<a name="input-trimming-and-normalization"></a>
+## Input Trimming & Normalization
+
+By default, Laravel includes the `TrimStrings` and `ConvertEmptyStringsToNull` middleware in your application's global middleware stack. These middleware are listed in the stack by the `App\Http\Kernel` class. These middleware will automatically trim all incoming string fields on the request, as well as convert any empty string fields to `null`. This allows you to not have to worry about these normalization concerns in your routes and controllers.
+
+If you would like to disable this behavior, you may remove the two middleware from your application's middleware stack by removing them from the `$middleware` property of your `App\Http\Kernel` class.
+
 <a name="retrieving-input"></a>
 ## Retrieving Input
 
@@ -155,6 +163,20 @@ When working with forms that contain array inputs, use "dot" notation to access 
     $name = $request->input('products.0.name');
 
     $names = $request->input('products.*.name');
+
+#### Retrieving Input From The Query String
+
+While the `input` method retrieves values from entire request payload (including the query string), the `query` method will only retrieve values from the query string:
+
+    $name = $request->query('name');
+
+If the requested query string value data is not present, the second argument to this method will be returned:
+
+    $name = $request->query('name', 'Helen');
+
+You may call the `query` method without any arguments in order to retrieve all of the query string values as an associative array:
+
+    $query = $request->query();
 
 #### Retrieving Input Via Dynamic Properties
 
@@ -182,11 +204,21 @@ If you need to retrieve a subset of the input data, you may use the `only` and `
 
     $input = $request->except('credit_card');
 
+The `only` method returns all of the key / value pairs that you request, even if the key is not present on the incoming request. When the key is not present on the request, the value will be `null`. If you would like to retrieve a portion of input data that is actually present on the request, you may use the `intersect` method:
+
+    $input = $request->intersect(['username', 'password']);
+
 #### Determining If An Input Value Is Present
 
 You should use the `has` method to determine if a value is present on the request. The `has` method returns `true` if the value is present and is not an empty string:
 
     if ($request->has('name')) {
+        //
+    }
+
+When given an array, the `has` method will determine if all of the specified values are present:
+
+    if ($request->has(['name', 'email'])) {
         //
     }
 

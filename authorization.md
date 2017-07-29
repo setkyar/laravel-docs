@@ -48,6 +48,40 @@ Gates are Closures that determine if a user is authorized to perform a given act
         });
     }
 
+Gates may also be defined using a `Class@method` style callback string, like controllers:
+
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerPolicies();
+
+        Gate::define('update-post', 'PostPolicy@update');
+    }
+
+#### Resource Gates
+
+You may also define multiple Gate abilities at once using the `resource` method:
+
+    Gate::resource('posts', 'PostPolicy');
+
+This is identical to manually defining the following Gate definitions:
+
+    Gate::define('posts.view', 'PostPolicy@view');
+    Gate::define('posts.create', 'PostPolicy@create');
+    Gate::define('posts.update', 'PostPolicy@update');
+    Gate::define('posts.delete', 'PostPolicy@delete');
+
+By default, the `view`, `create`, `update`, and `delete` abilities will be defined. You may override or add to the default abilities by passing an array as a third argument to the `resource` method. The keys of the array define the names of the abilities while the values define the method names. For example, the following code will create two new Gate definitions - `posts.image` and `posts.photo`:
+
+    Gate::resource('posts', 'PostPolicy', [
+        'image' => 'updateImage',
+        'photo' => 'updatePhoto',
+    ]);
+
 <a name="authorizing-actions-via-gates"></a>
 ### Authorizing Actions
 
@@ -318,10 +352,10 @@ These directives are convenient shortcuts for writing `@if` and `@unless` statem
 
 Like most of the other authorization methods, you may pass a class name to the `@can` and `@cannot` directives if the action does not require a model instance:
 
-    @can('create', Post::class)
+    @can('create', App\Post::class)
         <!-- The Current User Can Create Posts -->
     @endcan
 
-    @cannot('create', Post::class)
+    @cannot('create', App\Post::class)
         <!-- The Current User Can't Create Posts -->
     @endcannot

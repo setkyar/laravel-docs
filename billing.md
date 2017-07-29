@@ -32,7 +32,7 @@
 
 Laravel Cashier provides an expressive, fluent interface to [Stripe's](https://stripe.com) and [Braintree's](https://www.braintreepayments.com) subscription billing services. It handles almost all of the boilerplate subscription billing code you are dreading writing. In addition to basic subscription management, Cashier can handle coupons, swapping subscription, subscription "quantities", cancellation grace periods, and even generate invoice PDFs.
 
-> {note} If you're only performing "one-off" charges and do not offer subscriptions. You should not use Cashier. You should use the Stripe and Braintree SDKs directly.
+> {note} If you're only performing "one-off" charges and do not offer subscriptions, you should not use Cashier. Instead, use the Stripe and Braintree SDKs directly.
 
 <a name="configuration"></a>
 ## Configuration
@@ -42,9 +42,9 @@ Laravel Cashier provides an expressive, fluent interface to [Stripe's](https://s
 
 #### Composer
 
-First, add the Cashier package for Stripe to your `composer.json` file and run the `composer update` command:
+First, add the Cashier package for Stripe to your dependencies:
 
-    "laravel/cashier": "~7.0"
+    composer require "laravel/cashier":"~7.0"
 
 #### Service Provider
 
@@ -92,6 +92,7 @@ Finally, you should configure your Stripe key in your `services.php` configurati
 
     'stripe' => [
         'model'  => App\User::class,
+        'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
 
@@ -110,13 +111,15 @@ For many operations, the Stripe and Braintree implementations of Cashier functio
 
 #### Composer
 
-First, add the Cashier package for Braintree to your `composer.json` file and run the `composer update` command:
+First, add the Cashier package for Braintree to your dependencies:
 
-    "laravel/cashier-braintree": "~2.0"
+    composer require "laravel/cashier-braintree":"~2.0"
 
 #### Service Provider
 
-Next, register the `Laravel\Cashier\CashierServiceProvider` [service provider](/docs/{{version}}/providers) in your `config/app.php` configuration file.
+Next, register the `Laravel\Cashier\CashierServiceProvider` [service provider](/docs/{{version}}/providers) in your `config/app.php` configuration file:
+
+    Laravel\Cashier\CashierServiceProvider::class
 
 #### Plan Credit Coupon
 
@@ -199,11 +202,11 @@ To create a subscription, first retrieve an instance of your billable model, whi
 
     $user = User::find(1);
 
-    $user->newSubscription('main', 'monthly')->create($stripeToken);
+    $user->newSubscription('main', 'premium')->create($stripeToken);
 
 The first argument passed to the `newSubscription` method should be the name of the subscription. If your application only offers a single subscription, you might call this `main` or `primary`. The second argument is the specific Stripe / Braintree plan the user is subscribing to. This value should correspond to the plan's identifier in Stripe or Braintree.
 
-The `create` method will begin the subscription as well as update your database with the customer ID and other relevant billing information.
+The `create` method, which accepts a Stripe credit card / source token, will begin the subscription as well as update your database with the customer ID and other relevant billing information.
 
 #### Additional User Details
 
@@ -310,7 +313,7 @@ Alternatively, you may set a specific quantity using the `updateQuantity` method
 
     $user->subscription('main')->updateQuantity(10);
 
-For more information on subscription quantities, consult the [Stripe documentation](https://stripe.com/docs/guides/subscriptions#setting-quantities).
+For more information on subscription quantities, consult the [Stripe documentation](https://stripe.com/docs/subscriptions/quantities).
 
 <a name="subscription-taxes"></a>
 ### Subscription Taxes

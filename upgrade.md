@@ -11,7 +11,11 @@
 
 ### Updating Dependencies
 
-Update your `laravel/framework` dependency to `5.4.*` in your `composer.json` file. In addition, you should update your `phpunit/phpunit` dependency to `~5.0`.
+Update your `laravel/framework` dependency to `5.4.*` in your `composer.json` file. In addition, you should update your `phpunit/phpunit` dependency to `~5.7`.
+
+#### Removing Compiled Services File
+
+If it exists, you may delete the `bootstrap/cache/compiled.php` file. It is no longer used by the framework.
 
 #### Flushing The Cache
 
@@ -77,7 +81,7 @@ If you would like to render unescaped content in a section, you must declare the
 
 ### Bootstrappers
 
-If you are manually overriding the `$bootstrappers` array on your HTTP or Console kernel, you should rename the `DetectEnvironment` entry to `LoadEnvironmentVariables`.
+If you are manually overriding the `$bootstrappers` array on your HTTP or Console kernel, you should rename the `DetectEnvironment` entry to `LoadEnvironmentVariables` and remove `ConfigureLogging`.
 
 ### Broadcasting
 
@@ -100,6 +104,18 @@ The behavior of the `every` method has been moved to the `nth` method to match t
 Calling `$collection->random(1)` will now return a new collection instance with one item. Previously, this would return a single object. This method will only return a single object if no arguments are supplied.
 
 ### Container
+
+#### Aliasing Via `bind` / `instance`
+
+In previous Laravel releases, you could pass an array as the first parameter to the `bind` or `instance` methods to register an alias:
+
+    $container->bind(['foo' => FooContract::class], function () {
+        return 'foo';
+    });
+
+However, this behavior has been removed in Laravel 5.4. To register an alias, you should now use the `alias` method:
+
+    $container->alias(FooContract::class, 'foo');
 
 #### Binding Classes With Leading Slashes
 
@@ -157,7 +173,7 @@ If you were previously binding a service container binding for a `db.connection.
 
 #### Fetch Mode
 
-Laravel no longer includes the ability to customize the PDO "fetch mode" from your configuration files. Instead, `PDO::FETCH_OBJ` is always used. If you will still like to customize the fetch mode for your application you may listen for the new `Illuminate\Database\Events\StatementPrepared` event:
+Laravel no longer includes the ability to customize the PDO "fetch mode" from your configuration files. Instead, `PDO::FETCH_OBJ` is always used. If you would still like to customize the fetch mode for your application you may listen for the new `Illuminate\Database\Events\StatementPrepared` event:
 
     Event::listen(StatementPrepared::class, function ($event) {
         $event->statement->setFetchMode(...);
@@ -187,6 +203,10 @@ Just like previous Laravel releases, this relationship will typically use `user_
 
 When this is the case, Laravel will now respect your customization and determine the foreign key column name is `user_key` instead of `user_id`.
 
+#### BelongsToMany `setJoin`
+
+The `setJoin` method has been renamed to `performJoin`.
+
 #### Has One / Many `createMany`
 
 The `createMany` method of a `hasOne` or `hasMany` relationship now returns a collection object instead of an array.
@@ -198,6 +218,31 @@ Related models will now use the same connection as the parent model. For example
     User::on('example')->with('posts');
 
 Eloquent will query the posts table on the `example` connection instead of the default database connection. If you want to read the `posts` relationship from the default connection, you should to explicitly set the model's connection to your application's default connection.
+
+#### The `chunk` Method
+
+The query builder `chunk` method now requires an `orderBy` clause, which provides consistency with the `each` method. An exception will be thrown if an `orderBy` clause is not supplied. For example:
+
+    DB::table('users')->orderBy('id')->chunk(100, function ($users) {
+        foreach ($users as $user) {
+            //
+        }
+    });
+
+The Eloquent query builder `chunk` method will automatically apply an `orderBy` clause on the model's primary key if one is not supplied.
+
+#### The `create` & `forceCreate` Methods
+
+The `Model::create` & `Model::forceCreate` methods have been moved to the `Illuminate\Database\Eloquent\Builder` class in order to provide better support for creating models on multiple connections. However, if you are extending these methods in your own models, you will need to modify your implementation to call the `create` method on the builder. For example:
+
+    public static function create(array $attributes = [])
+    {
+        $model = static::query()->create($attributes);
+
+        // ...
+
+        return $model;
+    }
 
 #### The `hydrate` Method
 
@@ -211,7 +256,7 @@ The `Model::hydrateRaw` method has been renamed to `fromQuery`. If you are passi
 
     User::on('connection')->fromQuery('...');
 
-#### The `whereKey` method
+#### The `whereKey` Method
 
 The `whereKey($id)` method will now add a "where" clause for the given primary key value. Previously, this would fall into the dynamic "where" clause builder and add a "where" clause for the "key" column. If you used the `whereKey` method to dynamically add a condition for the `key` column you should now use `where('key', ...)` instead.
 
@@ -316,9 +361,15 @@ The class `Illuminate\Foundation\Http\Middleware\VerifyPostSize` has been rename
 
 The `middleware` method of the `Illuminate\Routing\Router` class has been renamed to `aliasMiddleware()`. It is likely that most applications never call this method manually, as it is typically only called by the HTTP kernel to register route-level middleware defined in the `$routeMiddleware` array.
 
-#### The `getParameter` Method
+#### `Route` Methods
+
+The `getUri` method of the `Illuminate\Routing\Route` class has been removed. You should use the `uri` method instead.
+
+The `getMethods` method of the `Illuminate\Routing\Route` class has been removed. You should use the `methods` method instead.
 
 The `getParameter` method of the `Illuminate\Routing\Route` class has been removed. You should use the `parameter` method instead.
+
+The `getPath` method of the `Illuminate\Routing\Route` class has been removed. You should use the `uri` method instead.
 
 ### Sessions
 
@@ -336,27 +387,35 @@ All calls to the `$request->setSession()` method should be changed to `setLarave
 
 Laravel 5.4's testing layer has been re-written to be simpler and lighter out of the box. If you would like to continue using the testing layer present in Laravel 5.3, you may install the `laravel/browser-kit-testing` [package](https://github.com/laravel/browser-kit-testing) into your application. This package provides full compatibility with the Laravel 5.3 testing layer. In fact, you can run the Laravel 5.4 testing layer side-by-side with the Laravel 5.3 testing layer.
 
-If you have tests written using Laravel 5.3 and would like to run them side-by-side with Laravel's new testing layer, install the `laravel/browser-kit-testing` package:
+In order to allow Laravel to autoload any new tests you generate using the Laravel 5.4 test generators, you should add the `Tests` namespace to your `composer.json` file's `autoload-dev` block:
 
-    composer require laravel/browser-kit-testing
+    "psr-4": {
+        "Tests\\": "tests/"
+    }
 
-Next, create a copy of your `tests/TestCase.php` file and save it to your `tests` directory as `BrowserKitTest.php`. Then, modify the file to extend the `Laravel\BrowserKitTesting\TestCase` class. Once you have done this, you should have two base test classes in your `tests` directory: `TestCase.php` and `BrowserKitTest.php`. In order for your `BrowserKitTest` class to be properly loaded, you may need to add it to your `composer.json` file:
+#### Running Laravel 5.3 & 5.4 Tests In A Single Application
+
+First install the `laravel/browser-kit-testing` package:
+
+    composer require laravel/browser-kit-testing="1.*" --dev
+
+Once the package has been installed, create a copy of your `tests/TestCase.php` file and save it to your `tests` directory as `BrowserKitTestCase.php`. Then, modify the file to extend the `Laravel\BrowserKitTesting\TestCase` class. Once you have done this, you should have two base test classes in your `tests` directory: `TestCase.php` and `BrowserKitTestCase.php`. In order for your `BrowserKitTestCase` class to be properly loaded, you may need to add it to your `composer.json` file:
 
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php",
-            "tests/BrowserKitTest.php"
+            "tests/BrowserKitTestCase.php"
         ]
     },
 
-Tests written on Laravel 5.3 will extend the `BrowserKitTest` class while any new tests that use the Laravel 5.4 testing layer will extend the `TestCase` class. Your `BrowserKitTest` class should look like the following:
+Tests written on Laravel 5.3 will extend the `BrowserKitTestCase` class while any new tests that use the Laravel 5.4 testing layer will extend the `TestCase` class. Your `BrowserKitTestCase` class should look like the following:
 
     <?php
 
     use Illuminate\Contracts\Console\Kernel;
     use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
-    abstract class BrowserKitTest extends BaseTestCase
+    abstract class BrowserKitTestCase extends BaseTestCase
     {
         /**
          * The base URL of the application.
@@ -380,7 +439,7 @@ Tests written on Laravel 5.3 will extend the `BrowserKitTest` class while any ne
         }
     }
 
-Once you have created this class, make sure to update all of your tests to extend your new `BrowserKitTest` class. This will allow all of your tests written on Laravel 5.3 to continue running on Laravel 5.4. If you choose, you can slowly begin to port them over to the new [Laravel 5.4 test syntax](/docs/5.4/http-tests) or [Laravel Dusk](/docs/5.4/dusk).
+Once you have created this class, make sure to update all of your tests to extend your new `BrowserKitTestCase` class. This will allow all of your tests written on Laravel 5.3 to continue running on Laravel 5.4. If you choose, you can slowly begin to port them over to the new [Laravel 5.4 test syntax](/docs/5.4/http-tests) or [Laravel Dusk](/docs/5.4/dusk).
 
 > {note} If you are writing new tests and want them to use the Laravel 5.4 testing layer, make sure to extend the `TestCase` class.
 
@@ -423,7 +482,7 @@ The Laravel 5.4 test class no longer manually forces `putenv('APP_ENV=testing')`
 
 #### Event Fake
 
-The `Event` fake's `assertFired` method should be updated to `assertDispatched`. The method signature has not been changed.
+The `Event` fake's `assertFired` method should be updated to `assertDispatched`, and the `assertNotFired` method should be updated to `assertNotDispatched`. The method's signatures have not been changed.
 
 #### Mail Fake
 
